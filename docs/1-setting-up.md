@@ -28,6 +28,20 @@ yarn nx g @nx/gatsby:app apps/gatsby-app # this is not working
 
 # This works, too.
 yarn nx g @nx/react:app react-app
+
+# https://nx.dev/nx-api/storybook
+yarn nx add @nx/storybook
+yarn nx g @nx/storybook:configuration design-system # set it up with @storybook/react-vite and got error: Cannot find configuration for 'design-system'
+
+# https://nx.dev/nx-api/react/generators/storybook-configuration
+# Neither works 😢
+yarn nx g @nx/react:storybook-configuration --name=design-system
+yarn nx g @nx/react:storybook-configuration design-system
+
+# this kinda worked...
+# it created storybook in the react-app project because I chose
+# For which project do you want to generate Storybook configuration? · react-app
+yarn nx g @nx/react:storybook-configuration
 ```
 
 ## Errors
