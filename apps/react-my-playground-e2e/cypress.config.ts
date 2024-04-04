@@ -8,10 +8,10 @@ export default defineConfig({
       cypressDir: 'src',
       bundler: 'vite',
       webServerCommands: {
-        default: 'nx run new:serve',
-        production: 'nx run new:preview',
+        default: 'nx run react-my-playground:serve',
+        production: 'nx run react-my-playground:preview',
       },
-      ciWebServerCommand: 'nx run new:serve-static',
+      ciWebServerCommand: 'nx run react-my-playground:serve-static',
     }),
     baseUrl: 'http://localhost:4200',
   },
