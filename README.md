@@ -4,6 +4,13 @@
 
 ```bash
 yarn nx serve react-my-playground
+yarn nx test react-my-playground
+
+# alternative
+yarn nx run react-my-playground:test
+
+# clear cache
+yarn nx reset
 ```
 
 ## Notes
@@ -56,6 +63,9 @@ yarn add @nx/jest
 yarn nx g @nx/react:app apps/react-my-playground
 # then set up tailwind
 yarn nx g @nx/react:setup-tailwind react-my-playground
+# Configure jest
+
+yarn nx g @nx/jest:configuration --project react-my-playground
 ```
 
 (2) Copy & Paste the entire code from from `react-my-playground`. Not the config.
@@ -65,4 +75,26 @@ yarn nx g @nx/react:setup-tailwind react-my-playground
 ```bash
 yarn add clsx zod styled-components msw formik
 yarn add @mui/material @emotion/react @emotion/styled
+```
+
+## Troubleshoot
+
+original jest config
+
+```ts
+module.exports = {
+  roots: ['<rootDir>/src'],
+  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.stories.{ts,tsx}', '!src/**/*.styled.{ts,tsx}', '!src/components/PDF/PDF.ts', '!src/index.tsx', '!src/styles/*', '!src/types/*'],
+  setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+  testMatch: ['<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}', '<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}'],
+  testEnvironment: 'jsdom',
+  transform: {
+    '^.+\\.(js|jsx|mjs|cjs|ts|tsx)$': 'ts-jest',
+  },
+  modulePaths: ['<rootDir>/src'],
+  moduleFileExtensions: ['web.js', 'js', 'web.ts', 'ts', 'web.tsx', 'tsx', 'json', 'web.jsx', 'jsx', 'node'],
+
+  resetMocks: true,
+  clearMocks: true,
+};
 ```
