@@ -2,9 +2,13 @@
 
 ## (1) Get Started
 
+```bash
+yarn nx serve react-my-playground
+```
+
 ## Notes
 
-## Commands from auto-generated README.md
+### (1) Commands from auto-generated README.md
 
 ```bash
 # Commands from auto generated README.md
@@ -16,7 +20,7 @@ npx nx run-many -t <target1> <target2> -p <proj1> <proj2> # -p to filter project
 npx nx graph # show the graph of the workspace -> see https://nx.dev/core-features/explore-graph
 ```
 
-## Nx Tasks
+### (2) Nx Tasks
 
 https://nx.dev/features/run-tasks
 
@@ -27,7 +31,7 @@ Nx tasks can be
 
 Nx will merge all three sources together to determine the tasks for a particular project.
 
-## Add more plugins
+### (3) Add more plugins
 
 We can just add plugins to the workspace. `@nx/vite` comes with vite tests by default. So, we can just add jest test.
 
@@ -35,25 +39,30 @@ We can just add plugins to the workspace. `@nx/vite` comes with vite tests by de
 yarn add @nx/jest
 ```
 
-## Generating Projects
+### (4) Generating Projects
 
 ```bash
 yarn nx generate @nx/react:app myapp
 ```
 
-## Steps that I used to migrate `react-my-playground` into this monorepo.
+### (5) Steps that I used to migrate `react-my-playground` into this monorepo.
 
 (1) Run Nx command to get the repo ready.
 
 ```bash
 # We need jest plugin: https://nx.dev/nx-api/jest
 yarn add @nx/jest
-# then generate react-my-playground
-yarn nx generate @nx/react:app react-my-playground
+# then generate react-my-playground (g stands for generate)
+yarn nx g @nx/react:app apps/react-my-playground
+# then set up tailwind
+yarn nx g @nx/react:setup-tailwind react-my-playground
 ```
 
-The `nx generate` command created the project in the root folder, not apps folder. So, I moved the folder in `apps` and changed `sourceRoot` in `project.json` to `"sourceRoot": "apps/react-my-playground/src",` (it didn't have apps in the path). I also had to change the tsconfig.bas path to ` "extends": "../../tsconfig.base.json"`.
-
-(2) Copy & Paste the entire code and config from `react-my-playground`.
+(2) Copy & Paste the entire code from from `react-my-playground`. Not the config.
 
 (3) Add missing dependencies by yarn install at the root level.
+
+```bash
+yarn add clsx zod styled-components msw formik
+yarn add @mui/material @emotion/react @emotion/styled
+```
