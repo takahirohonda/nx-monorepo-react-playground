@@ -3,7 +3,11 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["jest", "node"]
+    "types": ["jest", "node",
+    // cssmodule import wasn't here by default, so we needed to add it.
+    "@nx/react/typings/cssmodule.d.ts",
+    "@testing-library/jest-dom"
+    ]
   },
   "include": [
     "jest.config.ts",

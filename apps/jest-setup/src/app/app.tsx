@@ -1,4 +1,5 @@
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import styles from './app.module.css';
 
 import NxWelcome from './nx-welcome';
 
@@ -22,6 +23,9 @@ export function App() {
           </li>
           <li>
             <Link to="/page-2">Page 2</Link>
+          </li>
+          <li>
+            <p>for jest test</p>
           </li>
         </ul>
       </div>

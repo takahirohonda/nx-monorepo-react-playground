@@ -82,7 +82,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 Jest doesn't run by using what Nx doc says.
 
-Try this
+- (1) Setup project
 
 ```bash
 cd apps
@@ -91,4 +91,33 @@ nx g @nx/jest:configuration --project=jest-setup
 
 # this runs when I remove css import
 yarn nx run jest-setup:test
+```
+
+- (2) configure jest-dom with testing library
+  Then, add `setupTests.ts` in `src`.
+
+```ts
+import '@testing-library/jest-dom';
+```
+
+Then add this line in `jest.config.ts`.
+
+```ts
+ setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+```
+
+- (3) Add css module & jest-dom types
+
+Add this line in `tsconfig.spec.json`
+
+```json
+{
+...
+// jest and node types are added by default
+ "types": ["jest", "node",
+    // these two lines should be added
+    "@nx/react/typings/cssmodule.d.ts",
+    "@testing-library/jest-dom"
+    ]
+}
 ```
