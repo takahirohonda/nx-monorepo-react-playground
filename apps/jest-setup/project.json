@@ -1,0 +1,8 @@
+{
+  "name": "jest-setup",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/jest-setup/src",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}

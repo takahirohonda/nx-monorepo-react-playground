@@ -10,6 +10,7 @@ module.exports = {
       {
         //apps/react-my-playground/tsconfig.spec.json
         tsconfig: '<rootDir>/tsconfig.spec.json',
+        jsx: 'react',
       },
     ],
   },

@@ -5,7 +5,7 @@ import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/react-my-playground',
+  cacheDir: '../../node_modules/.vite/apps/jest-setup',
 
   server: {
     port: 4200,
@@ -25,7 +25,7 @@ export default defineConfig({
   // },
 
   build: {
-    outDir: '../../dist/apps/react-my-playground',
+    outDir: '../../dist/apps/jest-setup',
     reportCompressedSize: true,
     commonjsOptions: {
       transformMixedEsModules: true,

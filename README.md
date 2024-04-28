@@ -77,3 +77,18 @@ Add `setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],` to `apps/react-my-pla
 yarn add clsx zod styled-components msw formik
 yarn add @mui/material @emotion/react @emotion/styled
 ```
+
+## Troubleshooting
+
+Jest doesn't run by using what Nx doc says.
+
+Try this
+
+```bash
+cd apps
+nx g @nx/react:application
+nx g @nx/jest:configuration --project=jest-setup
+
+# this runs when I remove css import
+yarn nx run jest-setup:test
+```
