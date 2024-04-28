@@ -2,7 +2,17 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
-    "types": ["jest", "node", "@testing-library/jest-dom"]
+    "module": "commonjs",
+    "types": [
+      "jest",
+      "node",
+      "@testing-library/jest-dom",
+      "@nx/react/typings/cssmodule.d.ts",
+
+      // not sure if this is needed... 
+      // cssmodule.d.ts is definitely needed.
+      "@nx/react/typings/styled-jsx.d.ts",
+    ]
   },
   "include": [
     "jest.config.ts",

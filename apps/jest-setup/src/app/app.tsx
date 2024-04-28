@@ -25,7 +25,7 @@ export function App() {
             <Link to="/page-2">Page 2</Link>
           </li>
           <li>
-            <p>for jest test</p>
+            <p className={styles.custom}>for jest test</p>
           </li>
         </ul>
       </div>
