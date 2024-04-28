@@ -122,4 +122,6 @@ Add this line in `tsconfig.spec.json`
 }
 ```
 
+We also need to add `"src/**/*.spec.tsx"` in includes in `tsconfig.spec.json`. Otherwise,
+
 For the react-my-playground project, I set the compiler option `"jsx": "react"`. It has to be `"jsx":"react-jsx"` .
