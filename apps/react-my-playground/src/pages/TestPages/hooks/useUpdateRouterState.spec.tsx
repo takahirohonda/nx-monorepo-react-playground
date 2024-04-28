@@ -33,6 +33,10 @@ const routeConfig: RouteObject[] = [
     path: '/',
     element: <Component state={{ testState: 'state 1' }} path="/test" />,
   },
+  {
+    path: '/test',
+    element: <div>test</div>
+  }
 ]
 const router = createMemoryRouter(routeConfig, { initialEntries: ['/'] })
 

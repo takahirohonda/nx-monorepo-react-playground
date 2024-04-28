@@ -6,7 +6,7 @@ import {
   RouteObject,
   RouterProvider,
 } from 'react-router-dom'
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { About } from './About'
@@ -15,24 +15,38 @@ import { createRouteTestingWrapper } from './test-utils/createRouteTestingWrappe
 describe('About', () => {
   it('should change the router state - with MemoryRouter', async () => {
     const user = userEvent.setup()
+
     render(<About />, { wrapper: MemoryRouter })
-    await user.click(
-      screen.getByRole('button', { name: /update router state/i })
-    )
-    expect(
-      screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
-    ).toBeVisible()
+    
+    act(() => {
+      user.click(
+        screen.getByRole('button', { name: /update router state/i })
+      )
+    });
+
+    await(() => {
+      expect(
+        screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      ).toBeVisible()  
+    })
   })
 
   it('should change the router state - with BrowserRouter', async () => {
     const user = userEvent.setup()
     render(<About />, { wrapper: BrowserRouter })
-    await user.click(
-      screen.getByRole('button', { name: /update router state/i })
-    )
-    expect(
-      screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
-    ).toBeVisible()
+    
+
+    act(() => {
+      user.click(
+        screen.getByRole('button', { name: /update router state/i })
+      )
+    })
+
+    await(() => {
+      expect(
+        screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      ).toBeVisible()
+    })
   })
 
   it('should change the router state - access the router state', async () => {
@@ -48,12 +62,14 @@ describe('About', () => {
     })
 
     render(<RouterProvider router={router} />)
-
-    await user.click(
-      screen.getByRole('button', { name: /update router state/i })
-    )
+    act(() => {
+      user.click(
+        screen.getByRole('button', { name: /update router state/i })
+      )
+    })
+    
     expect(
-      screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      await screen.findByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
     ).toBeVisible()
 
     expect(router.state.location.pathname).toBe('/test')
@@ -70,11 +86,14 @@ describe('About', () => {
 
     render(<Route path="/" element={<About />} />, { wrapper: Wrapper })
     const user = userEvent.setup()
-    await user.click(
-      screen.getByRole('button', { name: /update router state/i })
-    )
+
+    act(() => {
+      user.click(
+        screen.getByRole('button', { name: /update router state/i })
+      )
+    })
     expect(
-      screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      await screen.findByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
     ).toBeVisible()
 
     expect(getLocation()?.pathname).toBe('/')
