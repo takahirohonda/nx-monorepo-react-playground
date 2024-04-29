@@ -6,6 +6,9 @@ dist
 tmp
 /out-tsc
 
+# Temp script not commiting
+temp.sh
+
 # dependencies
 node_modules
 
