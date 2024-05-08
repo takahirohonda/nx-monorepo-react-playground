@@ -13,6 +13,14 @@ yarn nx run react-my-playground:test
 yarn nx reset
 ```
 
+## (2) Create a new library
+
+We can specify the collection explicitly, `nx g @nx/react:library ...`. `nx g lib` works, too because we have the library in `nx.json`. `nx g lib` will search for library in the nx.json config.
+
+```bash
+yarn nx g lib common --directory=libs/components
+```
+
 ## Notes
 
 ### (1) Commands from auto-generated README.md

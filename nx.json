@@ -81,7 +81,9 @@
       },
       "library": {
         "style": "css",
-        "linter": "eslint"
+        "linter": "eslint",
+        "bundler": "vite",
+        "unitTestRunner": "jest"
       }
     },
     "@nx/next": {
