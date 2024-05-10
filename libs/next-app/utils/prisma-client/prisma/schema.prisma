@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite" 
-  url      = "file:/Users/taka/code/mdh/nx-monorepo-react-playground/libs/next-app/utils/prisma-client/prisma/dev.db" // this should work according to the doc...
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
 }
 
 model Todo {
@@ -15,5 +15,4 @@ model Todo {
   createdAt DateTime @default(now())
   content String
   completed Boolean @default(false)
-  more String
 }

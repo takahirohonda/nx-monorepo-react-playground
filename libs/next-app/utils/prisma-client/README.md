@@ -15,7 +15,9 @@ yarn add prisma -D
 yarn prisma init --datasource-provider sqlite --output libs/next-app/utils/prisma-client
 ```
 
-Then create dev.db and run `chmod 777 libs/next-app/utils/prisma-client/prisma/dev.db`
+Add `.env` in the root folder (the file url is read from the .env in the root because migrate script runs at the root level).
+
+`migrate-init` script in `project.json` will create the data base. Now we can see `migrations` folder and `dev.db` in the `prisma` folder.
 
 ## Scripts
 
