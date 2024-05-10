@@ -23,6 +23,47 @@ yarn nx g lib common --directory=libs/components
 
 ## Notes
 
+## Setting up this repo
+
+# Setting up this repo
+
+```bash
+npx create-nx-workspace new
+
+##### the option to set this up
+NX   Let's create a new workspace [https://nx.dev/getting-started/intro]
+
+✔ Which stack do you want to use? · react
+✔ What framework would you like to use? · none
+✔ Integrated monorepo, or standalone project? · integrated
+✔ Application name · new
+✔ Which bundler would you like to use? · vite
+✔ Test runner to use for end to end (E2E) tests · cypress
+✔ Default stylesheet format · css
+✔ Do you want Nx Cloud to make your CI fast? · skip
+```
+
+```bash
+yarn nx add @nx/next
+yarn nx g @nx/next:app next-app
+
+yarn nx g @nx/react:app react-app
+
+# https://nx.dev/nx-api/storybook
+yarn nx add @nx/storybook
+yarn nx g @nx/storybook:configuration design-system # set it up with @storybook/react-vite and got error: Cannot find configuration for 'design-system'
+
+# https://nx.dev/nx-api/react/generators/storybook-configuration
+# Neither works 😢
+yarn nx g @nx/react:storybook-configuration --name=design-system
+yarn nx g @nx/react:storybook-configuration design-system
+
+# this kinda worked...
+# it created storybook in the react-app project because I chose
+# For which project do you want to generate Storybook configuration? · react-app
+yarn nx g @nx/react:storybook-configuration
+```
+
 ### (1) Commands from auto-generated README.md
 
 ```bash
