@@ -3,10 +3,14 @@
 
 generator client {
   provider = "prisma-client-js"
+  // by default, it will create the client in node_moudle folder.
+  // client should be generated after module installation.
+  // output = ...
 }
 
 datasource db {
   provider = "sqlite"
+  // .env should be in the root because that's where the migrate script runs
   url      = env("DATABASE_URL")
 }
 
