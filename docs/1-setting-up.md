@@ -46,6 +46,8 @@ yarn nx g @nx/react:storybook-configuration
 
 ## Errors
 
+[Update] `@nx/gatsby` is deprecated. Not gonna bother with setting up gatsby in this repo...
+
 This can be solved by running `yarn nx add @nx/gatsby` first.
 
 ```bash

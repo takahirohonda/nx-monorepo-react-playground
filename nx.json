@@ -96,6 +96,11 @@
   "targetDefaults": {
     "e2e": {
       "inputs": ["default", "^production"]
+    },
+    "@nx/vite:build": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "tasksRunnerOptions": {

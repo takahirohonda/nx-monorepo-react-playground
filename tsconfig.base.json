@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@new/common": ["components/src/index.ts"],
-      "@new/components/common": ["libs/components/common/src/index.ts"]
+      "@libs/next-app/utils/prisma-client": ["libs/next-app/utils/prisma-client/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
