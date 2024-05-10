@@ -17,7 +17,7 @@ yarn prisma init --datasource-provider sqlite --output libs/next-app/utils/prism
 
 Add `.env` in the root folder (the file url is read from the .env in the root because migrate script runs at the root level).
 
-`migrate-init` script in `project.json` will create the data base. Now we can see `migrations` folder and `dev.db` in the `prisma` folder.
+`migrate` script in `project.json` will create the data base. Now we can see `migrations` folder and `dev.db` in the `prisma` folder. The `--name init` argument will create the db and table.
 
 ## Scripts
 
