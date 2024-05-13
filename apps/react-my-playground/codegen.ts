@@ -9,6 +9,9 @@ const config: CodegenConfig = {
       }
     }
   },
+  documents: [
+    'apps/react-my-playground/src/**/*.graphql'
+  ],
   generates: {
     "./src/generated/": {
       preset: "client",
@@ -26,7 +29,6 @@ const config: CodegenConfig = {
         baseTypesPath: 'types/gql-global-types',
       },
       plugins: ['typescript-operations', 'typescript-react-apollo'],
-      // https://github.com/dotansimha/graphql-code-generator/issues/3575#issuecomment-596188511
       // Maintainers reason why generated types are not flattened
       config: {
         avoidOptionals: true,

@@ -16,7 +16,7 @@ https://www.apollographql.com/tutorials/lift-off-part1/09-codegen
 
 
 ```bash
-yarn add -D @graphql-codegen/cli @graphql-codegen/client-preset
+yarn add -D @graphql-codegen/cli @graphql-codegen/client-preset @graphql-codegen/near-operation-file-preset @graphql-codegen/typescript-operations @graphql-codegen/typescript-react-apollo
 yarn add @apollo/client graphql
 ```
 

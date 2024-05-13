@@ -1,0 +1,12 @@
+#import "./CategoryFields.graphql"
+
+query GetCategories {
+  site {
+    categoryTree {
+      ...CategoryFields
+      children {
+        ...CategoryFields
+      }
+    }
+  }
+}
