@@ -15,7 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@libs/next-app/utils/prisma-client": ["libs/next-app/utils/prisma-client/src/index.ts"]
+      "@libs/next-app/utils/prisma-client": [
+        "libs/next-app/utils/prisma-client/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
