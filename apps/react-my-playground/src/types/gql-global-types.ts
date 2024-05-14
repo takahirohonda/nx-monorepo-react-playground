@@ -346,6 +346,12 @@ export type BannersSearchPageArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
 };
 
+/** Base order fields. */
+export type BaseOrder = {
+  /** Order ID. */
+  entityId: Scalars['Int']['output'];
+};
+
 /** Blog details. */
 export type Blog = Node & {
   __typename?: 'Blog';
@@ -3788,11 +3794,13 @@ export type OptionValueId = {
   valueEntityId: Scalars['Int']['input'];
 };
 
-/** The order. */
-export type Order = {
+/** A node for fetching orders. */
+export type Order = BaseOrder & Node & {
   __typename?: 'Order';
   /** Order ID. */
   entityId: Scalars['Int']['output'];
+  /** The id of the object. */
+  id: Scalars['ID']['output'];
 };
 
 /** Other Filter */

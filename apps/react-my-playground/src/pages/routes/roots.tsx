@@ -9,6 +9,7 @@ import { More } from '../TestPages/More'
 import { Products } from '../TestPages/Products'
 import { ROOT } from './routes'
 import { subRouteConfig } from './subRouteConfig'
+import { ShopPage } from '../Shop/ShopPage'
 
 export const routeConfig: RouteObject[] = [
   {
@@ -20,8 +21,13 @@ export const routeConfig: RouteObject[] = [
         path: ROOT.path,
         element: <Home />,
       },
+      {
+        path: ROOT.SHOP.path,
+        element: <ShopPage />
+      },
     ],
   },
+  
   {
     path: ROOT.TEST_PAGES.path,
     element: <Navigate to={ROOT.TEST_PAGES.HOME.relative} />,

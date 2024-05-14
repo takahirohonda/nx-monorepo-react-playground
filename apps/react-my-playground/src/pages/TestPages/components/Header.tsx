@@ -14,6 +14,14 @@ export const Header = () => {
         </a>
       </li>
       <li>
+        <a
+          className={clsx('hover:underline', 'active:underline')}
+          href={ROOT.SHOP.path}
+        >
+          Shop
+        </a>
+      </li>
+      <li>
         <a href={ROOT.TEST_PAGES.HOME.path}>Test Page Home</a>
       </li>
       <li>
