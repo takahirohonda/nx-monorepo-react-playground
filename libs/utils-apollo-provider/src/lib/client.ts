@@ -22,7 +22,6 @@ export const getClient = ({ uri, token }: { uri: string, token: string }) => {
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : "",
-        credential: 'same-origin',
       },
     });
     return forward(operation);
