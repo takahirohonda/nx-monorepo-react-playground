@@ -1,0 +1,196 @@
+fragment ProductOption on CatalogProductOption {
+  __typename
+  entityId
+  displayName
+  isRequired
+  ... on MultipleChoiceOption {
+    displayStyle
+    values(first: 5) {
+      edges {
+        node {
+          entityId
+          isDefault
+          ... on SwatchOptionValue {
+            hexColors
+            imageUrl(width: 200)
+            label
+            isSelected
+          }
+          ... on MultipleChoiceOptionValue {
+            entityId
+            label
+            isSelected
+          }
+          ... on ProductPickListOptionValue {
+            entityId
+            label
+            isSelected
+          }
+        }
+      }
+    }
+  }
+  ... on NumberFieldOption {
+    entityId
+    displayName
+  }
+  ... on TextFieldOption {
+    entityId
+    displayName
+  }
+  ... on MultiLineTextFieldOption {
+    entityId
+    displayName
+  }
+  ... on FileUploadFieldOption {
+    entityId
+    displayName
+  }
+  ... on DateFieldOption {
+    entityId
+    displayName
+  }
+  ... on CheckboxOption {
+    entityId
+    displayName
+  }
+}
+
+fragment ProductVariant on Variant {
+  id
+  entityId
+  sku
+  upc
+  isPurchasable
+  prices {
+    price {
+      value
+      currencyCode
+    }
+    priceRange {
+      min {
+        value
+        currencyCode
+      }
+      max {
+        value
+        currencyCode
+      }
+    }
+  }
+  options(first: 5) {
+    edges {
+      node {
+        entityId
+        displayName
+        values(first: 5) {
+          edges {
+            node {
+              entityId
+              label
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment Product on Product {
+  entityId
+  name
+  defaultImage {
+    ...ImageFieldsSmall
+  }
+  images {
+    edges {
+      node {
+        ...ImageFields
+      }
+    }
+  }
+  prices {
+    price {
+      ...MoneyFields
+    }
+  }
+}
+
+fragment ProductAllFields on Product {
+  id
+  entityId
+  sku
+  upc
+  name
+  brand {
+    name
+  }
+  plainTextDescription
+  description
+  availabilityV2 {
+    status
+    description
+  }
+  defaultImage {
+    ...ImageFields
+  }
+  images {
+    edges {
+      node {
+        ...ImageFields
+      }
+    }
+  }
+  seo {
+    pageTitle
+    metaDescription
+    metaKeywords
+  }
+  path
+  prices {
+    price {
+      ...MoneyFields
+    }
+    priceRange {
+      min {
+        ...MoneyFields
+      }
+      max {
+        ...MoneyFields
+      }
+    }
+  }
+  createdAt {
+    utc
+  }
+  variants(first: 5) {
+    edges {
+      node {
+        ...ProductVariant
+      }
+    }
+  }
+  productOptions(first: 3) {
+    edges {
+      node {
+        ...ProductOption
+      }
+    }
+  }
+}
+
+fragment ImageFieldsSmall on Image {
+  url320wide: url(width: 320)
+}
+
+fragment ImageFields on Image {
+  url320wide: url(width: 320)
+  url640wide: url(width: 640)
+  url960wide: url(width: 960)
+  url1280wide: url(width: 1280)
+}
+
+fragment MoneyFields on Money {
+  value
+  currencyCode
+}

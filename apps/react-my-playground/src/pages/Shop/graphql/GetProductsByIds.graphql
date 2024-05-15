@@ -1,0 +1,13 @@
+
+#import "./ProductFields.graphql"
+query getProductsByIds($entityIds: [Int!]) {
+    site {
+      products(entityIds: $entityIds) {
+        edges {
+          node {
+            ...Product
+          }
+        }
+      }
+    }
+  }
