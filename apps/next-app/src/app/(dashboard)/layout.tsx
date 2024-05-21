@@ -4,9 +4,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
-      <p>Just testing dashboard layout...</p>
+    <div className="flex flex-col gap-4">
+      <h1 className="text-4xl">Dashboard</h1>
       {children}
-    </>
+    </div>
   );
 }

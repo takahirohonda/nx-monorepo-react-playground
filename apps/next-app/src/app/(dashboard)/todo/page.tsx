@@ -12,9 +12,9 @@ const TodoPage = async () => {
       <ul>
         {todo?.map((list) => (<li key={list.id}>{list.content}</li>))}
       </ul>
-      <form action={addNewTodo}>
-        <input name="content" type="text" />
-        <button type="submit">Add Todo</button>
+      <form action={addNewTodo} className="flex flex-col gap-4 w-3/12">
+        <input name="content" type="text" className="border-2 border-black/20 rounded"/>
+        <button className="bg-blue-500 border border-blue-500 text-white py-2 rounded w-28 hover:bg-white hover:text-blue-800" type="submit">Add Todo</button>
       </form>
     </>
   )
