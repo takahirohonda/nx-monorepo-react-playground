@@ -7,7 +7,7 @@
     "gql:sync": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "graphql-codegen --config ./apps/react-my-playground/codegen.ts"
+        "command": "./apps/react-my-playground/script/run-codegen.sh"
       }
     }
   },

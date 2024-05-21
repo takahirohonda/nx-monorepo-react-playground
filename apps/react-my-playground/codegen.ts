@@ -1,11 +1,14 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 import { GRAPHQL_ENDPOINT, API_TOKEN } from './tmp/coden-const'
 import updateGqlDocumentNodes from './script/codegen/updateGqlDocumentNode'
+
+const token = process.env.API_TOKEN || API_TOKEN
+
 const config: CodegenConfig = {
   schema: {
     [GRAPHQL_ENDPOINT]: {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`
+        Authorization: `Bearer ${token}`
       }
     }
   },

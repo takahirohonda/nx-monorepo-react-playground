@@ -56,7 +56,7 @@ fragment ProductOption on CatalogProductOption {
   }
 }
 
-fragment ProductVariant on Variant {
+fragment ProductVariantAllFields on Variant {
   id
   entityId
   sku
@@ -96,22 +96,41 @@ fragment ProductVariant on Variant {
   }
 }
 
+fragment ProductVariant on Variant {
+  id
+  entityId
+  sku
+  upc
+  isPurchasable
+  defaultImage {
+    ...ImageFields
+  }
+  prices {
+    price {
+      value
+      currencyCode
+    }
+  }
+  
+}
+
 fragment Product on Product {
   entityId
   name
+  plainTextDescription
   defaultImage {
-    ...ImageFieldsSmall
-  }
-  images {
-    edges {
-      node {
-        ...ImageFields
-      }
-    }
+    ...ImageFields
   }
   prices {
     price {
       ...MoneyFields
+    }
+  }
+  variants(first: 5) {
+    edges {
+      node {
+        ...ProductVariant
+      }
     }
   }
 }

@@ -8,6 +8,8 @@ export const useGetShopProductsByEntityIds = () => {
 
   const products = data?.site?.products?.edges || []
 
+  console.log(JSON.stringify(products))
+
   return { products }
 
 }

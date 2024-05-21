@@ -9,7 +9,7 @@ export type GetProductsByIdsQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetProductsByIdsQueryResponse = { __typename?: 'Query', site: { __typename?: 'Site', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', entityId: number, name: string, defaultImage: { __typename?: 'Image', url320wide: string } | null, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } }> | null }, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null } }> | null } } };
+export type GetProductsByIdsQueryResponse = { __typename?: 'Query', site: { __typename?: 'Site', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', entityId: number, name: string, plainTextDescription: string, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null, variants: { __typename?: 'VariantConnection', edges: Array<{ __typename?: 'VariantEdge', node: { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null } }> | null } } }> | null } } };
 
 
 export const GetProductsByIds = gql`

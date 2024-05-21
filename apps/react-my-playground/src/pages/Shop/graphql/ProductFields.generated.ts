@@ -17,11 +17,13 @@ export type ProductOption_TextFieldOption_Fragment = { __typename: 'TextFieldOpt
 
 export type ProductOptionFragment = ProductOption_CheckboxOption_Fragment | ProductOption_DateFieldOption_Fragment | ProductOption_FileUploadFieldOption_Fragment | ProductOption_MultiLineTextFieldOption_Fragment | ProductOption_MultipleChoiceOption_Fragment | ProductOption_NumberFieldOption_Fragment | ProductOption_TextFieldOption_Fragment;
 
-export type ProductVariantFragment = { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string }, priceRange: { __typename?: 'MoneyRange', min: { __typename?: 'Money', value: any, currencyCode: string }, max: { __typename?: 'Money', value: any, currencyCode: string } } } | null, options: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node: { __typename?: 'ProductOption', entityId: number, displayName: string, values: { __typename?: 'OptionValueConnection', edges: Array<{ __typename?: 'OptionValueEdge', node: { __typename?: 'ProductOptionValue', entityId: number, label: string } }> | null } } }> | null } };
+export type ProductVariantAllFieldsFragment = { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string }, priceRange: { __typename?: 'MoneyRange', min: { __typename?: 'Money', value: any, currencyCode: string }, max: { __typename?: 'Money', value: any, currencyCode: string } } } | null, options: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node: { __typename?: 'ProductOption', entityId: number, displayName: string, values: { __typename?: 'OptionValueConnection', edges: Array<{ __typename?: 'OptionValueEdge', node: { __typename?: 'ProductOptionValue', entityId: number, label: string } }> | null } } }> | null } };
 
-export type ProductFragment = { __typename?: 'Product', entityId: number, name: string, defaultImage: { __typename?: 'Image', url320wide: string } | null, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } }> | null }, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null };
+export type ProductVariantFragment = { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null };
 
-export type ProductAllFieldsFragment = { __typename?: 'Product', id: string, entityId: number, sku: string, upc: string | null, name: string, plainTextDescription: string, description: string, path: string, brand: { __typename?: 'Brand', name: string } | null, availabilityV2: { __typename?: 'ProductAvailable', status: Types.ProductAvailabilityStatus, description: string } | { __typename?: 'ProductPreOrder', status: Types.ProductAvailabilityStatus, description: string } | { __typename?: 'ProductUnavailable', status: Types.ProductAvailabilityStatus, description: string }, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } }> | null }, seo: { __typename?: 'SeoDetails', pageTitle: string, metaDescription: string, metaKeywords: string }, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string }, priceRange: { __typename?: 'MoneyRange', min: { __typename?: 'Money', value: any, currencyCode: string }, max: { __typename?: 'Money', value: any, currencyCode: string } } } | null, createdAt: { __typename?: 'DateTimeExtended', utc: any }, variants: { __typename?: 'VariantConnection', edges: Array<{ __typename?: 'VariantEdge', node: { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string }, priceRange: { __typename?: 'MoneyRange', min: { __typename?: 'Money', value: any, currencyCode: string }, max: { __typename?: 'Money', value: any, currencyCode: string } } } | null, options: { __typename?: 'OptionConnection', edges: Array<{ __typename?: 'OptionEdge', node: { __typename?: 'ProductOption', entityId: number, displayName: string, values: { __typename?: 'OptionValueConnection', edges: Array<{ __typename?: 'OptionValueEdge', node: { __typename?: 'ProductOptionValue', entityId: number, label: string } }> | null } } }> | null } } }> | null }, productOptions: { __typename?: 'ProductOptionConnection', edges: Array<{ __typename?: 'ProductOptionEdge', node: { __typename: 'CheckboxOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'DateFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'FileUploadFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'MultiLineTextFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'MultipleChoiceOption', displayStyle: string, entityId: number, displayName: string, isRequired: boolean, values: { __typename?: 'ProductOptionValueConnection', edges: Array<{ __typename?: 'ProductOptionValueEdge', node: { __typename?: 'MultipleChoiceOptionValue', entityId: number, label: string, isSelected: boolean | null, isDefault: boolean } | { __typename?: 'ProductPickListOptionValue', entityId: number, label: string, isSelected: boolean | null, isDefault: boolean } | { __typename?: 'SwatchOptionValue', hexColors: Array<string>, imageUrl: string | null, label: string, isSelected: boolean | null, entityId: number, isDefault: boolean } }> | null } } | { __typename: 'NumberFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'TextFieldOption', entityId: number, displayName: string, isRequired: boolean } }> | null } };
+export type ProductFragment = { __typename?: 'Product', entityId: number, name: string, plainTextDescription: string, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null, variants: { __typename?: 'VariantConnection', edges: Array<{ __typename?: 'VariantEdge', node: { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null } }> | null } };
+
+export type ProductAllFieldsFragment = { __typename?: 'Product', id: string, entityId: number, sku: string, upc: string | null, name: string, plainTextDescription: string, description: string, path: string, brand: { __typename?: 'Brand', name: string } | null, availabilityV2: { __typename?: 'ProductAvailable', status: Types.ProductAvailabilityStatus, description: string } | { __typename?: 'ProductPreOrder', status: Types.ProductAvailabilityStatus, description: string } | { __typename?: 'ProductUnavailable', status: Types.ProductAvailabilityStatus, description: string }, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } }> | null }, seo: { __typename?: 'SeoDetails', pageTitle: string, metaDescription: string, metaKeywords: string }, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string }, priceRange: { __typename?: 'MoneyRange', min: { __typename?: 'Money', value: any, currencyCode: string }, max: { __typename?: 'Money', value: any, currencyCode: string } } } | null, createdAt: { __typename?: 'DateTimeExtended', utc: any }, variants: { __typename?: 'VariantConnection', edges: Array<{ __typename?: 'VariantEdge', node: { __typename?: 'Variant', id: string, entityId: number, sku: string, upc: string | null, isPurchasable: boolean, defaultImage: { __typename?: 'Image', url320wide: string, url640wide: string, url960wide: string, url1280wide: string } | null, prices: { __typename?: 'Prices', price: { __typename?: 'Money', value: any, currencyCode: string } } | null } }> | null }, productOptions: { __typename?: 'ProductOptionConnection', edges: Array<{ __typename?: 'ProductOptionEdge', node: { __typename: 'CheckboxOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'DateFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'FileUploadFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'MultiLineTextFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'MultipleChoiceOption', displayStyle: string, entityId: number, displayName: string, isRequired: boolean, values: { __typename?: 'ProductOptionValueConnection', edges: Array<{ __typename?: 'ProductOptionValueEdge', node: { __typename?: 'MultipleChoiceOptionValue', entityId: number, label: string, isSelected: boolean | null, isDefault: boolean } | { __typename?: 'ProductPickListOptionValue', entityId: number, label: string, isSelected: boolean | null, isDefault: boolean } | { __typename?: 'SwatchOptionValue', hexColors: Array<string>, imageUrl: string | null, label: string, isSelected: boolean | null, entityId: number, isDefault: boolean } }> | null } } | { __typename: 'NumberFieldOption', entityId: number, displayName: string, isRequired: boolean } | { __typename: 'TextFieldOption', entityId: number, displayName: string, isRequired: boolean } }> | null } };
 
 export type ImageFieldsSmallFragment = { __typename?: 'Image', url320wide: string };
 
@@ -29,53 +31,8 @@ export type ImageFieldsFragment = { __typename?: 'Image', url320wide: string, ur
 
 export type MoneyFieldsFragment = { __typename?: 'Money', value: any, currencyCode: string };
 
-export const ImageFieldsSmallDoc = gql`
-    fragment ImageFieldsSmall on Image {
-  url320wide: url(width: 320)
-}
-    ` as unknown as TypedDocumentNode<
-        ImageFieldsSmallFragment,
-        undefined
-      >
-export const ImageFieldsDoc = gql`
-    fragment ImageFields on Image {
-  url320wide: url(width: 320)
-  url640wide: url(width: 640)
-  url960wide: url(width: 960)
-  url1280wide: url(width: 1280)
-}
-    `;
-export const MoneyFieldsDoc = gql`
-    fragment MoneyFields on Money {
-  value
-  currencyCode
-}
-    `;
-export const ProductDoc = gql`
-    fragment Product on Product {
-  entityId
-  name
-  defaultImage {
-    ...ImageFieldsSmall
-  }
-  images {
-    edges {
-      node {
-        ...ImageFields
-      }
-    }
-  }
-  prices {
-    price {
-      ...MoneyFields
-    }
-  }
-}
-    ${ImageFieldsSmallDoc}
-${ImageFieldsDoc}
-${MoneyFieldsDoc}`;
-export const ProductVariantDoc = gql`
-    fragment ProductVariant on Variant {
+export const ProductVariantAllFieldsDoc = gql`
+    fragment ProductVariantAllFields on Variant {
   id
   entityId
   sku
@@ -114,7 +71,66 @@ export const ProductVariantDoc = gql`
     }
   }
 }
+    ` as unknown as TypedDocumentNode<
+        ProductVariantAllFieldsFragment,
+        undefined
+      >
+export const ImageFieldsDoc = gql`
+    fragment ImageFields on Image {
+  url320wide: url(width: 320)
+  url640wide: url(width: 640)
+  url960wide: url(width: 960)
+  url1280wide: url(width: 1280)
+}
     `;
+export const MoneyFieldsDoc = gql`
+    fragment MoneyFields on Money {
+  value
+  currencyCode
+}
+    `;
+export const ProductVariantDoc = gql`
+    fragment ProductVariant on Variant {
+  id
+  entityId
+  sku
+  upc
+  isPurchasable
+  defaultImage {
+    ...ImageFields
+  }
+  prices {
+    price {
+      value
+      currencyCode
+    }
+  }
+}
+    ${ImageFieldsDoc}`;
+export const ProductDoc = gql`
+    fragment Product on Product {
+  entityId
+  name
+  plainTextDescription
+  defaultImage {
+    ...ImageFields
+  }
+  prices {
+    price {
+      ...MoneyFields
+    }
+  }
+  variants(first: 5) {
+    edges {
+      node {
+        ...ProductVariant
+      }
+    }
+  }
+}
+    ${ImageFieldsDoc}
+${MoneyFieldsDoc}
+${ProductVariantDoc}`;
 export const ProductOptionDoc = gql`
     fragment ProductOption on CatalogProductOption {
   __typename
@@ -241,3 +257,8 @@ export const ProductAllFieldsDoc = gql`
 ${MoneyFieldsDoc}
 ${ProductVariantDoc}
 ${ProductOptionDoc}`;
+export const ImageFieldsSmallDoc = gql`
+    fragment ImageFieldsSmall on Image {
+  url320wide: url(width: 320)
+}
+    `;
