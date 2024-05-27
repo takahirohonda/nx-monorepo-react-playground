@@ -1,6 +1,6 @@
 #import "./ProductFields.graphql"
 
-query getProductsCollection(
+query GetProductsCollection(
     $entityId: Int!
   ) {
     site {
