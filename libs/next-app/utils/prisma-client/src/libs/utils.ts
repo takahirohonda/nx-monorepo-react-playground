@@ -14,3 +14,21 @@ export const createTodo = async (content: string) => {
     }
   })
 }
+
+export const completeTodo = async (id: string) => {
+  await prisma.todo.update({
+    where: { id },
+    data: {
+      completed: true,
+    }
+  })
+}
+
+export const toggleTodo = async (id: string, completed: boolean) => {
+  await prisma.todo.update({
+    where: { id },
+    data: {
+      completed: !completed,
+    }
+  })
+}

@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { createTodo } from '@libs/next-app/utils/prisma-client'
+import { createTodo, completeTodo, toggleTodo } from '@libs/next-app/utils/prisma-client'
 
 export const addNewTodo = async (formData: any) => {
   const content = formData.get('content')
@@ -10,3 +10,9 @@ export const addNewTodo = async (formData: any) => {
     revalidatePath('/todo')
   }
 }
+
+export const tickTodo = async (id: string, completed: boolean) => {
+  await toggleTodo(id, completed)
+  revalidatePath('/todo')
+}
+
