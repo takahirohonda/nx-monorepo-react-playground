@@ -1,9 +1,5 @@
-import styles from './page.module.css';
+import styles from './page.module.css'
 
 export default function Index() {
-  return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-  );
+  return <h1 className="text-3xl font-bold underline">Hello world!</h1>
 }

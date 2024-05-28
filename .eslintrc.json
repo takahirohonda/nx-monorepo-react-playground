@@ -2,9 +2,7 @@
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": [
-    "@nx",
-    "plugin:jest/recommended",
-    "plugin:prettier/recommended"
+    "@nx"
   ],
   "overrides": [
     {
@@ -27,7 +25,16 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "extends": [
+        "plugin:@nx/typescript",
+        "eslint:recommended",
+        "plugin:import/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:import/typescript",
+        "plugin:jest/recommended",
+        "plugin:prettier/recommended"
+      
+      ],
       "rules": {}
     },
     {
