@@ -1,4 +1,4 @@
-import { pageContentFragment } from '../fragments/page';
+import { pageContentFragment } from '../fragments/page'
 
 export const getPageQuery = /* GraphQL */ `
   query getPage($entityId: Int!) {
@@ -51,7 +51,7 @@ export const getPageQuery = /* GraphQL */ `
     }
   }
   ${pageContentFragment}
-`;
+`
 
 export const getPagesQuery = /* GraphQL */ `
   query getPages {
@@ -86,4 +86,4 @@ export const getPagesQuery = /* GraphQL */ `
     }
   }
   ${pageContentFragment}
-`;
+`

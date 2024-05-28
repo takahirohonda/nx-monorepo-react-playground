@@ -85,7 +85,7 @@ const physicalItemFragment = /* GraphQL */ `
       message
     }
   }
-`;
+`
 
 const digitalItemFragment = /* GraphQL */ `
   fragment digitalItem on CartDigitalItem {
@@ -165,7 +165,7 @@ const digitalItemFragment = /* GraphQL */ `
       }
     }
   }
-`;
+`
 
 const customItemFragment = /* GraphQL */ `
   fragment customItem on CartCustomItem {
@@ -182,6 +182,6 @@ const customItemFragment = /* GraphQL */ `
       currencyCode
     }
   }
-`;
+`
 
-export { customItemFragment, digitalItemFragment, physicalItemFragment };
+export { customItemFragment, digitalItemFragment, physicalItemFragment }

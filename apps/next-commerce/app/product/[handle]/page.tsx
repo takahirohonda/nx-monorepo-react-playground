@@ -1,29 +1,29 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { Suspense } from 'react'
 
-import { GridTileImage } from '../../../components/grid/tile';
-import Footer from '../../../components/layout/footer';
-import { Gallery } from '../../../components/product/gallery';
-import { ProductDescription } from '../../../components/product/product-description';
-import { getProduct, getProductRecommendations } from '../../../lib/bigcommerce';
-import { Image } from '../../../lib/bigcommerce/types';
-import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants';
-import Link from 'next/link';
+import { GridTileImage } from '../../../components/grid/tile'
+import Footer from '../../../components/layout/footer'
+import { Gallery } from '../../../components/product/gallery'
+import { ProductDescription } from '../../../components/product/product-description'
+import { getProduct, getProductRecommendations } from '../../../lib/bigcommerce'
+import { Image } from '../../../lib/bigcommerce/types'
+import { HIDDEN_PRODUCT_TAG } from '../../../lib/constants'
+import Link from 'next/link'
 
-export const runtime = 'edge';
+export const runtime = 'edge'
 
 export async function generateMetadata({
-  params
+  params,
 }: {
-  params: { handle: string };
+  params: { handle: string }
 }): Promise<Metadata> {
-  const product = await getProduct(params.handle);
+  const product = await getProduct(params.handle)
 
-  if (!product) return notFound();
+  if (!product) return notFound()
 
-  const { url, width, height, altText: alt } = product.featuredImage || {};
-  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG);
+  const { url, width, height, altText: alt } = product.featuredImage || {}
+  const indexable = !product.tags.includes(HIDDEN_PRODUCT_TAG)
 
   return {
     title: product.seo.title || product.title,
@@ -33,8 +33,8 @@ export async function generateMetadata({
       follow: indexable,
       googleBot: {
         index: indexable,
-        follow: indexable
-      }
+        follow: indexable,
+      },
     },
     openGraph: url
       ? {
@@ -43,18 +43,22 @@ export async function generateMetadata({
               url,
               width,
               height,
-              alt
-            }
-          ]
+              alt,
+            },
+          ],
         }
-      : null
-  };
+      : null,
+  }
 }
 
-export default async function ProductPage({ params }: { params: { handle: string } }) {
-  const product = await getProduct(params.handle);
+export default async function ProductPage({
+  params,
+}: {
+  params: { handle: string }
+}) {
+  const product = await getProduct(params.handle)
 
-  if (!product) return notFound();
+  if (!product) return notFound()
 
   const productJsonLd = {
     '@context': 'https://schema.org',
@@ -69,16 +73,16 @@ export default async function ProductPage({ params }: { params: { handle: string
         : 'https://schema.org/OutOfStock',
       priceCurrency: product.priceRange.minVariantPrice.currencyCode,
       highPrice: product.priceRange.maxVariantPrice.amount,
-      lowPrice: product.priceRange.minVariantPrice.amount
-    }
-  };
+      lowPrice: product.priceRange.minVariantPrice.amount,
+    },
+  }
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(productJsonLd)
+          __html: JSON.stringify(productJsonLd),
         }}
       />
       <div className="mx-auto max-w-screen-2xl px-4">
@@ -87,7 +91,7 @@ export default async function ProductPage({ params }: { params: { handle: string
             <Gallery
               images={product.images.map((image: Image) => ({
                 src: image.url,
-                altText: image.altText
+                altText: image.altText,
               }))}
             />
           </div>
@@ -104,13 +108,13 @@ export default async function ProductPage({ params }: { params: { handle: string
         <Footer />
       </Suspense>
     </>
-  );
+  )
 }
 
 async function RelatedProducts({ id }: { id: string }) {
-  const relatedProducts = await getProductRecommendations(id);
+  const relatedProducts = await getProductRecommendations(id)
 
-  if (!relatedProducts.length) return null;
+  if (!relatedProducts.length) return null
 
   return (
     <div className="py-8">
@@ -127,7 +131,7 @@ async function RelatedProducts({ id }: { id: string }) {
                 label={{
                   title: product.title,
                   amount: product.priceRange.maxVariantPrice.amount,
-                  currencyCode: product.priceRange.maxVariantPrice.currencyCode
+                  currencyCode: product.priceRange.maxVariantPrice.currencyCode,
                 }}
                 src={product.featuredImage?.url}
                 fill
@@ -138,5 +142,5 @@ async function RelatedProducts({ id }: { id: string }) {
         ))}
       </ul>
     </div>
-  );
+  )
 }

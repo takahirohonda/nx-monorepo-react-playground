@@ -1,4 +1,4 @@
-import { productFragment } from '../fragments/product';
+import { productFragment } from '../fragments/product'
 
 export const getProductQuery = /* GraphQL */ `
   query productById($productId: Int!) {
@@ -9,7 +9,7 @@ export const getProductQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getStoreProductsQuery = /* GraphQL */ `
   query getStoreProducts($entityIds: [Int!]) {
@@ -24,7 +24,7 @@ export const getStoreProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getProductsCollectionQuery = /* GraphQL */ `
   query getProductsCollection(
@@ -35,7 +35,11 @@ export const getProductsCollectionQuery = /* GraphQL */ `
   ) {
     site {
       category(entityId: $entityId) {
-        products(sortBy: $sortBy, hideOutOfStock: $hideOutOfStock, first: $first) {
+        products(
+          sortBy: $sortBy
+          hideOutOfStock: $hideOutOfStock
+          first: $first
+        ) {
           edges {
             node {
               ...product
@@ -46,10 +50,13 @@ export const getProductsCollectionQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const searchProductsQuery = /* GraphQL */ `
-  query searchProducts($filters: SearchProductsFiltersInput!, $sort: SearchProductsSortInput) {
+  query searchProducts(
+    $filters: SearchProductsFiltersInput!
+    $sort: SearchProductsSortInput
+  ) {
     site {
       search {
         searchProducts(filters: $filters, sort: $sort) {
@@ -65,7 +72,7 @@ export const searchProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getProductsRecommedationsQuery = /* GraphQL */ `
   query getProductsRecommedations($productId: ID) {
@@ -82,7 +89,7 @@ export const getProductsRecommedationsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getNewestProductsQuery = /* GraphQL */ `
   query getNewestProducts($first: Int) {
@@ -97,7 +104,7 @@ export const getNewestProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getFeaturedProductsQuery = /* GraphQL */ `
   query getFeaturedProducts($first: Int) {
@@ -112,7 +119,7 @@ export const getFeaturedProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`
 
 export const getPopularProductsQuery = /* GraphQL */ `
   query bestSellingProducts($first: Int) {
@@ -127,4 +134,4 @@ export const getPopularProductsQuery = /* GraphQL */ `
     }
   }
   ${productFragment}
-`;
+`

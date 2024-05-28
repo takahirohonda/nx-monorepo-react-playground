@@ -1,8 +1,8 @@
-import { AddToCart } from '../../components/cart/add-to-cart';
-import Price from '../../components/price';
-import Prose from '../../components/prose';
-import { VercelProduct as Product } from '../../lib/bigcommerce/types';
-import { VariantSelector } from './variant-selector';
+import { AddToCart } from '../../components/cart/add-to-cart'
+import Price from '../../components/price'
+import Prose from '../../components/prose'
+import { VercelProduct as Product } from '../../lib/bigcommerce/types'
+import { VariantSelector } from './variant-selector'
 
 export function ProductDescription({ product }: { product: Product }) {
   return (
@@ -25,7 +25,10 @@ export function ProductDescription({ product }: { product: Product }) {
         />
       ) : null}
 
-      <AddToCart variants={product.variants} availableForSale={product.availableForSale} />
+      <AddToCart
+        variants={product.variants}
+        availableForSale={product.availableForSale}
+      />
     </>
-  );
+  )
 }

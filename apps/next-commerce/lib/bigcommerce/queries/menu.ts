@@ -18,4 +18,4 @@ export const getMenuQuery = /* GraphQL */ `
     name
     path
   }
-`;
+`

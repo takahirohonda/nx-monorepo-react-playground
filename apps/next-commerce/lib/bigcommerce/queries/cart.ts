@@ -1,4 +1,8 @@
-import { customItemFragment, digitalItemFragment, physicalItemFragment } from '../fragments/cart';
+import {
+  customItemFragment,
+  digitalItemFragment,
+  physicalItemFragment,
+} from '../fragments/cart'
 
 export const getCartQuery = /* GraphQL */ `
   query getCart($entityId: String!) {
@@ -69,7 +73,7 @@ export const getCartQuery = /* GraphQL */ `
   ${physicalItemFragment}
   ${digitalItemFragment}
   ${customItemFragment}
-`;
+`
 
 export const getCheckoutNodeQuery = /* GraphQL */ `
   query getCheckoutNode($nodeId: ID!) {
@@ -91,4 +95,4 @@ export const getCheckoutNodeQuery = /* GraphQL */ `
       }
     }
   }
-`;
+`

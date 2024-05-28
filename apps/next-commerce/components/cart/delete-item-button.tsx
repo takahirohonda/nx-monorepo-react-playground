@@ -1,27 +1,27 @@
-'use client';
+'use client'
 
-import { XMarkIcon } from '@heroicons/react/24/outline';
-import clsx from 'clsx';
-import { removeItem } from '../../components/cart/actions';
-import LoadingDots from '../../components/loading-dots';
-import type { VercelCartItem as CartItem } from '../../lib/bigcommerce/types';
-import { useFormState, useFormStatus } from 'react-dom';
+import { XMarkIcon } from '@heroicons/react/24/outline'
+import clsx from 'clsx'
+import { removeItem } from '../../components/cart/actions'
+import LoadingDots from '../../components/loading-dots'
+import type { VercelCartItem as CartItem } from '../../lib/bigcommerce/types'
+import { useFormState, useFormStatus } from 'react-dom'
 
 function SubmitButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
 
   return (
     <button
       type="submit"
       onClick={(e: React.FormEvent<HTMLButtonElement>) => {
-        if (pending) e.preventDefault();
+        if (pending) e.preventDefault()
       }}
       aria-label="Remove cart item"
       aria-disabled={pending}
       className={clsx(
         'ease flex h-[17px] w-[17px] items-center justify-center rounded-full bg-neutral-500 transition-all duration-200',
         {
-          'cursor-not-allowed px-0': pending
+          'cursor-not-allowed px-0': pending,
         }
       )}
     >
@@ -31,13 +31,13 @@ function SubmitButton() {
         <XMarkIcon className="hover:text-accent-3 mx-[1px] h-4 w-4 text-white dark:text-black" />
       )}
     </button>
-  );
+  )
 }
 
 export function DeleteItemButton({ item }: { item: CartItem }) {
-  const [message, formAction] = useFormState(removeItem, null);
-  const itemId = item.id;
-  const actionWithVariant = formAction.bind(null, itemId);
+  const [message, formAction] = useFormState(removeItem, null)
+  const itemId = item.id
+  const actionWithVariant = formAction.bind(null, itemId)
 
   return (
     <form action={actionWithVariant}>
@@ -46,5 +46,5 @@ export function DeleteItemButton({ item }: { item: CartItem }) {
         {message}
       </p>
     </form>
-  );
+  )
 }

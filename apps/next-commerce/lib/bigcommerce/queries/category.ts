@@ -14,7 +14,7 @@ export const getCategoryQuery = /* GraphQL */ `
       }
     }
   }
-`;
+`
 
 export const getStoreCategoriesQuery = /* GraphQL */ `
   query getStoreCategories {
@@ -25,4 +25,4 @@ export const getStoreCategoriesQuery = /* GraphQL */ `
       }
     }
   }
-`;
+`

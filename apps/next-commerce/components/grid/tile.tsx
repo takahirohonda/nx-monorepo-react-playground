@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from 'next/image';
-import Label from '../label';
+import clsx from 'clsx'
+import Image from 'next/image'
+import Label from '../label'
 
 export function GridTileImage({
   isInteractive = true,
@@ -8,14 +8,14 @@ export function GridTileImage({
   label,
   ...props
 }: {
-  isInteractive?: boolean;
-  active?: boolean;
+  isInteractive?: boolean
+  active?: boolean
   label?: {
-    title: string;
-    amount: string;
-    currencyCode: string;
-    position?: 'bottom' | 'center';
-  };
+    title: string
+    amount: string
+    currencyCode: string
+    position?: 'bottom' | 'center'
+  }
 } & React.ComponentProps<typeof Image>) {
   return (
     <div
@@ -24,7 +24,7 @@ export function GridTileImage({
         {
           relative: label,
           'border-2 border-blue-600': active,
-          'border-neutral-200 dark:border-neutral-800': !active
+          'border-neutral-200 dark:border-neutral-800': !active,
         }
       )}
     >
@@ -32,7 +32,8 @@ export function GridTileImage({
         // eslint-disable-next-line jsx-a11y/alt-text -- `alt` is inherited from `props`, which is being enforced with TypeScript
         <Image
           className={clsx('relative h-full w-full object-contain', {
-            'transition duration-300 ease-in-out group-hover:scale-105': isInteractive
+            'transition duration-300 ease-in-out group-hover:scale-105':
+              isInteractive,
           })}
           {...props}
         />
@@ -46,5 +47,5 @@ export function GridTileImage({
         />
       ) : null}
     </div>
-  );
+  )
 }

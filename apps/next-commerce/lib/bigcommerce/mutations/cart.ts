@@ -1,4 +1,8 @@
-import { customItemFragment, digitalItemFragment, physicalItemFragment } from '../fragments/cart';
+import {
+  customItemFragment,
+  digitalItemFragment,
+  physicalItemFragment,
+} from '../fragments/cart'
 
 const addCartLineItemMutation = /* GraphQL */ `
   mutation addCartLineItems($addCartLineItemsInput: AddCartLineItemsInput!) {
@@ -29,7 +33,7 @@ const addCartLineItemMutation = /* GraphQL */ `
   ${physicalItemFragment}
   ${digitalItemFragment}
   ${customItemFragment}
-`;
+`
 
 const createCartMutation = /* GraphQL */ `
   mutation createCart($createCartInput: CreateCartInput!) {
@@ -63,10 +67,12 @@ const createCartMutation = /* GraphQL */ `
   ${physicalItemFragment}
   ${digitalItemFragment}
   ${customItemFragment}
-`;
+`
 
 const deleteCartLineItemMutation = /* GraphQL */ `
-  mutation deleteCartLineItem($deleteCartLineItemInput: DeleteCartLineItemInput!) {
+  mutation deleteCartLineItem(
+    $deleteCartLineItemInput: DeleteCartLineItemInput!
+  ) {
     cart {
       deleteCartLineItem(input: $deleteCartLineItemInput) {
         deletedLineItemEntityId
@@ -96,10 +102,12 @@ const deleteCartLineItemMutation = /* GraphQL */ `
   ${physicalItemFragment}
   ${digitalItemFragment}
   ${customItemFragment}
-`;
+`
 
 const updateCartLineItemMutation = /* GraphQL */ `
-  mutation updateCartLineItem($updateCartLineItemInput: UpdateCartLineItemInput!) {
+  mutation updateCartLineItem(
+    $updateCartLineItemInput: UpdateCartLineItemInput!
+  ) {
     cart {
       updateCartLineItem(input: $updateCartLineItemInput) {
         cart {
@@ -130,7 +138,7 @@ const updateCartLineItemMutation = /* GraphQL */ `
   ${physicalItemFragment}
   ${digitalItemFragment}
   ${customItemFragment}
-`;
+`
 
 const deleteCartMutation = /* GraphQL */ `
   mutation deleteCart($deleteCartInput: DeleteCartInput!) {
@@ -140,10 +148,12 @@ const deleteCartMutation = /* GraphQL */ `
       }
     }
   }
-`;
+`
 
 export {
-  addCartLineItemMutation, createCartMutation, deleteCartLineItemMutation,
-  deleteCartMutation, updateCartLineItemMutation
-};
-
+  addCartLineItemMutation,
+  createCartMutation,
+  deleteCartLineItemMutation,
+  deleteCartMutation,
+  updateCartLineItemMutation,
+}

@@ -56,7 +56,7 @@ const productOptionFragment = /* GraphQL */ `
       displayName
     }
   }
-`;
+`
 
 const productVariantFragment = /* GraphQL */ `
   fragment productVariant on Variant {
@@ -98,7 +98,7 @@ const productVariantFragment = /* GraphQL */ `
       }
     }
   }
-`;
+`
 
 const productFragment = /* GraphQL */ `
   fragment product on Product {
@@ -173,6 +173,6 @@ const productFragment = /* GraphQL */ `
   }
   ${productOptionFragment}
   ${productVariantFragment}
-`;
+`
 
-export { productFragment, productOptionFragment, productVariantFragment };
+export { productFragment, productOptionFragment, productVariantFragment }
