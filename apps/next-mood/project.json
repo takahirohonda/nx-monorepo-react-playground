@@ -1,0 +1,8 @@
+{
+  "name": "next-mood",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/next-mood",
+  "projectType": "application",
+  "targets": {},
+  "tags": []
+}
