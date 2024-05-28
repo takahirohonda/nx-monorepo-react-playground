@@ -1,4 +1,3 @@
 export const CheckoutContent = () => {
-
-  return (<div>Shop Checkout Page</div>)
-}   
+  return <div>Shop Checkout Page</div>
+}

@@ -9,7 +9,7 @@ describe('<CustomerInfoForm />', () => {
     window.alert = jest.fn()
   })
   afterEach(() => {
-    (window.alert as jest.Mock<any, any>).mockClear()
+    ;(window.alert as jest.Mock<any, any>).mockClear()
   })
   it('should render the form and submit', async () => {
     render(<CustomerInfoForm />)

@@ -2,7 +2,7 @@ export const ROOT = {
   path: '/',
   SHOP: {
     path: '/shop',
-    relative: 'shop'
+    relative: 'shop',
   },
   TEST_PAGES: {
     path: '/test-pages',

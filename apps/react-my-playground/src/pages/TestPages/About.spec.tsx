@@ -17,32 +17,27 @@ describe('About', () => {
     const user = userEvent.setup()
 
     render(<About />, { wrapper: MemoryRouter })
-    
-    act(() => {
-      user.click(
-        screen.getByRole('button', { name: /update router state/i })
-      )
-    });
 
-    await(() => {
+    act(() => {
+      user.click(screen.getByRole('button', { name: /update router state/i }))
+    })
+
+    await (() => {
       expect(
         screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
-      ).toBeVisible()  
+      ).toBeVisible()
     })
   })
 
   it('should change the router state - with BrowserRouter', async () => {
     const user = userEvent.setup()
     render(<About />, { wrapper: BrowserRouter })
-    
 
     act(() => {
-      user.click(
-        screen.getByRole('button', { name: /update router state/i })
-      )
+      user.click(screen.getByRole('button', { name: /update router state/i }))
     })
 
-    await(() => {
+    await (() => {
       expect(
         screen.getByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
       ).toBeVisible()
@@ -63,13 +58,13 @@ describe('About', () => {
 
     render(<RouterProvider router={router} />)
     act(() => {
-      user.click(
-        screen.getByRole('button', { name: /update router state/i })
-      )
+      user.click(screen.getByRole('button', { name: /update router state/i }))
     })
-    
+
     expect(
-      await screen.findByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      await screen.findByText(
+        /{"testState":"state 2","usefulBooleanValue":true}/i
+      )
     ).toBeVisible()
 
     expect(router.state.location.pathname).toBe('/test')
@@ -88,12 +83,12 @@ describe('About', () => {
     const user = userEvent.setup()
 
     act(() => {
-      user.click(
-        screen.getByRole('button', { name: /update router state/i })
-      )
+      user.click(screen.getByRole('button', { name: /update router state/i }))
     })
     expect(
-      await screen.findByText(/{"testState":"state 2","usefulBooleanValue":true}/i)
+      await screen.findByText(
+        /{"testState":"state 2","usefulBooleanValue":true}/i
+      )
     ).toBeVisible()
 
     expect(getLocation()?.pathname).toBe('/')

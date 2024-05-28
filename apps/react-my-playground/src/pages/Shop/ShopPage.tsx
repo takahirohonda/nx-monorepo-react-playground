@@ -1,18 +1,17 @@
-
-import { useState } from "react"
-import { ShopContent } from "./ShopContent"
-import { CheckoutContent } from "./CheckoutContent"
+import { useState } from 'react'
+import { ShopContent } from './ShopContent'
+import { CheckoutContent } from './CheckoutContent'
 
 export const ShopPage = () => {
+  const [hasCheckedOut, setHasCheckedOut] = useState(false)
 
-  const [ hasCheckedOut, setHasCheckedOut ] = useState(false)
-
-  return(
+  return (
     <div>
-      {hasCheckedOut 
-        ? <CheckoutContent/> 
-        : <ShopContent setHasCheckedOut={setHasCheckedOut}/>
-      }
+      {hasCheckedOut ? (
+        <CheckoutContent />
+      ) : (
+        <ShopContent setHasCheckedOut={setHasCheckedOut} />
+      )}
     </div>
   )
 }

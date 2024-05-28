@@ -1,4 +1,3 @@
-
 import {
   createMemoryRouter,
   RouteObject,
@@ -35,8 +34,8 @@ const routeConfig: RouteObject[] = [
   },
   {
     path: '/test',
-    element: <div>test</div>
-  }
+    element: <div>test</div>,
+  },
 ]
 const router = createMemoryRouter(routeConfig, { initialEntries: ['/'] })
 

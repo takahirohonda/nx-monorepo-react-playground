@@ -23,11 +23,11 @@ export const routeConfig: RouteObject[] = [
       },
       {
         path: ROOT.SHOP.path,
-        element: <ShopPage />
+        element: <ShopPage />,
       },
     ],
   },
-  
+
   {
     path: ROOT.TEST_PAGES.path,
     element: <Navigate to={ROOT.TEST_PAGES.HOME.relative} />,

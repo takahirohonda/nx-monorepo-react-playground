@@ -1,11 +1,11 @@
 import * as EsModule from './EsModule'
 
 /*
-* Question 1. How can we fix this... This errors 
-*   TypeError: Cannot redefine property: oneDayAfter
-*        at Function.defineProperty (<anonymous>)
-* 
-*/
+ * Question 1. How can we fix this... This errors
+ *   TypeError: Cannot redefine property: oneDayAfter
+ *        at Function.defineProperty (<anonymous>)
+ *
+ */
 
 /* Answer
 * We need to mock with __esModule true. This will make this
@@ -32,8 +32,9 @@ jest.mock('./EsModule', () => ({
 describe('Checking jest.mock and jest.spyOn with es module', () => {
   it('should ...', () => {
     console.log(EsModule)
-    jest.spyOn(EsModule, 'oneDayAfter')
-      .mockImplementation(() => {return 2})
+    jest.spyOn(EsModule, 'oneDayAfter').mockImplementation(() => {
+      return 2
+    })
 
     expect(EsModule.oneDayAfter()).toBe(2)
   })

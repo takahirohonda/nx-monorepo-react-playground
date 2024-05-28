@@ -1,11 +1,10 @@
 interface ProductDisplay {
-  imgUrl: string,
-  name: string,
-  price: string,
+  imgUrl: string
+  name: string
+  price: string
 }
 
 export const ProductDisplay = ({ imgUrl, name, price }: ProductDisplay) => {
-
   return (
     <div className="flex-col gap-3">
       <div className="mt-8 mb-2">

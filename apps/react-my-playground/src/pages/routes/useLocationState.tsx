@@ -2,12 +2,11 @@ import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 import type { z } from 'zod'
 
-type LocationState<
-  TSchema extends z.ZodSchema | undefined
-> = TSchema extends z.ZodSchema ? z.infer<TSchema> | undefined : unknown
+type LocationState<TSchema extends z.ZodSchema | undefined> =
+  TSchema extends z.ZodSchema ? z.infer<TSchema> | undefined : unknown
 
 export const useLocationState = <
-  TSchema extends z.ZodSchema | undefined = undefined
+  TSchema extends z.ZodSchema | undefined = undefined,
 >(
   schema?: TSchema
 ): LocationState<TSchema> => {

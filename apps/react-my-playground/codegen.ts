@@ -1,4 +1,4 @@
-import { CodegenConfig } from "@graphql-codegen/cli";
+import { CodegenConfig } from '@graphql-codegen/cli'
 import { GRAPHQL_ENDPOINT, API_TOKEN } from './tmp/coden-const'
 import updateGqlDocumentNodes from './script/codegen/updateGqlDocumentNode'
 
@@ -8,22 +8,20 @@ const config: CodegenConfig = {
   schema: {
     [GRAPHQL_ENDPOINT]: {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
-  },
-  documents: [
-    'apps/react-my-playground/src/**/*.graphql'
-  ],
-  generates: {
-    "./src/generated/": {
-      preset: "client",
+        Authorization: `Bearer ${token}`,
+      },
     },
-    "apps/react-my-playground/src/types/gql-global-types.ts": {
+  },
+  documents: ['apps/react-my-playground/src/**/*.graphql'],
+  generates: {
+    './src/generated/': {
+      preset: 'client',
+    },
+    'apps/react-my-playground/src/types/gql-global-types.ts': {
       plugins: ['typescript'],
       config: {},
     },
-    "apps/react-my-playground/src": {
+    'apps/react-my-playground/src': {
       hooks: {
         beforeOneFileWrite: updateGqlDocumentNodes,
       },
@@ -48,9 +46,8 @@ const config: CodegenConfig = {
           },
         },
       },
-    }
-
+    },
   },
-};
+}
 
-export default config;
+export default config
