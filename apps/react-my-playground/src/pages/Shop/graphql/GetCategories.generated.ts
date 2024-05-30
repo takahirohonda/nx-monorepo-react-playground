@@ -1,46 +1,30 @@
-import * as Types from '../../../types/gql-global-types'
+import * as Types from '../../../types/gql-global-types';
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
-import { CategoryFieldsDoc } from './CategoryFields.generated'
-import * as Apollo from '@apollo/client'
-const defaultOptions = {} as const
-export type GetCategoriesQueryVariables = Types.Exact<{ [key: string]: never }>
+import { CategoryFieldsDoc } from './CategoryFields.generated';
+import * as Apollo from '@apollo/client';
+const defaultOptions = {} as const;
+export type GetCategoriesQueryVariables = Types.Exact<{ [key: string]: never; }>;
 
-export type GetCategoriesQueryResponse = {
-  __typename?: 'Query'
-  site: {
-    __typename?: 'Site'
-    categoryTree: Array<{
-      __typename?: 'CategoryTreeItem'
-      name: string
-      path: string
-      entityId: number
-      children: Array<{
-        __typename?: 'CategoryTreeItem'
-        name: string
-        path: string
-        entityId: number
-      }>
-    }>
-  }
-}
+
+export type GetCategoriesQueryResponse = { __typename?: 'Query', site: { __typename?: 'Site', categoryTree: Array<{ __typename?: 'CategoryTreeItem', name: string, path: string, entityId: number, children: Array<{ __typename?: 'CategoryTreeItem', name: string, path: string, entityId: number }> }> } };
+
 
 export const GetCategories = gql`
-  query GetCategories {
-    site {
-      categoryTree {
+    query GetCategories {
+  site {
+    categoryTree {
+      ...CategoryFields
+      children {
         ...CategoryFields
-        children {
-          ...CategoryFields
-        }
       }
     }
   }
-  ${CategoryFieldsDoc}
-` as unknown as TypedDocumentNode<
-  GetCategoriesQueryResponse,
-  GetCategoriesQueryVariables
->
+}
+    ${CategoryFieldsDoc}` as unknown as TypedDocumentNode<
+        GetCategoriesQueryResponse,
+        GetCategoriesQueryVariables
+      >
 
 /**
  * __useGetCategoriesQuery__
@@ -57,52 +41,19 @@ export const GetCategories = gql`
  *   },
  * });
  */
-export function useGetCategoriesQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useQuery<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >(GetCategories, options)
-}
-export function useGetCategoriesLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useLazyQuery<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >(GetCategories, options)
-}
-export function useGetCategoriesSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions }
-  return Apollo.useSuspenseQuery<
-    GetCategoriesQueryResponse,
-    GetCategoriesQueryVariables
-  >(GetCategories, options)
-}
-export type GetCategoriesQueryHookResult = ReturnType<
-  typeof useGetCategoriesQuery
->
-export type GetCategoriesLazyQueryHookResult = ReturnType<
-  typeof useGetCategoriesLazyQuery
->
-export type GetCategoriesSuspenseQueryHookResult = ReturnType<
-  typeof useGetCategoriesSuspenseQuery
->
-export type GetCategoriesQueryResult = Apollo.QueryResult<
-  GetCategoriesQueryResponse,
-  GetCategoriesQueryVariables
->
+export function useGetCategoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetCategoriesQueryResponse, GetCategoriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCategoriesQueryResponse, GetCategoriesQueryVariables>(GetCategories, options);
+      }
+export function useGetCategoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCategoriesQueryResponse, GetCategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCategoriesQueryResponse, GetCategoriesQueryVariables>(GetCategories, options);
+        }
+export function useGetCategoriesSuspenseQuery(baseOptions?: Apollo.SuspenseQueryHookOptions<GetCategoriesQueryResponse, GetCategoriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<GetCategoriesQueryResponse, GetCategoriesQueryVariables>(GetCategories, options);
+        }
+export type GetCategoriesQueryHookResult = ReturnType<typeof useGetCategoriesQuery>;
+export type GetCategoriesLazyQueryHookResult = ReturnType<typeof useGetCategoriesLazyQuery>;
+export type GetCategoriesSuspenseQueryHookResult = ReturnType<typeof useGetCategoriesSuspenseQuery>;
+export type GetCategoriesQueryResult = Apollo.QueryResult<GetCategoriesQueryResponse, GetCategoriesQueryVariables>;

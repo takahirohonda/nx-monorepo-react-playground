@@ -1,7 +1,7 @@
 #import "./ProductFields.graphql"
-query GetProductsByIds($entityIds: [Int!]) {
+query GetProducts {
   site {
-    products(entityIds: $entityIds) {
+    products {
       edges {
         node {
           ...Product
