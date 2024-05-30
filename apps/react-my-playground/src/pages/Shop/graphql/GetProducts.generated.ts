@@ -1,10 +1,12 @@
 import * as Types from '../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
-import { ProductDoc } from './ProductFields.generated'
+import { ProductWithVariantsDoc } from './ProductFields2.generated'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
-export type GetProductsQueryVariables = Types.Exact<{ [key: string]: never }>
+export type GetProductsQueryVariables = Types.Exact<{
+  pageSize: Types.Scalars['Int']['input']
+}>
 
 export type GetProductsQueryResponse = {
   __typename?: 'Query'
@@ -18,18 +20,17 @@ export type GetProductsQueryResponse = {
           __typename?: 'Product'
           entityId: number
           name: string
-          plainTextDescription: string
-          defaultImage: {
-            __typename?: 'Image'
-            url320wide: string
-            url640wide: string
-            url960wide: string
-            url1280wide: string
-          } | null
-          prices: {
-            __typename?: 'Prices'
-            price: { __typename?: 'Money'; value: any; currencyCode: string }
-          } | null
+          images: {
+            __typename?: 'ImageConnection'
+            edges: Array<{
+              __typename?: 'ImageEdge'
+              node: {
+                __typename?: 'Image'
+                altText: string
+                url320wide: string
+              }
+            }> | null
+          }
           variants: {
             __typename?: 'VariantConnection'
             edges: Array<{
@@ -43,18 +44,13 @@ export type GetProductsQueryResponse = {
                 isPurchasable: boolean
                 defaultImage: {
                   __typename?: 'Image'
+                  altText: string
                   url320wide: string
-                  url640wide: string
-                  url960wide: string
-                  url1280wide: string
                 } | null
                 prices: {
                   __typename?: 'Prices'
-                  price: {
-                    __typename?: 'Money'
-                    value: any
-                    currencyCode: string
-                  }
+                  price: { __typename?: 'Money'; value: any }
+                  salePrice: { __typename?: 'Money'; value: any } | null
                 } | null
               }
             }> | null
@@ -66,18 +62,18 @@ export type GetProductsQueryResponse = {
 }
 
 export const GetProducts = gql`
-  query GetProducts {
+  query GetProducts($pageSize: Int!) {
     site {
-      products {
+      products(first: $pageSize) {
         edges {
           node {
-            ...Product
+            ...ProductWithVariants
           }
         }
       }
     }
   }
-  ${ProductDoc}
+  ${ProductWithVariantsDoc}
 ` as unknown as TypedDocumentNode<
   GetProductsQueryResponse,
   GetProductsQueryVariables
@@ -95,14 +91,19 @@ export const GetProducts = gql`
  * @example
  * const { data, loading, error } = useGetProductsQuery({
  *   variables: {
+ *      pageSize: // value for 'pageSize'
  *   },
  * });
  */
 export function useGetProductsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
+  baseOptions: Apollo.QueryHookOptions<
     GetProductsQueryResponse,
     GetProductsQueryVariables
-  >
+  > &
+    (
+      | { variables: GetProductsQueryVariables; skip?: boolean }
+      | { skip: boolean }
+    )
 ) {
   const options = { ...defaultOptions, ...baseOptions }
   return Apollo.useQuery<GetProductsQueryResponse, GetProductsQueryVariables>(

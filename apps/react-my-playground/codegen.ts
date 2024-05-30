@@ -2,7 +2,7 @@ import { CodegenConfig } from '@graphql-codegen/cli'
 import { GRAPHQL_ENDPOINT, API_TOKEN } from './tmp/coden-const'
 import updateGqlDocumentNodes from './script/codegen/updateGqlDocumentNode'
 
-const token = process.env.API_TOKEN || API_TOKEN
+const token = API_TOKEN || process.env.API_TOKEN
 
 const config: CodegenConfig = {
   schema: {

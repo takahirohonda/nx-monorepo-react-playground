@@ -1,10 +1,10 @@
-#import "./ProductFields.graphql"
-query GetProducts {
+#import "./ProductFields2.graphql"
+query GetProducts($pageSize: Int!) {
   site {
-    products {
+    products(first: $pageSize) {
       edges {
         node {
-          ...Product
+          ...ProductWithVariants
         }
       }
     }

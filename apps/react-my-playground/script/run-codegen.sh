@@ -1,7 +1,7 @@
-echo "🔑 API Authenticaton ..."
-echo "Please provide your accessToken from generateShopToken mutation."
-read -p "Shop Token: " accessToken
-export API_TOKEN=$accessToken
+# echo "🔑 API Authenticaton ..."
+# echo "Please provide your accessToken from generateShopToken mutation."
+# read -p "Shop Token: " accessToken
+# export API_TOKEN=$accessToken
 
 echo ""
 echo ""
@@ -15,13 +15,13 @@ echo "🌟 Formatting generated types ..."
 
 yarn eslint \
   --fix \
-  "$1"'/src/**/*.generated.ts'
+ 'apps/react-my-playground/src/**/*.generated.ts'
 
 yarn prettier \
   --write \
-  --loglevel silent \
-  "$1"'/src/**/*.generated.ts' \
-  "$1"'/src/types/gql-global-types.ts'
+  --log-level silent \
+  'apps/react-my-playground/src/**/*.generated.ts' \
+  'apps/react-my-playground/src/types/gql-global-types.ts'
 
 echo ""
 echo ""
