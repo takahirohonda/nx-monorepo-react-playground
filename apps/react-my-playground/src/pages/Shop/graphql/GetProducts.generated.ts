@@ -1,9 +1,39 @@
 import * as Types from '../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
-import { ProductWithVariantsDoc } from './ProductFields2.generated'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
+export type ImageDataFragment = {
+  __typename?: 'Image'
+  altText: string
+  url320wide: string
+}
+
+export type ProductFragment = {
+  __typename?: 'Product'
+  entityId: number
+  name: string
+  sku: string
+  plainTextDescription: string
+  defaultImage: {
+    __typename?: 'Image'
+    altText: string
+    url320wide: string
+  } | null
+  images: {
+    __typename?: 'ImageConnection'
+    edges: Array<{
+      __typename?: 'ImageEdge'
+      node: { __typename?: 'Image'; altText: string; url320wide: string }
+    }> | null
+  }
+  prices: {
+    __typename?: 'Prices'
+    price: { __typename?: 'Money'; value: any }
+    salePrice: { __typename?: 'Money'; value: any } | null
+  } | null
+}
+
 export type GetProductsQueryVariables = Types.Exact<{
   pageSize: Types.Scalars['Int']['input']
 }>
@@ -20,6 +50,13 @@ export type GetProductsQueryResponse = {
           __typename?: 'Product'
           entityId: number
           name: string
+          sku: string
+          plainTextDescription: string
+          defaultImage: {
+            __typename?: 'Image'
+            altText: string
+            url320wide: string
+          } | null
           images: {
             __typename?: 'ImageConnection'
             edges: Array<{
@@ -31,53 +68,65 @@ export type GetProductsQueryResponse = {
               }
             }> | null
           }
-          variants: {
-            __typename?: 'VariantConnection'
-            edges: Array<{
-              __typename?: 'VariantEdge'
-              node: {
-                __typename?: 'Variant'
-                id: string
-                entityId: number
-                sku: string
-                upc: string | null
-                isPurchasable: boolean
-                defaultImage: {
-                  __typename?: 'Image'
-                  altText: string
-                  url320wide: string
-                } | null
-                prices: {
-                  __typename?: 'Prices'
-                  price: { __typename?: 'Money'; value: any }
-                  salePrice: { __typename?: 'Money'; value: any } | null
-                } | null
-              }
-            }> | null
-          }
+          prices: {
+            __typename?: 'Prices'
+            price: { __typename?: 'Money'; value: any }
+            salePrice: { __typename?: 'Money'; value: any } | null
+          } | null
         }
       }> | null
     }
   }
 }
 
+export const ImageDataDoc = gql`
+  fragment ImageData on Image {
+    url320wide: url(width: 320)
+    altText
+  }
+` as unknown as TypedDocumentNode<ImageDataFragment, undefined>
+export const ProductDoc = gql`
+  fragment Product on Product {
+    entityId
+    name
+    sku
+    plainTextDescription
+    defaultImage {
+      url320wide: url(width: 320)
+      altText
+    }
+    images {
+      edges {
+        node {
+          url320wide: url(width: 320)
+          altText
+        }
+      }
+    }
+    prices {
+      price {
+        value
+      }
+      salePrice {
+        value
+      }
+    }
+  }
+`
 export const GetProducts = gql`
   query GetProducts($pageSize: Int!) {
     site {
       products(first: $pageSize) {
         edges {
           node {
-            ...ProductWithVariants
+            ...Product
           }
         }
       }
     }
   }
-  ${ProductWithVariantsDoc}
-` as unknown as TypedDocumentNode<
-  GetProductsQueryResponse,
-  GetProductsQueryVariables
->
+  ${ProductDoc}
+`
 
 /**
  * __useGetProductsQuery__

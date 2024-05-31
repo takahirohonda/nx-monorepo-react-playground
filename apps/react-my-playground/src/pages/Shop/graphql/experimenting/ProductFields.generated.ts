@@ -1,4 +1,4 @@
-import * as Types from '../../../types/gql-global-types'
+import * as Types from '../../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
 export type ProductOption_CheckboxOption_Fragment = {
@@ -148,49 +148,6 @@ export type ProductVariantFragment = {
     __typename?: 'Prices'
     price: { __typename?: 'Money'; value: any; currencyCode: string }
   } | null
-}
-
-export type ProductFragment = {
-  __typename?: 'Product'
-  entityId: number
-  name: string
-  plainTextDescription: string
-  defaultImage: {
-    __typename?: 'Image'
-    url320wide: string
-    url640wide: string
-    url960wide: string
-    url1280wide: string
-  } | null
-  prices: {
-    __typename?: 'Prices'
-    price: { __typename?: 'Money'; value: any; currencyCode: string }
-  } | null
-  variants: {
-    __typename?: 'VariantConnection'
-    edges: Array<{
-      __typename?: 'VariantEdge'
-      node: {
-        __typename?: 'Variant'
-        id: string
-        entityId: number
-        sku: string
-        upc: string | null
-        isPurchasable: boolean
-        defaultImage: {
-          __typename?: 'Image'
-          url320wide: string
-          url640wide: string
-          url960wide: string
-          url1280wide: string
-        } | null
-        prices: {
-          __typename?: 'Prices'
-          price: { __typename?: 'Money'; value: any; currencyCode: string }
-        } | null
-      }
-    }> | null
-  }
 }
 
 export type ProductAllFieldsFragment = {
@@ -455,31 +412,6 @@ export const ProductVariantDoc = gql`
     }
   }
   ${ImageFieldsDoc}
-`
-export const ProductDoc = gql`
-  fragment Product on Product {
-    entityId
-    name
-    plainTextDescription
-    defaultImage {
-      ...ImageFields
-    }
-    prices {
-      price {
-        ...MoneyFields
-      }
-    }
-    variants(first: 5) {
-      edges {
-        node {
-          ...ProductVariant
-        }
-      }
-    }
-  }
-  ${ImageFieldsDoc}
-  ${MoneyFieldsDoc}
-  ${ProductVariantDoc}
 `
 export const ProductOptionDoc = gql`
   fragment ProductOption on CatalogProductOption {

@@ -1,0 +1,12 @@
+#import "./ProductFields2.graphql"
+query GetProductsWithVariants($pageSize: Int!) {
+  site {
+    products(first: $pageSize) {
+      edges {
+        node {
+          ...ProductWithVariants
+        }
+      }
+    }
+  }
+}

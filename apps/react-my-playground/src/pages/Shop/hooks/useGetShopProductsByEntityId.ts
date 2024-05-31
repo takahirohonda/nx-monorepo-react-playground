@@ -1,4 +1,4 @@
-import { useGetProductsByIdsQuery } from '../graphql/GetProductsByIds.generated'
+import { useGetProductsByIdsQuery } from '../graphql/experimenting/GetProductsByIds.generated'
 
 export const useGetShopProductsByEntityIds = () => {
   const { data } = useGetProductsByIdsQuery({

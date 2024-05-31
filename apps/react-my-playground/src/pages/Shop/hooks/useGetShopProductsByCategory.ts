@@ -1,5 +1,5 @@
-import { useGetCategoriesQuery } from '../graphql/GetCategories.generated'
-import { useGetProductsCollectionQuery } from '../graphql/GetProductsByCategory.generated'
+import { useGetCategoriesQuery } from '../graphql/experimenting/GetCategories.generated'
+import { useGetProductsCollectionQuery } from '../graphql/experimenting/GetProductsByCategory.generated'
 
 export const useGetShopProducts = () => {
   const { data } = useGetCategoriesQuery()

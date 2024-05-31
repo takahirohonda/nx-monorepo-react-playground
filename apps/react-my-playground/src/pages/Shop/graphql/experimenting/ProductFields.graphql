@@ -111,28 +111,6 @@ fragment ProductVariant on Variant {
       currencyCode
     }
   }
-  
-}
-
-fragment Product on Product {
-  entityId
-  name
-  plainTextDescription
-  defaultImage {
-    ...ImageFields
-  }
-  prices {
-    price {
-      ...MoneyFields
-    }
-  }
-  variants(first: 5) {
-    edges {
-      node {
-        ...ProductVariant
-      }
-    }
-  }
 }
 
 fragment ProductAllFields on Product {

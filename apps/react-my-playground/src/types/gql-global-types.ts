@@ -395,8 +395,6 @@ export type BaseOrder = {
   entityId: Scalars['Int']['output']
   /** Total cost of handling. */
   handlingCostTotal: Money
-  /** The ID of an object. */
-  id: Scalars['ID']['output']
   /** Indicates whether the taxes are included in the order total. */
   isTaxIncluded: Scalars['Boolean']['output']
   /** Date and time the order was placed. */
@@ -3888,7 +3886,7 @@ export type Order = BaseOrder &
     entityId: Scalars['Int']['output']
     /** Total cost of handling. */
     handlingCostTotal: Money
-    /** The id of the object. */
+    /** The ID of an object. */
     id: Scalars['ID']['output']
     /** Indicates whether the taxes are included in the order total. */
     isTaxIncluded: Scalars['Boolean']['output']
@@ -4705,7 +4703,7 @@ export type PaymentOrder = BaseOrder &
     entityId: Scalars['Int']['output']
     /** Total cost of handling. */
     handlingCostTotal: Money
-    /** The id of the object. */
+    /** The ID of an object. */
     id: Scalars['ID']['output']
     /** Indicates whether the taxes are included in the order total. */
     isTaxIncluded: Scalars['Boolean']['output']

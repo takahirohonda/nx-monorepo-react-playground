@@ -1,10 +1,41 @@
-#import "./ProductFields2.graphql"
+fragment ImageData on Image {
+  url320wide: url(width: 320)
+  altText
+}
+
+fragment Product on Product {
+  entityId
+  name
+  sku
+  plainTextDescription
+  defaultImage {
+    url320wide: url(width: 320)
+    altText
+  }
+  images {
+    edges {
+      node {
+        url320wide: url(width: 320)
+        altText
+      }
+    }
+  }
+  prices {
+    price {
+      value
+    }
+    salePrice {
+      value
+    }
+  }
+}
+
 query GetProducts($pageSize: Int!) {
   site {
     products(first: $pageSize) {
       edges {
         node {
-          ...ProductWithVariants
+          ...Product
         }
       }
     }

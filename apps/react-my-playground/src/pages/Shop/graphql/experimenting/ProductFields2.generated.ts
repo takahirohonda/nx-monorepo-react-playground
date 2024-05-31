@@ -1,12 +1,7 @@
-import * as Types from '../../../types/gql-global-types'
+import * as Types from '../../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
-export type ImageDataFragment = {
-  __typename?: 'Image'
-  altText: string
-  url320wide: string
-}
-
+import { ImageDataDoc } from '../GetProducts.generated'
 export type ProductVariantFieldsFragment = {
   __typename?: 'Variant'
   id: string
@@ -63,12 +58,6 @@ export type ProductWithVariantsFragment = {
   }
 }
 
-export const ImageDataDoc = gql`
-  fragment ImageData on Image {
-    url320wide: url(width: 320)
-    altText
-  }
-` as unknown as TypedDocumentNode<ImageDataFragment, undefined>
 export const ProductVariantFieldsDoc = gql`
   fragment ProductVariantFields on Variant {
     id
@@ -89,7 +78,7 @@ export const ProductVariantFieldsDoc = gql`
     }
   }
   ${ImageDataDoc}
-`
+` as unknown as TypedDocumentNode<ProductVariantFieldsFragment, undefined>
 export const ProductWithVariantsDoc = gql`
   fragment ProductWithVariants on Product {
     entityId

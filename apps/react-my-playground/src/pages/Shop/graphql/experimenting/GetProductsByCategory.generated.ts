@@ -1,7 +1,7 @@
-import * as Types from '../../../types/gql-global-types'
+import * as Types from '../../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
-import { ProductDoc } from './ProductFields.generated'
+import { ProductDoc } from '../GetProducts.generated'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
 export type GetProductsCollectionQueryVariables = Types.Exact<{
@@ -22,47 +22,29 @@ export type GetProductsCollectionQueryResponse = {
             __typename?: 'Product'
             entityId: number
             name: string
+            sku: string
             plainTextDescription: string
             defaultImage: {
               __typename?: 'Image'
+              altText: string
               url320wide: string
-              url640wide: string
-              url960wide: string
-              url1280wide: string
             } | null
-            prices: {
-              __typename?: 'Prices'
-              price: { __typename?: 'Money'; value: any; currencyCode: string }
-            } | null
-            variants: {
-              __typename?: 'VariantConnection'
+            images: {
+              __typename?: 'ImageConnection'
               edges: Array<{
-                __typename?: 'VariantEdge'
+                __typename?: 'ImageEdge'
                 node: {
-                  __typename?: 'Variant'
-                  id: string
-                  entityId: number
-                  sku: string
-                  upc: string | null
-                  isPurchasable: boolean
-                  defaultImage: {
-                    __typename?: 'Image'
-                    url320wide: string
-                    url640wide: string
-                    url960wide: string
-                    url1280wide: string
-                  } | null
-                  prices: {
-                    __typename?: 'Prices'
-                    price: {
-                      __typename?: 'Money'
-                      value: any
-                      currencyCode: string
-                    }
-                  } | null
+                  __typename?: 'Image'
+                  altText: string
+                  url320wide: string
                 }
               }> | null
             }
+            prices: {
+              __typename?: 'Prices'
+              price: { __typename?: 'Money'; value: any }
+              salePrice: { __typename?: 'Money'; value: any } | null
+            } | null
           }
         }> | null
       }

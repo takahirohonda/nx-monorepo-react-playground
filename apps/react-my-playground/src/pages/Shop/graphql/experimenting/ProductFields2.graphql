@@ -1,7 +1,4 @@
-fragment ImageData on Image {
-  url320wide: url(width: 320)
-  altText
-}
+#import "../GetProducts.graphql"
 
 fragment ProductVariantFields on Variant {
   id

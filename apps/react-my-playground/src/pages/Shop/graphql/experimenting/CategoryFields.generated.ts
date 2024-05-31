@@ -1,4 +1,4 @@
-import * as Types from '../../../types/gql-global-types'
+import * as Types from '../../../../types/gql-global-types'
 
 import { gql, type TypedDocumentNode } from '@apollo/client'
 export type CategoryFieldsFragment = {

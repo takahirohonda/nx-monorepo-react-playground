@@ -18,16 +18,8 @@ export const ShopContent = ({ setHasCheckedOut }: ShopContentProps) => {
   return (
     <div className="flex-col gap-4">
       <h1 className="text-xl">ShopPage</h1>
-      <div className="flex gap-4">
-        {products.map((product) => (
-          <ProductDisplay
-            key={product.node.entityId}
-            imgUrl={product.node.defaultImage?.url320wide || ''}
-            name={product.node.name}
-            price={product.node.prices?.price.value}
-          />
-        ))}
-      </div>
+      <div className="flex gap-4"></div>
+      <div>{JSON.stringify(products)}</div>
       <div className="flex justify-center w-full">
         <button
           onClick={handleCheckout}
