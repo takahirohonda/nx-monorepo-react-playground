@@ -3,6 +3,19 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/next-mood",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "migrate-prisma": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma migrate dev --name ver1 --schema apps/next-mood/prisma/schema.prisma"
+      }
+    },
+    "generate-prisma-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npx prisma generate --schema apps/next-mood/prisma/schema.prisma"
+      }
+    }
+  },
   "tags": []
 }

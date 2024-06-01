@@ -14,7 +14,7 @@
         "assets": ["libs/next-app/utils/prisma-client/*.md"]
       }
     },
-    "migrate": {
+    "migrate-prisma": {
       "executor": "nx:run-commands",
       "options": {
         "command": "npx prisma migrate dev --name init --schema libs/next-app/utils/prisma-client/prisma/schema.prisma"
