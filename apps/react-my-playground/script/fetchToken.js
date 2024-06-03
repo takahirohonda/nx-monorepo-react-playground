@@ -12,7 +12,6 @@ const unixTimestamp = Math.floor(twentyFourHoursLater / 1000)
 const url = `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/storefront/api-token`
 
 const options = {
-  method: 'POST',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',

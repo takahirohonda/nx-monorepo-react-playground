@@ -3,6 +3,10 @@ export const ROOT = {
   SHOP: {
     path: '/shop',
     relative: 'shop',
+    CHECKOUT: {
+      path: 'shop/checkout',
+      relative: 'checkout',
+    },
   },
   TEST_PAGES: {
     path: '/test-pages',

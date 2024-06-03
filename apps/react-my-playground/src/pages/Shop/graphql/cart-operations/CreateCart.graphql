@@ -1,0 +1,27 @@
+mutation CreateCart($createCartInput: CreateCartInput!) {
+  cart {
+    createCart(input: $createCartInput) {
+      cart {
+        entityId
+        lineItems {
+          physicalItems {
+            entityId
+            quantity
+          }
+        }
+      }
+    }
+  }
+}
+
+# Input example
+# {
+#   "createCartInput": {
+#     "lineItems": [
+#       {
+#         "quantity": 1,
+#         "productEntityId": 111
+#       }
+#     ]
+#   }
+# }

@@ -1,0 +1,47 @@
+mutation AddCheckoutShippingConsignments(
+  $addCheckoutShippingConsignmentsInput: AddCheckoutShippingConsignmentsInput!
+) {
+  checkout {
+    addCheckoutShippingConsignments(
+      input: $addCheckoutShippingConsignmentsInput
+    ) {
+      checkout {
+        entityId
+      }
+    }
+  }
+}
+
+# Input example
+
+# {
+#   "addCheckoutShippingConsignmentsInput": {
+#     "checkoutEntityId": "812ece1a-da23-46eb-ab6b-c2ee210aae54",
+#     "data": {
+#       "consignments": [
+#         {
+#           "address": {
+#             "firstName": "Joe",
+#             "lastName": "Blogs",
+#             "email": "joe@example.com",
+#             "company": "BlogIndustries",
+#             "address1": "123 Yar st",
+#             "city": "RWC",
+#             "stateOrProvince": "CA",
+#             "stateOrProvinceCode": "CA",
+#             "countryCode": "US",
+#             "postalCode": "94061",
+#             "phone": "6501231212",
+#             "shouldSaveAddress": false
+#           },
+#           "lineItems": [
+#             {
+#               "lineItemEntityId": "0a281902-d548-4d2e-a930-dc2aae9bfc39",
+#               "quantity": 1
+#             }
+#           ]
+#         }
+#       ]
+#     }
+#   }
+# }

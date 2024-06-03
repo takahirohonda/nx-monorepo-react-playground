@@ -1,0 +1,16 @@
+mutation CompleteCheckout($completeCheckoutInput: CompleteCheckoutInput!) {
+  checkout {
+    completeCheckout(input: $completeCheckoutInput) {
+      orderEntityId
+      paymentAccessToken
+    }
+  }
+}
+
+# Input example
+
+# {
+#   "completeCheckoutInput": {
+#     "checkoutEntityId": "812ece1a-da23-46eb-ab6b-c2ee210aae54"
+#   }
+# }

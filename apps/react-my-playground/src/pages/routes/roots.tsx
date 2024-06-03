@@ -10,6 +10,7 @@ import { Products } from '../TestPages/Products'
 import { ROOT } from './routes'
 import { subRouteConfig } from './subRouteConfig'
 import { ShopPage } from '../Shop/ShopPage'
+import { CheckoutPage } from '../Shop/CheckoutPage'
 
 export const routeConfig: RouteObject[] = [
   {
@@ -24,6 +25,10 @@ export const routeConfig: RouteObject[] = [
       {
         path: ROOT.SHOP.path,
         element: <ShopPage />,
+      },
+      {
+        path: ROOT.SHOP.CHECKOUT.path,
+        element: <CheckoutPage />,
       },
     ],
   },

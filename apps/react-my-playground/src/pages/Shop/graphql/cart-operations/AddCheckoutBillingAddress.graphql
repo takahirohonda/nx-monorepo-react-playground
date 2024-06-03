@@ -1,0 +1,35 @@
+mutation AddCheckoutBillingAddress(
+  $addCheckoutBillingAddressInput: AddCheckoutBillingAddressInput!
+) {
+  checkout {
+    addCheckoutBillingAddress(input: $addCheckoutBillingAddressInput) {
+      checkout {
+        entityId
+      }
+    }
+  }
+}
+
+#
+# {
+#   "addCheckoutBillingAddressInput": {
+#     "checkoutEntityId": "812ece1a-da23-46eb-ab6b-c2ee210aae54",
+#     "data": {
+#       "address": {
+#         "firstName": "Joe",
+#         "lastName": "Blogs",
+#         "email": "joe@example.com",
+#         "company": "BlogIndustries",
+#         "address1": "123 Yar st",
+#         "address2": "",
+#         "city": "RWC",
+#         "stateOrProvince": "CA",
+#         "stateOrProvinceCode": "CA",
+#         "countryCode": "US",
+#         "postalCode": "94061",
+#         "phone": "6501231212",
+#         "shouldSaveAddress": false
+#       }
+#     }
+#   }
+# }
