@@ -28,6 +28,8 @@ export const useCompleteBigCommerceCheckoutAndPayment = () => {
         const { cartEntityId, lineItems } = await createCart(cartItems)
         const { checkoutEntityIdFromAddBillingAddress } =
           await addBillingAddress({
+            // https://developer.bigcommerce.com/docs/rest-storefront/checkouts
+            // cartId and checkoutId are the same
             checkoutEntityId: cartEntityId,
             address: shippingAddress,
           })
