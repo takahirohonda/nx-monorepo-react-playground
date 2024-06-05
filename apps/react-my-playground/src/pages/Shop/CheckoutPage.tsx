@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
 
 import { clsx } from 'clsx'
-import { useCompleteBigCommerceCheckoutAndPayment } from './hooks/useCompleteBigCommerceCheckoutts'
+import { useCompleteBigCommerceCheckoutAndPayment } from './hooks/useCompleteBigCommerceCheckouts'
 import {
   CART_LINE_ITEMS,
   MOCK_PAYMENT_INSTRUMENT,

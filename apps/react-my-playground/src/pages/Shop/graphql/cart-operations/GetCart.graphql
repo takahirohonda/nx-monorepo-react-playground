@@ -1,0 +1,13 @@
+query getCart($entityId: String) {
+  site {
+    cart(entityId: $entityId) {
+      entityId
+      lineItems {
+        physicalItems {
+          name
+          quantity
+        }
+      }
+    }
+  }
+}

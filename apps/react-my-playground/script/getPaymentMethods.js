@@ -6,7 +6,7 @@ const {
   ORDER_ID,
 } = require('../tmp/fetch-token-const')
 
-const ORDER_ID_PARAM = `?oder_id=${ORDER_ID}`
+const ORDER_ID_PARAM = `?order_id=${ORDER_ID}`
 const url = `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/payments/methods/${ORDER_ID_PARAM}`
 
 let options = {

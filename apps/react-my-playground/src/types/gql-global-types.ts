@@ -1148,9 +1148,9 @@ export type CartPhysicalItem = {
 /** Cart redirect URLs. */
 export type CartRedirectUrls = {
   __typename?: 'CartRedirectUrls'
-  /** The single-use URL to the embedded checkout for the cart. */
+  /** The single-use URL to the embedded checkout for the cart. Should be generated just-in-time (within 30s). */
   embeddedCheckoutUrl: Scalars['String']['output']
-  /** The single-use URL to the BigCommerce hosted checkout for the cart. */
+  /** The single-use URL to the BigCommerce hosted checkout for the cart. Should be generated just-in-time (within 30s). */
   redirectedCheckoutUrl: Scalars['String']['output']
 }
 

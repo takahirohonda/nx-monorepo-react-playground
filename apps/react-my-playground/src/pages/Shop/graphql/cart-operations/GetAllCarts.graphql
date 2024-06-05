@@ -1,0 +1,13 @@
+query GetAllCarts {
+  site {
+    cart {
+      entityId
+      lineItems {
+        physicalItems {
+          name
+          quantity
+        }
+      }
+    }
+  }
+}

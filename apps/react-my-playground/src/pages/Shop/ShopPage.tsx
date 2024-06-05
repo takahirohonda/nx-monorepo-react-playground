@@ -5,9 +5,11 @@ import { useCallback } from 'react'
 import { useGetProducts } from './hooks/useGetProducts'
 import { useNavigate } from 'react-router-dom'
 import { ROOT } from '../routes/routes'
+import { useGetAllCartsQuery } from './graphql/cart-operations/GetAllCarts.generated'
 
 export const ShopPage = () => {
   const { products } = useGetProducts()
+  const { data } = useGetAllCartsQuery()
   const navigate = useNavigate()
 
   const handleCheckout = useCallback(() => {
@@ -33,6 +35,8 @@ export const ShopPage = () => {
         </button>
       </div>
       {/* {JSON.stringify(products)} */}
+      <h1 className="text-xl">Cart Contents</h1>
+      <div>{JSON.stringify(data)}</div>
     </div>
   )
 }

@@ -18,6 +18,8 @@ const documents = {
     "mutation AddCheckoutShippingConsignments($addCheckoutShippingConsignmentsInput: AddCheckoutShippingConsignmentsInput!) {\n  checkout {\n    addCheckoutShippingConsignments(input: $addCheckoutShippingConsignmentsInput) {\n      checkout {\n        entityId\n      }\n    }\n  }\n}": types.AddCheckoutShippingConsignmentsDocument,
     "mutation CompleteCheckout($completeCheckoutInput: CompleteCheckoutInput!) {\n  checkout {\n    completeCheckout(input: $completeCheckoutInput) {\n      orderEntityId\n      paymentAccessToken\n    }\n  }\n}": types.CompleteCheckoutDocument,
     "mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}": types.CreateCartDocument,
+    "query GetAllCarts {\n  site {\n    cart {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}": types.GetAllCartsDocument,
+    "query getCart($entityId: String) {\n  site {\n    cart(entityId: $entityId) {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}": types.GetCartDocument,
     "fragment CategoryFields on CategoryTreeItem {\n  name\n  path\n  entityId\n}": types.CategoryFieldsFragmentDoc,
     "query GetCategories {\n  site {\n    categoryTree {\n      ...CategoryFields\n      children {\n        ...CategoryFields\n      }\n    }\n  }\n}": types.GetCategoriesDocument,
     "query GetProductsCollection($entityId: Int!) {\n  site {\n    category(entityId: $entityId) {\n      products {\n        edges {\n          node {\n            ...Product\n          }\n        }\n      }\n    }\n  }\n}": types.GetProductsCollectionDocument,
@@ -62,6 +64,14 @@ export function graphql(source: "mutation CompleteCheckout($completeCheckoutInpu
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}"): (typeof documents)["mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetAllCarts {\n  site {\n    cart {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}"): (typeof documents)["query GetAllCarts {\n  site {\n    cart {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query getCart($entityId: String) {\n  site {\n    cart(entityId: $entityId) {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}"): (typeof documents)["query getCart($entityId: String) {\n  site {\n    cart(entityId: $entityId) {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

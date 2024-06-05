@@ -38,7 +38,7 @@ export const MOCK_SHIPPING_ADDRESS = {
   lastName: PERSONAL_DATA.lastName,
   email: PERSONAL_DATA.email,
   phone: PERSONAL_DATA.phone,
-  shouldSaveAddress: true,
+  shouldSaveAddress: false,
 }
 
 export const MOCK_PAYMENT_INSTRUMENT = {

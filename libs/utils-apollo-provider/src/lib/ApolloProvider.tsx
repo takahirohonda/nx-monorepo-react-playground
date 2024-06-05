@@ -1,7 +1,6 @@
-import { ReactNode } from "react"
-import { getClient } from "./client"
-import { ApolloProvider } from "@apollo/client"
-
+import { ReactNode, useMemo } from 'react'
+import { getClient } from './client'
+import { ApolloProvider } from '@apollo/client'
 
 interface ApolloProviderReactProps {
   uri: string
@@ -9,11 +8,11 @@ interface ApolloProviderReactProps {
   children: ReactNode
 }
 
-export const ApolloProviderReact = ({ uri, token, children }: ApolloProviderReactProps) => {
-  const client = getClient({ uri, token })
-  return (
-    <ApolloProvider client={client}>
-      {children}
-    </ApolloProvider>
-  )
+export const ApolloProviderReact = ({
+  uri,
+  token,
+  children,
+}: ApolloProviderReactProps) => {
+  const client = useMemo(() => getClient({ uri, token }), [token, uri])
+  return <ApolloProvider client={client}>{children}</ApolloProvider>
 }
