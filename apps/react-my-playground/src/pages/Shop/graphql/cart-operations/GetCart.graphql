@@ -1,4 +1,4 @@
-query getCart($entityId: String) {
+query GetCart($entityId: String) {
   site {
     cart(entityId: $entityId) {
       entityId

@@ -1,0 +1,23 @@
+mutation SelectCheckoutShippingOption(
+  $selectCheckoutShippingOptionInput: SelectCheckoutShippingOptionInput!
+) {
+  checkout {
+    selectCheckoutShippingOption(input: $selectCheckoutShippingOptionInput) {
+      checkout {
+        entityId
+      }
+    }
+  }
+}
+
+## Input example
+
+#  {
+#     "selectCheckoutShippingOptionInput": {
+#       "checkoutEntityId": "acd6f2ca-85c1-4b5f-8dab-d7d80521ecc5",
+#       "consignmentEntityId": "6478ff925d33a",
+#       "data": {
+#         "shippingOptionEntityId": "9ba45e71fe66e1cd757f022dcae331b0"
+#       }
+#     }
+#   }

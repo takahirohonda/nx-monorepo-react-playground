@@ -7,6 +7,12 @@ mutation AddCheckoutShippingConsignments(
     ) {
       checkout {
         entityId
+        shippingConsignments {
+          entityId
+          availableShippingOptions {
+            entityId
+          }
+        }
       }
     }
   }

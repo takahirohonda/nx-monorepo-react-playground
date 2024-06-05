@@ -27,7 +27,7 @@ export type GetCartQueryResponse = {
 }
 
 export const GetCart = gql`
-  query getCart($entityId: String) {
+  query GetCart($entityId: String) {
     site {
       cart(entityId: $entityId) {
         entityId
@@ -40,7 +40,7 @@ export const GetCart = gql`
       }
     }
   }
-` as unknown as TypedDocumentNode<getCartQueryResponse, getCartQueryVariables>
+` as unknown as TypedDocumentNode<GetCartQueryResponse, GetCartQueryVariables>
 
 /**
  * __useGetCartQuery__

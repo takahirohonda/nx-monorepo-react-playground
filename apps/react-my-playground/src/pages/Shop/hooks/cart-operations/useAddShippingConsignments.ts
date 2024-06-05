@@ -37,16 +37,30 @@ export const useAddShippingConsignments = () => {
             },
           },
         })
-        const checkoutEntityId =
+
+        const checkoutData =
           response?.data?.checkout.addCheckoutShippingConsignments?.checkout
-            ?.entityId
+        const checkoutEntityId = checkoutData?.entityId
         const graphqlErrors = response?.errors
+
+        const shippingConsignment = checkoutData?.shippingConsignments
+        const consignmentEntityId =
+          (shippingConsignment && shippingConsignment[0].entityId) || ''
+
+        const availableShippingOptions =
+          shippingConsignment && shippingConsignment[0].availableShippingOptions
+
+        const shippingOptionEntityId =
+          (availableShippingOptions && availableShippingOptions[0].entityId) ||
+          ''
 
         if (graphqlErrors || !checkoutEntityId) {
           throw new Error(`graphql err: ${graphqlErrors?.join(',')}`)
         }
         return {
           checkoutEntityIdFromAddShippingConsignments: checkoutEntityId,
+          consignmentEntityId,
+          shippingOptionEntityId,
         }
       } catch (e) {
         throw new Error(`addShippingConsignments ${UNEXPECTED_ERROR}: ${e}`)

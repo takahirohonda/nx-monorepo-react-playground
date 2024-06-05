@@ -903,7 +903,7 @@ export type CartGiftCertificate = {
   recipient: CartGiftCertificateRecipient
   /** Sender of the gift certificate. */
   sender: CartGiftCertificateSender
-  /** Currently supports Birthday, Boy, Celebration, Christmas, General, and Girl. */
+  /** Currently supports Birthday, Boy, Celebration, Christmas, General, and Girl. None returned if all the above mentioned themes are disabled. */
   theme: CartGiftCertificateTheme
 }
 
@@ -967,6 +967,7 @@ export enum CartGiftCertificateTheme {
   Christmas = 'CHRISTMAS',
   General = 'GENERAL',
   Girl = 'GIRL',
+  None = 'NONE',
 }
 
 /** Gift wrapping for the item */

@@ -8,6 +8,7 @@ import { useAddBillingAddress } from './cart-operations/useAddBillingAddress'
 import { useAddShippingConsignments } from './cart-operations/useAddShippingConsignments'
 import { useCompleteCheckout } from './cart-operations/useCompleteCheckout'
 import { useGetCart } from './useGetCart'
+import { useSelectCheckoutShippingOption } from './cart-operations/useSelectCheckoutShippingOption'
 
 export interface CompleteBigCommerceCheckoutArgs {
   cartItems: CartLineItemInput[]
@@ -22,6 +23,8 @@ export const useCompleteBigCommerceCheckoutAndPayment = () => {
   const { addShippingConsignments } = useAddShippingConsignments()
   const { completeCheckout } = useCompleteCheckout()
   const { getCartByEntityId } = useGetCart()
+
+  const { selectCheckoutShippingOption } = useSelectCheckoutShippingOption()
 
   const completeBigCommerceCheckout = useCallback(
     async ({ cartItems, shippingAddress }: CompleteBigCommerceCheckoutArgs) => {
@@ -44,15 +47,25 @@ export const useCompleteBigCommerceCheckoutAndPayment = () => {
             address: shippingAddress,
           })
 
-        const { checkoutEntityIdFromAddShippingConsignments } =
-          await addShippingConsignments({
-            checkoutEntityId: checkoutEntityIdFromAddBillingAddress,
-            lineItems,
-            address: shippingAddress,
+        const {
+          checkoutEntityIdFromAddShippingConsignments,
+          consignmentEntityId,
+          shippingOptionEntityId,
+        } = await addShippingConsignments({
+          checkoutEntityId: checkoutEntityIdFromAddBillingAddress,
+          lineItems,
+          address: shippingAddress,
+        })
+
+        const { checkoutEntityIdFromSelectCheckoutShippingOption } =
+          await selectCheckoutShippingOption({
+            checkoutEntityId: checkoutEntityIdFromAddShippingConsignments,
+            consignmentEntityId,
+            shippingOptionEntityId,
           })
 
         const { orderEntityId, paymentAccessToken } = await completeCheckout(
-          checkoutEntityIdFromAddShippingConsignments
+          checkoutEntityIdFromSelectCheckoutShippingOption
         )
         setIsCheckoutInProgress(false)
         return {
@@ -66,7 +79,14 @@ export const useCompleteBigCommerceCheckoutAndPayment = () => {
       }
       return { paymentAccessToken: '' }
     },
-    [addBillingAddress, addShippingConsignments, completeCheckout, createCart]
+    [
+      addBillingAddress,
+      addShippingConsignments,
+      completeCheckout,
+      createCart,
+      getCartByEntityId,
+      selectCheckoutShippingOption,
+    ]
   )
 
   return {

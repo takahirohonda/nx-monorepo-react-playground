@@ -13,7 +13,18 @@ export type AddCheckoutShippingConsignmentsMutationResponse = {
     __typename?: 'CheckoutMutations'
     addCheckoutShippingConsignments: {
       __typename?: 'AddCheckoutShippingConsignmentsResult'
-      checkout: { __typename?: 'Checkout'; entityId: string } | null
+      checkout: {
+        __typename?: 'Checkout'
+        entityId: string
+        shippingConsignments: Array<{
+          __typename?: 'CheckoutShippingConsignment'
+          entityId: string
+          availableShippingOptions: Array<{
+            __typename?: 'CheckoutAvailableShippingOption'
+            entityId: string
+          }> | null
+        }> | null
+      } | null
     } | null
   }
 }
@@ -28,6 +39,12 @@ export const AddCheckoutShippingConsignments = gql`
       ) {
         checkout {
           entityId
+          shippingConsignments {
+            entityId
+            availableShippingOptions {
+              entityId
+            }
+          }
         }
       }
     }
