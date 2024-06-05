@@ -7,13 +7,19 @@
     "migrate-prisma": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx prisma migrate dev --name ver1 --schema apps/next-mood/prisma/schema.prisma"
+        "command": "export NODE_TLS_REJECT_UNAUTHORIZED=0 && npx prisma migrate dev --name ver2 --schema apps/next-mood/src/prisma/schema.prisma"
       }
     },
     "generate-prisma-client": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npx prisma generate --schema apps/next-mood/prisma/schema.prisma"
+        "command": "npx prisma generate --schema apps/next-mood/src/prisma/schema.prisma"
+      }
+    },
+    "prismaFormat": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn prisma format --schema apps/next-mood/src/prisma/schema.prisma"
       }
     }
   },

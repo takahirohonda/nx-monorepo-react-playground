@@ -1,7 +1,11 @@
+import { auth } from '@clerk/nextjs/server'
 import { Header } from '../components/Header'
 import Link from 'next/link'
 
-const Home = () => {
+const Home = async () => {
+  const { userId } = await auth()
+
+  console.log(`checking userId: ${userId}`)
   return (
     <div className="bg-slate-800 h-screen flex">
       <div className="container flex flex-col">
@@ -15,21 +19,34 @@ const Home = () => {
               Certainty of death. Small chance of success. What are we waiting
               for?
             </h2>
-            <Link
-              href="/sign-up"
-              className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
-            >
-              Sign Up Now!
-            </Link>
-            <div className="flex flex-col items-center gap-[16px]">
-              <span className="text-white">You already have an account?</span>
+            {userId ? (
               <Link
-                href="/sign-in"
-                className="text-[18px] text-white hover:underline"
+                href="/journal"
+                className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
               >
-                <span className="mr-[8px]">➡️</span> Sign in now
+                Go To Journal
               </Link>
-            </div>
+            ) : (
+              <>
+                <Link
+                  href="/sign-up"
+                  className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
+                >
+                  Sign Up Now!
+                </Link>
+                <div className="flex flex-col items-center gap-[16px]">
+                  <span className="text-white">
+                    You already have an account?
+                  </span>
+                  <Link
+                    href="/sign-in"
+                    className="text-[18px] text-white hover:underline"
+                  >
+                    <span className="mr-[8px]">➡️</span> Sign in now
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
