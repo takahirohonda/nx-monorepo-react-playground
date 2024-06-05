@@ -7,7 +7,15 @@ import {
 } from '@apollo/client'
 // import { setContext } from '@apollo/client/link/context';
 
-export const getClient = ({ uri, token }: { uri: string; token: string }) => {
+export const getClient = ({
+  uri,
+  token,
+  customerImpersonationToken,
+}: {
+  uri: string
+  token: string
+  customerImpersonationToken?: string
+}) => {
   const httpLink = createHttpLink({ uri })
 
   // const httpLink = createHttpLink({ uri, fetchOptions: {

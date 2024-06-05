@@ -20,11 +20,17 @@ const router = createBrowserRouter([...routeConfig], {
 
 const GRAPHQL_URI = import.meta.env.VITE_BIGCOMMERCE_GRAPHQL_URI
 const API_TOKEN = import.meta.env.VITE_API_TOKEN
+const CUSTOMER_IMPERSONATION_TOKEN = import.meta.env
+  .VITE_CUSTOMER_IMPERSONATION_TOKEN
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <ApolloProviderReact uri={GRAPHQL_URI} token={API_TOKEN}>
+    <ApolloProviderReact
+      uri={GRAPHQL_URI}
+      token={API_TOKEN}
+      customerImpersonationToken={CUSTOMER_IMPERSONATION_TOKEN}
+    >
       <RouterProvider router={router} />
     </ApolloProviderReact>
   </React.StrictMode>
