@@ -13,9 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
-        <ClerkProvider>{children}</ClerkProvider>
-      </body>
+      <head>
+        <title>mood application</title>
+      </head>
+      <ClerkProvider>
+        <body>{children}</body>
+      </ClerkProvider>
     </html>
   )
 }

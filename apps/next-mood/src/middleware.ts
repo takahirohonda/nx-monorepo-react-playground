@@ -1,4 +1,8 @@
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
+import {
+  clerkMiddleware,
+  createRouteMatcher,
+  authMiddleware,
+} from '@clerk/nextjs/server'
 
 // const isProtectedRoute = createRouteMatcher(['/journal(.*)'])
 
@@ -6,7 +10,7 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'
 //   if (isProtectedRoute(req)) auth().protect()
 // })
 
-export default clerkMiddleware()
+export default authMiddleware()
 
 export const config = {
   // The following matcher runs middleware on all routes expect static assets.
