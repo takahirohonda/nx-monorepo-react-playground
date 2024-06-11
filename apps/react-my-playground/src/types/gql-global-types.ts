@@ -4500,6 +4500,57 @@ export type OrderTax = {
   name: Scalars['String']['output']
 }
 
+/** A node for fetching a single order with payment data. */
+export type OrderWithPayments = BaseOrder &
+  Node & {
+    __typename?: 'OrderWithPayments'
+    /** Billing address. */
+    billingAddress: OrderBillingAddress
+    /** Consignments. */
+    consignments?: Maybe<OrderConsignments>
+    /** Message from customer */
+    customerMessage?: Maybe<Scalars['String']['output']>
+    /** Discounts. */
+    discounts: OrderDiscounts
+    /** Order ID. */
+    entityId: Scalars['Int']['output']
+    /** Total cost of handling. */
+    handlingCostTotal: Money
+    /** The ID of an object. */
+    id: Scalars['ID']['output']
+    /** Indicates whether the taxes are included in the order total. */
+    isTaxIncluded: Scalars['Boolean']['output']
+    /** Date and time the order was placed. */
+    orderedAt: DateTimeExtended
+    /** The list of payments for an order. */
+    payments: PaymentsConnection
+    /** Total cost of shipping. */
+    shippingCostTotal: Money
+    /** Order status. */
+    status: OrderStatus
+    /** Subtotal. */
+    subTotal: Money
+    /** Total tax. */
+    taxTotal: Money
+    /** Taxes. */
+    taxes: Array<OrderTax>
+    /** The final order total payable amount inclusive of tax, before applying any store credit or gift certificate. */
+    totalIncTax: Money
+    /** Date and time the order was last updated. */
+    updatedAt: DateTimeExtended
+    /** Total cost of wrapping. */
+    wrappingCostTotal: Money
+  }
+
+/** A node for fetching a single order with payment data. */
+export type OrderWithPaymentsPaymentsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  filters?: InputMaybe<PaymentsFiltersInput>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
+}
+
 /** A connection to a list of orders. */
 export type OrdersConnection = {
   __typename?: 'OrdersConnection'
@@ -4687,57 +4738,6 @@ export type Payment = {
 export type PaymentInstrument =
   | CreditCardPaymentInstrument
   | GiftCertificatePaymentInstrument
-
-/** A node for fetching a single order with payment data. */
-export type PaymentOrder = BaseOrder &
-  Node & {
-    __typename?: 'PaymentOrder'
-    /** Billing address. */
-    billingAddress: OrderBillingAddress
-    /** Consignments. */
-    consignments?: Maybe<OrderConsignments>
-    /** Message from customer */
-    customerMessage?: Maybe<Scalars['String']['output']>
-    /** Discounts. */
-    discounts: OrderDiscounts
-    /** Order ID. */
-    entityId: Scalars['Int']['output']
-    /** Total cost of handling. */
-    handlingCostTotal: Money
-    /** The ID of an object. */
-    id: Scalars['ID']['output']
-    /** Indicates whether the taxes are included in the order total. */
-    isTaxIncluded: Scalars['Boolean']['output']
-    /** Date and time the order was placed. */
-    orderedAt: DateTimeExtended
-    /** The list of payments for an order. */
-    payments: PaymentsConnection
-    /** Total cost of shipping. */
-    shippingCostTotal: Money
-    /** Order status. */
-    status: OrderStatus
-    /** Subtotal. */
-    subTotal: Money
-    /** Total tax. */
-    taxTotal: Money
-    /** Taxes. */
-    taxes: Array<OrderTax>
-    /** The final order total payable amount inclusive of tax, before applying any store credit or gift certificate. */
-    totalIncTax: Money
-    /** Date and time the order was last updated. */
-    updatedAt: DateTimeExtended
-    /** Total cost of wrapping. */
-    wrappingCostTotal: Money
-  }
-
-/** A node for fetching a single order with payment data. */
-export type PaymentOrderPaymentsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>
-  before?: InputMaybe<Scalars['String']['input']>
-  filters?: InputMaybe<PaymentsFiltersInput>
-  first?: InputMaybe<Scalars['Int']['input']>
-  last?: InputMaybe<Scalars['Int']['input']>
-}
 
 /** The status of a payment. */
 export enum PaymentResultStatus {
@@ -6002,7 +6002,7 @@ export type Site = {
   /** Details of the newest products. */
   newestProducts: ProductConnection
   /** A single order. */
-  order?: Maybe<PaymentOrder>
+  order?: Maybe<OrderWithPayments>
   /** List of orders. */
   orders?: Maybe<OrdersConnection>
   /** List of brands sorted by product count. */

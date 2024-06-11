@@ -18,6 +18,7 @@ const documents = {
     "mutation AddCheckoutShippingConsignments($addCheckoutShippingConsignmentsInput: AddCheckoutShippingConsignmentsInput!) {\n  checkout {\n    addCheckoutShippingConsignments(input: $addCheckoutShippingConsignmentsInput) {\n      checkout {\n        entityId\n        shippingConsignments {\n          entityId\n          availableShippingOptions {\n            entityId\n          }\n        }\n      }\n    }\n  }\n}": types.AddCheckoutShippingConsignmentsDocument,
     "mutation CompleteCheckout($completeCheckoutInput: CompleteCheckoutInput!) {\n  checkout {\n    completeCheckout(input: $completeCheckoutInput) {\n      orderEntityId\n      paymentAccessToken\n    }\n  }\n}": types.CompleteCheckoutDocument,
     "mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}": types.CreateCartDocument,
+    "mutation deleteCart($deleteCartInput: DeleteCartInput!) {\n  cart {\n    deleteCart(input: $deleteCartInput) {\n      deletedCartEntityId\n    }\n  }\n}": types.DeleteCartDocument,
     "query GetAllCarts {\n  site {\n    cart {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}": types.GetAllCartsDocument,
     "query GetCart($entityId: String) {\n  site {\n    cart(entityId: $entityId) {\n      entityId\n      lineItems {\n        physicalItems {\n          name\n          quantity\n        }\n      }\n    }\n  }\n}": types.GetCartDocument,
     "mutation SelectCheckoutShippingOption($selectCheckoutShippingOptionInput: SelectCheckoutShippingOptionInput!) {\n  checkout {\n    selectCheckoutShippingOption(input: $selectCheckoutShippingOptionInput) {\n      checkout {\n        entityId\n      }\n    }\n  }\n}": types.SelectCheckoutShippingOptionDocument,
@@ -65,6 +66,10 @@ export function graphql(source: "mutation CompleteCheckout($completeCheckoutInpu
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}"): (typeof documents)["mutation CreateCart($createCartInput: CreateCartInput!) {\n  cart {\n    createCart(input: $createCartInput) {\n      cart {\n        entityId\n        lineItems {\n          physicalItems {\n            entityId\n            quantity\n          }\n        }\n      }\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation deleteCart($deleteCartInput: DeleteCartInput!) {\n  cart {\n    deleteCart(input: $deleteCartInput) {\n      deletedCartEntityId\n    }\n  }\n}"): (typeof documents)["mutation deleteCart($deleteCartInput: DeleteCartInput!) {\n  cart {\n    deleteCart(input: $deleteCartInput) {\n      deletedCartEntityId\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

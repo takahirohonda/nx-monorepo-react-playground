@@ -1,5 +1,5 @@
 const axios = require('axios')
-
+const { v4 } = require('uuid')
 const { X_AUTH_TOKEN, STORE_HASH } = require('../tmp/fetch-token-const')
 // const fetch = require('node-fetch');
 
@@ -16,6 +16,7 @@ const options = {
     Accept: 'application/json',
     'Content-Type': 'application/json',
     'X-Auth-Token': X_AUTH_TOKEN,
+    // 'X-Bc-Customer-Id': v4(), // don't need to do it for anonymous perspective
   },
   body: {
     allowed_cors_origins: ['http://localhost:4200'],
@@ -26,6 +27,10 @@ const options = {
 
 // axios.get('https://fake-json-api.mock.beeceptor.com/users')
 //   .then((data) => console.log(data))
+
+console.log(
+  `checking the option for store token API call: ${JSON.stringify(options)}`
+)
 
 axios
   .post(url, options.body, { headers: options.headers })

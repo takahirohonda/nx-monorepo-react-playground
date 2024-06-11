@@ -7,36 +7,15 @@ import {
 } from '@apollo/client'
 // import { setContext } from '@apollo/client/link/context';
 
-export const getClient = ({
-  uri,
-  token,
-  customerImpersonationToken,
-}: {
-  uri: string
-  token: string
-  customerImpersonationToken?: string
-}) => {
-  const httpLink = createHttpLink({ uri })
-
-  // const httpLink = createHttpLink({ uri, fetchOptions: {
-  //   mode: 'no-cors'
-  // }})
-
-  // const authLink = setContext((_, { headers }) => {
-  //   return {
-  //     headers: {
-  //       ...headers,
-
-  //       authorization: token ? `Bearer ${token}` : "",
-  //       credential: 'same-origin',
-  //     }
-  //   }
-  // })
+export const getClient = ({ uri, token }: { uri: string; token: string }) => {
+  const httpLink = createHttpLink({ uri, credentials: 'include' })
 
   const authMiddleware = new ApolloLink((operation, forward) => {
     operation.setContext({
       headers: {
         authorization: token ? `Bearer ${token}` : '',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
     })
     return forward(operation)

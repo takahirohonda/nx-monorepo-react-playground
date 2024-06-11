@@ -4536,6 +4536,57 @@ export type OrderTax = {
   name: Scalars['String']['output'];
 };
 
+/** A node for fetching a single order with payment data. */
+export type OrderWithPayments = BaseOrder & Node & {
+  __typename?: 'OrderWithPayments';
+  /** Billing address. */
+  billingAddress: OrderBillingAddress;
+  /** Consignments. */
+  consignments?: Maybe<OrderConsignments>;
+  /** Message from customer */
+  customerMessage?: Maybe<Scalars['String']['output']>;
+  /** Discounts. */
+  discounts: OrderDiscounts;
+  /** Order ID. */
+  entityId: Scalars['Int']['output'];
+  /** Total cost of handling. */
+  handlingCostTotal: Money;
+  /** The ID of an object. */
+  id: Scalars['ID']['output'];
+  /** Indicates whether the taxes are included in the order total. */
+  isTaxIncluded: Scalars['Boolean']['output'];
+  /** Date and time the order was placed. */
+  orderedAt: DateTimeExtended;
+  /** The list of payments for an order. */
+  payments: PaymentsConnection;
+  /** Total cost of shipping. */
+  shippingCostTotal: Money;
+  /** Order status. */
+  status: OrderStatus;
+  /** Subtotal. */
+  subTotal: Money;
+  /** Total tax. */
+  taxTotal: Money;
+  /** Taxes. */
+  taxes: Array<OrderTax>;
+  /** The final order total payable amount inclusive of tax, before applying any store credit or gift certificate. */
+  totalIncTax: Money;
+  /** Date and time the order was last updated. */
+  updatedAt: DateTimeExtended;
+  /** Total cost of wrapping. */
+  wrappingCostTotal: Money;
+};
+
+
+/** A node for fetching a single order with payment data. */
+export type OrderWithPaymentsPaymentsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  filters?: InputMaybe<PaymentsFiltersInput>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+};
+
 /** A connection to a list of orders. */
 export type OrdersConnection = {
   __typename?: 'OrdersConnection';
@@ -4721,57 +4772,6 @@ export type Payment = {
 
 /** The specific details of the instrument used for this payment. */
 export type PaymentInstrument = CreditCardPaymentInstrument | GiftCertificatePaymentInstrument;
-
-/** A node for fetching a single order with payment data. */
-export type PaymentOrder = BaseOrder & Node & {
-  __typename?: 'PaymentOrder';
-  /** Billing address. */
-  billingAddress: OrderBillingAddress;
-  /** Consignments. */
-  consignments?: Maybe<OrderConsignments>;
-  /** Message from customer */
-  customerMessage?: Maybe<Scalars['String']['output']>;
-  /** Discounts. */
-  discounts: OrderDiscounts;
-  /** Order ID. */
-  entityId: Scalars['Int']['output'];
-  /** Total cost of handling. */
-  handlingCostTotal: Money;
-  /** The ID of an object. */
-  id: Scalars['ID']['output'];
-  /** Indicates whether the taxes are included in the order total. */
-  isTaxIncluded: Scalars['Boolean']['output'];
-  /** Date and time the order was placed. */
-  orderedAt: DateTimeExtended;
-  /** The list of payments for an order. */
-  payments: PaymentsConnection;
-  /** Total cost of shipping. */
-  shippingCostTotal: Money;
-  /** Order status. */
-  status: OrderStatus;
-  /** Subtotal. */
-  subTotal: Money;
-  /** Total tax. */
-  taxTotal: Money;
-  /** Taxes. */
-  taxes: Array<OrderTax>;
-  /** The final order total payable amount inclusive of tax, before applying any store credit or gift certificate. */
-  totalIncTax: Money;
-  /** Date and time the order was last updated. */
-  updatedAt: DateTimeExtended;
-  /** Total cost of wrapping. */
-  wrappingCostTotal: Money;
-};
-
-
-/** A node for fetching a single order with payment data. */
-export type PaymentOrderPaymentsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  filters?: InputMaybe<PaymentsFiltersInput>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-};
 
 /** The status of a payment. */
 export enum PaymentResultStatus {
@@ -6047,7 +6047,7 @@ export type Site = {
   /** Details of the newest products. */
   newestProducts: ProductConnection;
   /** A single order. */
-  order?: Maybe<PaymentOrder>;
+  order?: Maybe<OrderWithPayments>;
   /** List of orders. */
   orders?: Maybe<OrdersConnection>;
   /** List of brands sorted by product count. */
@@ -7641,6 +7641,13 @@ export type CreateCartMutationVariables = Exact<{
 
 export type CreateCartMutation = { __typename?: 'Mutation', cart: { __typename?: 'CartMutations', createCart?: { __typename?: 'CreateCartResult', cart?: { __typename?: 'Cart', entityId: string, lineItems: { __typename?: 'CartLineItems', physicalItems: Array<{ __typename?: 'CartPhysicalItem', entityId: string, quantity: number }> } } | null } | null } };
 
+export type DeleteCartMutationVariables = Exact<{
+  deleteCartInput: DeleteCartInput;
+}>;
+
+
+export type DeleteCartMutation = { __typename?: 'Mutation', cart: { __typename?: 'CartMutations', deleteCart?: { __typename?: 'DeleteCartResult', deletedCartEntityId?: string | null } | null } };
+
 export type GetAllCartsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -7811,6 +7818,7 @@ export const AddCheckoutBillingAddressDocument = {"kind":"Document","definitions
 export const AddCheckoutShippingConsignmentsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"AddCheckoutShippingConsignments"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"addCheckoutShippingConsignmentsInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AddCheckoutShippingConsignmentsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"addCheckoutShippingConsignments"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"addCheckoutShippingConsignmentsInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"shippingConsignments"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"availableShippingOptions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<AddCheckoutShippingConsignmentsMutation, AddCheckoutShippingConsignmentsMutationVariables>;
 export const CompleteCheckoutDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CompleteCheckout"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"completeCheckoutInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CompleteCheckoutInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"completeCheckout"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"completeCheckoutInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orderEntityId"}},{"kind":"Field","name":{"kind":"Name","value":"paymentAccessToken"}}]}}]}}]}}]} as unknown as DocumentNode<CompleteCheckoutMutation, CompleteCheckoutMutationVariables>;
 export const CreateCartDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCart"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"createCartInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateCartInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cart"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCart"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"createCartInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cart"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"lineItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"physicalItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<CreateCartMutation, CreateCartMutationVariables>;
+export const DeleteCartDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"deleteCart"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"deleteCartInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DeleteCartInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cart"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deleteCart"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"deleteCartInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"deletedCartEntityId"}}]}}]}}]}}]} as unknown as DocumentNode<DeleteCartMutation, DeleteCartMutationVariables>;
 export const GetAllCartsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAllCarts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"site"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cart"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"lineItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"physicalItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetAllCartsQuery, GetAllCartsQueryVariables>;
 export const GetCartDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetCart"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"entityId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"site"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"cart"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"entityId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"entityId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}},{"kind":"Field","name":{"kind":"Name","value":"lineItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"physicalItems"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetCartQuery, GetCartQueryVariables>;
 export const SelectCheckoutShippingOptionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SelectCheckoutShippingOption"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"selectCheckoutShippingOptionInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SelectCheckoutShippingOptionInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"selectCheckoutShippingOption"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"selectCheckoutShippingOptionInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"checkout"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"entityId"}}]}}]}}]}}]}}]} as unknown as DocumentNode<SelectCheckoutShippingOptionMutation, SelectCheckoutShippingOptionMutationVariables>;
