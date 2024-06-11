@@ -12,13 +12,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <head>
-        <title>mood application</title>
-      </head>
-      <ClerkProvider>
+    <ClerkProvider>
+      <html lang="en">
+        <head>
+          <title>Hello</title>
+        </head>
+
         <body>{children}</body>
-      </ClerkProvider>
-    </html>
+      </html>
+    </ClerkProvider>
   )
 }
