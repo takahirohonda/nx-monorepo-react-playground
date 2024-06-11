@@ -11,7 +11,13 @@ import { clerkMiddleware } from '@clerk/nextjs/server'
 // )
 
 // authMiddleware doesn't work either.
-export default clerkMiddleware({ debug: true })
+export default clerkMiddleware(
+  (auth, req) => {
+    console.log(`checkout auth(): ${JSON.stringify(auth())}`)
+    console.log(`checking req: ${JSON.stringify(req)}`)
+  },
+  { debug: true }
+)
 
 export const config = {
   // The following matcher runs middleware on all routes expect static assets.
