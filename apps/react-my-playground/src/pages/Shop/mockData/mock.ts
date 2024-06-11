@@ -46,5 +46,5 @@ export const MOCK_PAYMENT_INSTRUMENT = {
   cardHolderName: 'success',
   expiryMonth: 1,
   expiryYear: 2050,
-  verificationValue: 703,
+  verificationValue: '703',
 }

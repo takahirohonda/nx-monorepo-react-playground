@@ -1,13 +1,10 @@
 const axios = require('axios')
 
-const {
-  X_AUTH_TOKEN,
-  STORE_HASH,
-  ORDER_ID,
-} = require('../tmp/fetch-token-const')
+const { X_AUTH_TOKEN, STORE_HASH } = require('../tmp/fetch-token-const')
 
-const ORDER_ID_PARAM = `?order_id=${ORDER_ID}`
-const url = `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/payments/methods/${ORDER_ID_PARAM}`
+const CHECKOUT_ID = '016fd2ac-155f-410b-8f4c-1b29a12916b5'
+const CHECKOUT_ID_PARAM = `?checkout_id=${CHECKOUT_ID}`
+const url = `https://api.bigcommerce.com/stores/${STORE_HASH}/v3/payments/methods${CHECKOUT_ID_PARAM}`
 
 let options = {
   headers: {
@@ -27,3 +24,5 @@ axios
   })
 
 // https://developer.bigcommerce.com/docs/rest-payments/methods#get-accepted-payment-methods
+
+// response:  { data: [], meta: {} }

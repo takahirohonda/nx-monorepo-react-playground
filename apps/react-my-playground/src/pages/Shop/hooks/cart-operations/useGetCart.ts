@@ -1,15 +1,20 @@
 import { useCallback } from 'react'
-import { useGetAllCartsQuery } from '../../graphql/cart-operations/GetAllCarts.generated'
+import { useGetAllCartsLazyQuery } from '../../graphql/cart-operations/GetAllCarts.generated'
 
 export const useGetCart = () => {
-  const { getAllCarts } = useGetAllCartsQuery()
+  const [getAllCarts, { loading }] = useGetAllCartsLazyQuery()
 
-  const getCarts = useCallback(async () => {
-    const carts = await getAllCarts()
-    return carts
+  const getCart = useCallback(async () => {
+    const carts = await getAllCarts({
+      fetchPolicy: 'network-only',
+    })
+    return {
+      existingCartEntityId: carts.data?.site.cart?.entityId,
+    }
   }, [getAllCarts])
 
   return {
-    getCarts,
+    getCart,
+    loading,
   }
 }

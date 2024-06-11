@@ -1,7 +1,7 @@
 import { useCallback } from 'react'
-import { useGetCartLazyQuery } from '../graphql/cart-operations/GetCart.generated'
+import { useGetCartLazyQuery } from '../../graphql/cart-operations/GetCart.generated'
 
-export const useGetCart = () => {
+export const useGetCartByEntityId = () => {
   const [getCart] = useGetCartLazyQuery()
 
   const getCartByEntityId = useCallback(

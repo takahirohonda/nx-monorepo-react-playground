@@ -5,7 +5,7 @@ export interface PaymentInstrument {
   cardHolderName: string
   expiryMonth: number
   expiryYear: number
-  verificationValue: number
+  verificationValue: string
 }
 
 export interface CompletePaymentArgs {
@@ -30,6 +30,7 @@ export const useCompletePayment = () => {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `PAT ${paymentAccessToken}`,
+          Accept: `application/vnd.bc.v1+json`,
         },
         body: JSON.stringify({
           payment: {
@@ -43,6 +44,7 @@ export const useCompletePayment = () => {
             },
             // Need to set up the payment method in prod
             // payment_method_id: paymentMethodId,
+            payment_method_id: 'stripeupe.card',
           },
         }),
       }
