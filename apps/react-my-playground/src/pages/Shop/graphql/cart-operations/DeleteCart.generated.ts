@@ -19,7 +19,7 @@ export type DeleteCartMutationResponse = {
 }
 
 export const DeleteCart = gql`
-  mutation deleteCart($deleteCartInput: DeleteCartInput!) {
+  mutation DeleteCart($deleteCartInput: DeleteCartInput!) {
     cart {
       deleteCart(input: $deleteCartInput) {
         deletedCartEntityId
@@ -27,8 +27,8 @@ export const DeleteCart = gql`
     }
   }
 ` as unknown as TypedDocumentNode<
-  deleteCartMutationResponse,
-  deleteCartMutationVariables
+  DeleteCartMutationResponse,
+  DeleteCartMutationVariables
 >
 export type DeleteCartMutationFn = Apollo.MutationFunction<
   DeleteCartMutationResponse,

@@ -1,4 +1,4 @@
-mutation deleteCart($deleteCartInput: DeleteCartInput!) {
+mutation DeleteCart($deleteCartInput: DeleteCartInput!) {
   cart {
     deleteCart(input: $deleteCartInput) {
       deletedCartEntityId
