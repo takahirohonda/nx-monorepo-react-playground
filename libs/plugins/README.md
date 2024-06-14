@@ -13,5 +13,5 @@ Run `nx test plugins` to execute the unit tests via [Jest](https://jestjs.io).
 ## Generating app
 
 ```bash
-yarn nx g @libs/plugin:nextjs test-nextjs-generator
+yarn nx g @libs/plugins:nextjs test-nextjs-generator
 ```

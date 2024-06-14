@@ -17,6 +17,7 @@ export async function nextjsGenerator(tree: Tree, schema: any) {
     style: 'css',
     linter: Linter.EsLint,
     unitTestRunner: 'jest',
+    skipPackageJson: true,
   })
 
   generateFiles(

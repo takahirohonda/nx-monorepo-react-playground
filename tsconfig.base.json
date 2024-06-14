@@ -18,10 +18,13 @@
       "@libs/next-app/utils/prisma-client": [
         "libs/next-app/utils/prisma-client/src/index.ts"
       ],
+      "@libs/plugins": ["libs/plugins/src/index.ts"],
       "@libs/utils-apollo-provider": [
         "libs/utils-apollo-provider/src/index.ts"
       ],
-      "@libs/plugins": ["libs/plugins/src/index.ts"]
+      "@new/test-generator/test-generator": [
+        "apps/test-generator/test-generator/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
