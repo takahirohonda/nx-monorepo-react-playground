@@ -10,10 +10,7 @@
     "importHelpers": true,
     "target": "esnext",
     "module": "esnext",
-    "lib": [
-      "es2020",
-      "dom"
-    ],
+    "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -23,11 +20,9 @@
       ],
       "@libs/utils-apollo-provider": [
         "libs/utils-apollo-provider/src/index.ts"
-      ]
+      ],
+      "@libs/plugins": ["libs/plugins/src/index.ts"]
     }
   },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+  "exclude": ["node_modules", "tmp"]
 }

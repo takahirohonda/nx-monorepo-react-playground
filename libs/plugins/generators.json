@@ -1,0 +1,9 @@
+{
+  "generators": {
+    "nextjs": {
+      "factory": "./src/generators/nextjs/generator",
+      "schema": "./src/generators/nextjs/schema.json",
+      "description": "nextjs generator"
+    }
+  }
+}

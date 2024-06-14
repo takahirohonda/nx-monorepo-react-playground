@@ -1,4 +1,4 @@
-# Nx Integrated Monorepo Playground - React
+# Nx Integrated Monorepo Playground - React & Next.js
 
 ## (1) Get Started
 
@@ -146,7 +146,7 @@ yarn nx run jest-setup:test
   Then, add `setupTests.ts` in `src`.
 
 ```ts
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom'
 ```
 
 Then add this line in `jest.config.ts`.
