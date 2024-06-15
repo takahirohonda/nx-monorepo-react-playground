@@ -17,7 +17,28 @@ neonctl auth
 neonctl branched create --name {branch-name} --project-id {id}
 ```
 
+## TypeORM
+
+1. Install & setup (https://typeorm.io/)
+
+```bash
+yarn add typeorm reflect-metadata pg
+```
+
+Add this to `tsconfig.json`
+
+```json
+"emitDecoratorMetadata": true,
+"experimentalDecorators": true,
+```
+
+```bash
+npx typeorm init --name apps/next-mood --database postgres
+```
+
 ## Prisma
+
+Move to TypeORM. Not using Prisma for this project
 
 ## Initialising prisma
 
