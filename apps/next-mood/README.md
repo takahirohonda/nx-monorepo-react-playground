@@ -22,7 +22,8 @@ neonctl branched create --name {branch-name} --project-id {id}
 1. Install & setup (https://typeorm.io/)
 
 ```bash
-yarn add typeorm reflect-metadata pg
+yarn add typeorm reflect-metadata pg ts-node
+
 ```
 
 Add this to `tsconfig.json`
@@ -34,6 +35,30 @@ Add this to `tsconfig.json`
 
 ```bash
 npx typeorm init --name apps/next-mood --database postgres
+```
+
+2. Migration
+
+## Troubleshoot in progress
+
+https://stackoverflow.com/questions/59435293/typeorm-entity-in-nestjs-cannot-use-import-statement-outside-a-module
+
+```
+npx typeorm-ts-node-esm migration:generate apps/next-mood/src/migrations/update-post-table -d apps/next-mood/src/data-source.ts
+Error during migration generation:
+Error: Unable to open file: "/Users/taka/code/mdh/nx-monorepo-react-playground/apps/next-mood/src/data-source.ts". Cannot use import statement outside a module
+    at CommandUtils.loadDataSource (/Users/taka/code/mdh/nx-monorepo-react-playground/node_modules/typeorm/commands/CommandUtils.js:22:19)
+    at async Object.handler (/Users/taka/code/mdh/nx-monorepo-react-playground/node_modules/typeorm/commands/MigrationGenerateCommand.js:73:26)
+```
+
+```bash
+# This doesn't work because we need ts-node.
+# yarn typeorm migration:run -d apps/next-mood/src/data-source.ts
+
+
+npx typeorm-ts-node-esm migration:run -- -d apps/next-mood/src/data-source.ts
+
+npx typeorm-ts-node-esm migration:generate apps/next-mood/src/migrations/update-post-table -d apps/next-mood/src/data-source.ts
 ```
 
 ## Prisma

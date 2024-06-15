@@ -1,5 +1,6 @@
 .env
 .nx
+.env.local
 
 dist
 tmp
