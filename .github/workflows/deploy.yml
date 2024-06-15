@@ -17,6 +17,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
       - name: run custom action.yml
-        uses: ./github-actions/action.yml
+        uses: github-actions/action.yml
         with:
           message: ${{ secrets.MESSAGE }}
