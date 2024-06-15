@@ -1,0 +1,19 @@
+name: Playing around with github action...
+on:
+  push:
+    branches:
+      - main
+jobs:
+  use-docker-file-action:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [20.x]
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: run custom action.yml
+        uses: ./github-actions/action.yml
+        with:
+          message: ${{ secrets.MESSAGE }}

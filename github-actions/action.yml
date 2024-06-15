@@ -1,0 +1,7 @@
+name: 'Testing action.yml'
+inputs:
+  message:
+    description: 'test message'
+runs:
+  using: 'docker'
+  image: './github-actions/Dockerfile'
