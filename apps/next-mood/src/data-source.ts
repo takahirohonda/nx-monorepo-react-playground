@@ -1,6 +1,11 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 import { User } from './entity/User'
+
+// this will not be found from nx next.js app, but it will be found
+// because we run this script from the project root for migration.
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-expect-error
 import dotenv from 'dotenv'
 
 // Load environment variables from .env file
