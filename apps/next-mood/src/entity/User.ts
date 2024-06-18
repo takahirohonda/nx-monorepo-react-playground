@@ -2,71 +2,28 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
-  BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-  ManyToOne,
   OneToOne,
-  JoinColumn,
+  OneToMany,
 } from 'typeorm'
+import { Account } from './Account'
+import { JournalEntry } from './JournalEntry'
+import { EntryAnalysis } from './EntryAnalysis'
 
 @Entity()
-export class User extends BaseEntity {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string
-
-  @CreateDateColumn()
-  createdAt: Date
-
-  @UpdateDateColumn()
-  updatedAt: Date
-
-  @Column({ unique: true })
-  clerkId: string
 
   @Column({ unique: true })
   email: string
 
-  @OneToMany(() => JournalEntry, (journalEntry) => journalEntry.user)
-  journalEntries: JournalEntry[]
-}
-
-@Entity()
-export class JournalEntry extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string
-
-  @CreateDateColumn()
-  createdAt: Date
-
-  @UpdateDateColumn()
-  updatedAt: Date
-
-  @Column()
-  userId: string
-
-  @ManyToOne(() => User, (user) => user.journalEntries)
-  user: User
-
-  @Column('text')
-  content: string
+  @Column({ unique: true })
+  clerkId: string
 
   @Column({ nullable: true })
-  analysisId: string
-
-  @ManyToOne(() => Analysis, (analysis) => analysis.entry, { nullable: true })
-  analysis: Analysis
-
-  // Optional index
-  // @Index()
-  // userId: string;
-}
-
-@Entity()
-export class Analysis extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id: string
+  name: string
 
   @CreateDateColumn()
   createdAt: Date
@@ -74,26 +31,12 @@ export class Analysis extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date
 
-  @Column()
-  entryId: string
+  @OneToOne(() => Account, (account) => account.user)
+  account: Account
 
-  @OneToOne(() => JournalEntry, (journalEntry) => journalEntry.analysis)
-  @JoinColumn()
-  entry: JournalEntry
+  @OneToMany(() => JournalEntry, (journalEntry) => journalEntry.user)
+  entries: JournalEntry[]
 
-  @Column()
-  mood: string
-
-  @Column('text')
-  summary: string
-
-  @Column()
-  color: string
-
-  @Column()
-  negative: boolean
-
-  // Unique constraint
-  // @Unique()
-  // entryId: string;
+  @OneToMany(() => EntryAnalysis, (entryAnalysis) => entryAnalysis.user)
+  analysis: EntryAnalysis[]
 }
