@@ -1,8 +1,11 @@
 # Service login reminder
 
-Clerk -> work Google Account
-Neon -> work Google Account
+## Auth.js
 
-takahiro.honda+clerk_test@myzeller.com
-@Clerk123
-verification: 424242
+https://authjs.dev/getting-started
+
+Google Provider: https://authjs.dev/getting-started/providers/google
+
+This is the link to configure OAuth with Google: https://console.developers.google.com/apis/credentials
+
+Google OAuth 2.0 doc: https://developers.google.com/identity/protocols/oauth2

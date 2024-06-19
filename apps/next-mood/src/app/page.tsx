@@ -1,14 +1,17 @@
-import { auth } from '@clerk/nextjs/server'
 import { Header } from '../components/Header'
 import Link from 'next/link'
-import { SignedIn, SignedOut } from '@clerk/nextjs'
+
+import { auth } from '../auth'
+import { SignInButton } from '../components/SignInButton'
+import { SignOutButton } from '../components/SignOutButton'
 
 const Home = async () => {
-  const { userId } = await auth()
+  const session = await auth()
 
-  // const userId = null
+  const isSignedIn = Boolean(session?.user)
 
-  console.log(`checking userId: ${userId}`)
+  console.log(JSON.stringify(session))
+
   return (
     <div className="bg-slate-800 h-screen flex">
       <div className="container flex flex-col">
@@ -22,31 +25,15 @@ const Home = async () => {
               Certainty of death. Small chance of success. What are we waiting
               for?
             </h2>
-            <SignedIn>
-              <Link
-                href="/journal"
-                className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
-              >
-                Go To Journal
-              </Link>
-            </SignedIn>
-            <SignedOut>
-              <Link
-                href="/sign-up"
-                className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
-              >
-                Sign Up Now!
-              </Link>
-              <div className="flex flex-col items-center gap-[16px]">
-                <span className="text-white">You already have an account?</span>
-                <Link
-                  href="/sign-in"
-                  className="text-[18px] text-white hover:underline"
-                >
-                  <span className="mr-[8px]">➡️</span> Sign in now
-                </Link>
-              </div>
-            </SignedOut>
+
+            <Link
+              href="/journal"
+              className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
+            >
+              Go To Journal
+            </Link>
+            {!isSignedIn && <SignInButton />}
+            {isSignedIn && <SignOutButton />}
           </div>
         </div>
       </div>

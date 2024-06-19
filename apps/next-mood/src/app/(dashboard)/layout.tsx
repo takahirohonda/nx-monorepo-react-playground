@@ -1,5 +1,3 @@
-import { UserButton } from '@clerk/nextjs'
-
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-screen w-screen relative">
@@ -9,7 +7,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <div className="ml-[200px]">
         <header className="h-[60px] border-b border-black/10">
           <div className="h-full w-full px-6 flex items-center justify-end">
-            <UserButton />
+            user button place holder
           </div>
         </header>
         <div>{children}</div>

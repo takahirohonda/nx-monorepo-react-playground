@@ -1,5 +1,4 @@
 import './global.css'
-import { ClerkProvider } from '@clerk/nextjs'
 
 export const metadata = {
   title: 'Welcome to next-mood',
@@ -12,14 +11,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <head>
-          <title>Hello</title>
-        </head>
+    <html lang="en">
+      <head>
+        <title>Hello</title>
+      </head>
 
-        <body>{children}</body>
-      </html>
-    </ClerkProvider>
+      <body>{children}</body>
+    </html>
   )
 }
