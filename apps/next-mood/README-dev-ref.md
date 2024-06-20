@@ -1,5 +1,3 @@
-# Service login reminder
-
 ## Auth.js
 
 https://authjs.dev/getting-started
