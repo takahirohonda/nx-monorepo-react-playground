@@ -7,6 +7,7 @@ import {
   SignedOut,
   UserButton,
   SignUpButton,
+  SignOutButton,
 } from '@clerk/nextjs'
 
 export default function RootLayout({
@@ -25,6 +26,7 @@ export default function RootLayout({
             </SignedOut>
             <SignedIn>
               <UserButton />
+              <SignOutButton />
             </SignedIn>
           </header>
           <main>{children}</main>
