@@ -23,6 +23,6 @@ jobs:
         run: |
           pwd
       - name: run custom action.yml
-        uses: ./.github-actions/action.yml
+        uses: ./github-actions
         with:
           message: ${{ secrets.MESSAGE }}
