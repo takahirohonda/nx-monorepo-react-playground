@@ -19,6 +19,9 @@ jobs:
       - name: checking the folder content
         run: |
           ls
+      - name: checking the current directory
+        run: |
+          pwd
       - name: run custom action.yml
         uses: ./.github-actions/action.yml
         with:
