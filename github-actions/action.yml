@@ -4,4 +4,4 @@ inputs:
     description: 'test message'
 runs:
   using: 'docker'
-  image: './github-actions/Dockerfile'
+  image: './Dockerfile'
