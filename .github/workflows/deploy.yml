@@ -19,7 +19,7 @@ jobs:
       - name: checking the folder content
         run: |
           ls
-      - name: run custom action.yml
-        uses: ./github-actions/action
-        with:
-          message: ${{ secrets.MESSAGE }}
+      # - name: run custom action.yml
+      #   uses: ./github-actions/action
+      #   with:
+      #     message: ${{ secrets.MESSAGE }}
