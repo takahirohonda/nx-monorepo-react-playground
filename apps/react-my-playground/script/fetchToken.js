@@ -20,7 +20,7 @@ const options = {
   },
   body: {
     allowed_cors_origins: ['http://localhost:4200'],
-    channel_id: 1,
+    channel_id: 643938,
     expires_at: unixTimestamp,
   },
 }
