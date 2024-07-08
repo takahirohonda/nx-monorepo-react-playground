@@ -14,6 +14,10 @@ VITE_BIGCOMMERCE_CDN_HOSTNAME="*.bigcommerce.com"
 
 ### 2. Apollo Codegen
 
+Run `yarn nx gql:sync react-my-playground`
+
+### Codegen Reference
+
 https://www.apollographql.com/tutorials/lift-off-part1/09-codegen
 
 ```bash

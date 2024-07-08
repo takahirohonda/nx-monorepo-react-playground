@@ -3,6 +3,64 @@ fragment ImageData on Image {
   altText
 }
 
+fragment ProductOption on CatalogProductOption {
+  __typename
+  entityId
+  displayName
+  isRequired
+  ... on MultipleChoiceOption {
+    displayStyle
+    values(first: 5) {
+      edges {
+        node {
+          entityId
+          isDefault
+          ... on SwatchOptionValue {
+            hexColors
+            imageUrl(width: 200)
+            label
+            isSelected
+          }
+          ... on MultipleChoiceOptionValue {
+            entityId
+            label
+            isSelected
+          }
+          ... on ProductPickListOptionValue {
+            entityId
+            label
+            isSelected
+          }
+        }
+      }
+    }
+  }
+  ... on NumberFieldOption {
+    entityId
+    displayName
+  }
+  ... on TextFieldOption {
+    entityId
+    displayName
+  }
+  ... on MultiLineTextFieldOption {
+    entityId
+    displayName
+  }
+  ... on FileUploadFieldOption {
+    entityId
+    displayName
+  }
+  ... on DateFieldOption {
+    entityId
+    displayName
+  }
+  ... on CheckboxOption {
+    entityId
+    displayName
+  }
+}
+
 fragment Product on Product {
   entityId
   name
@@ -26,6 +84,13 @@ fragment Product on Product {
     }
     salePrice {
       value
+    }
+  }
+  productOptions {
+    edges {
+      node {
+        ...ProductOption
+      }
     }
   }
 }

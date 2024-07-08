@@ -9,6 +9,95 @@ export type ImageDataFragment = {
   url320wide: string
 }
 
+export type ProductOption_CheckboxOption_Fragment = {
+  __typename: 'CheckboxOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOption_DateFieldOption_Fragment = {
+  __typename: 'DateFieldOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOption_FileUploadFieldOption_Fragment = {
+  __typename: 'FileUploadFieldOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOption_MultiLineTextFieldOption_Fragment = {
+  __typename: 'MultiLineTextFieldOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOption_MultipleChoiceOption_Fragment = {
+  __typename: 'MultipleChoiceOption'
+  displayStyle: string
+  entityId: number
+  displayName: string
+  isRequired: boolean
+  values: {
+    __typename?: 'ProductOptionValueConnection'
+    edges: Array<{
+      __typename?: 'ProductOptionValueEdge'
+      node:
+        | {
+            __typename?: 'MultipleChoiceOptionValue'
+            entityId: number
+            label: string
+            isSelected: boolean | null
+            isDefault: boolean
+          }
+        | {
+            __typename?: 'ProductPickListOptionValue'
+            entityId: number
+            label: string
+            isSelected: boolean | null
+            isDefault: boolean
+          }
+        | {
+            __typename?: 'SwatchOptionValue'
+            hexColors: Array<string>
+            imageUrl: string | null
+            label: string
+            isSelected: boolean | null
+            entityId: number
+            isDefault: boolean
+          }
+    }> | null
+  }
+}
+
+export type ProductOption_NumberFieldOption_Fragment = {
+  __typename: 'NumberFieldOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOption_TextFieldOption_Fragment = {
+  __typename: 'TextFieldOption'
+  entityId: number
+  displayName: string
+  isRequired: boolean
+}
+
+export type ProductOptionFragment =
+  | ProductOption_CheckboxOption_Fragment
+  | ProductOption_DateFieldOption_Fragment
+  | ProductOption_FileUploadFieldOption_Fragment
+  | ProductOption_MultiLineTextFieldOption_Fragment
+  | ProductOption_MultipleChoiceOption_Fragment
+  | ProductOption_NumberFieldOption_Fragment
+  | ProductOption_TextFieldOption_Fragment
+
 export type ProductFragment = {
   __typename?: 'Product'
   entityId: number
@@ -32,6 +121,86 @@ export type ProductFragment = {
     price: { __typename?: 'Money'; value: any }
     salePrice: { __typename?: 'Money'; value: any } | null
   } | null
+  productOptions: {
+    __typename?: 'ProductOptionConnection'
+    edges: Array<{
+      __typename?: 'ProductOptionEdge'
+      node:
+        | {
+            __typename: 'CheckboxOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+        | {
+            __typename: 'DateFieldOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+        | {
+            __typename: 'FileUploadFieldOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+        | {
+            __typename: 'MultiLineTextFieldOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+        | {
+            __typename: 'MultipleChoiceOption'
+            displayStyle: string
+            entityId: number
+            displayName: string
+            isRequired: boolean
+            values: {
+              __typename?: 'ProductOptionValueConnection'
+              edges: Array<{
+                __typename?: 'ProductOptionValueEdge'
+                node:
+                  | {
+                      __typename?: 'MultipleChoiceOptionValue'
+                      entityId: number
+                      label: string
+                      isSelected: boolean | null
+                      isDefault: boolean
+                    }
+                  | {
+                      __typename?: 'ProductPickListOptionValue'
+                      entityId: number
+                      label: string
+                      isSelected: boolean | null
+                      isDefault: boolean
+                    }
+                  | {
+                      __typename?: 'SwatchOptionValue'
+                      hexColors: Array<string>
+                      imageUrl: string | null
+                      label: string
+                      isSelected: boolean | null
+                      entityId: number
+                      isDefault: boolean
+                    }
+              }> | null
+            }
+          }
+        | {
+            __typename: 'NumberFieldOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+        | {
+            __typename: 'TextFieldOption'
+            entityId: number
+            displayName: string
+            isRequired: boolean
+          }
+    }> | null
+  }
 }
 
 export type GetProductsQueryVariables = Types.Exact<{
@@ -73,6 +242,86 @@ export type GetProductsQueryResponse = {
             price: { __typename?: 'Money'; value: any }
             salePrice: { __typename?: 'Money'; value: any } | null
           } | null
+          productOptions: {
+            __typename?: 'ProductOptionConnection'
+            edges: Array<{
+              __typename?: 'ProductOptionEdge'
+              node:
+                | {
+                    __typename: 'CheckboxOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+                | {
+                    __typename: 'DateFieldOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+                | {
+                    __typename: 'FileUploadFieldOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+                | {
+                    __typename: 'MultiLineTextFieldOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+                | {
+                    __typename: 'MultipleChoiceOption'
+                    displayStyle: string
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                    values: {
+                      __typename?: 'ProductOptionValueConnection'
+                      edges: Array<{
+                        __typename?: 'ProductOptionValueEdge'
+                        node:
+                          | {
+                              __typename?: 'MultipleChoiceOptionValue'
+                              entityId: number
+                              label: string
+                              isSelected: boolean | null
+                              isDefault: boolean
+                            }
+                          | {
+                              __typename?: 'ProductPickListOptionValue'
+                              entityId: number
+                              label: string
+                              isSelected: boolean | null
+                              isDefault: boolean
+                            }
+                          | {
+                              __typename?: 'SwatchOptionValue'
+                              hexColors: Array<string>
+                              imageUrl: string | null
+                              label: string
+                              isSelected: boolean | null
+                              entityId: number
+                              isDefault: boolean
+                            }
+                      }> | null
+                    }
+                  }
+                | {
+                    __typename: 'NumberFieldOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+                | {
+                    __typename: 'TextFieldOption'
+                    entityId: number
+                    displayName: string
+                    isRequired: boolean
+                  }
+            }> | null
+          }
         }
       }> | null
     }
@@ -85,6 +334,65 @@ export const ImageDataDoc = gql`
     altText
   }
 ` as unknown as TypedDocumentNode<ImageDataFragment, undefined>
+export const ProductOptionDoc = gql`
+  fragment ProductOption on CatalogProductOption {
+    __typename
+    entityId
+    displayName
+    isRequired
+    ... on MultipleChoiceOption {
+      displayStyle
+      values(first: 5) {
+        edges {
+          node {
+            entityId
+            isDefault
+            ... on SwatchOptionValue {
+              hexColors
+              imageUrl(width: 200)
+              label
+              isSelected
+            }
+            ... on MultipleChoiceOptionValue {
+              entityId
+              label
+              isSelected
+            }
+            ... on ProductPickListOptionValue {
+              entityId
+              label
+              isSelected
+            }
+          }
+        }
+      }
+    }
+    ... on NumberFieldOption {
+      entityId
+      displayName
+    }
+    ... on TextFieldOption {
+      entityId
+      displayName
+    }
+    ... on MultiLineTextFieldOption {
+      entityId
+      displayName
+    }
+    ... on FileUploadFieldOption {
+      entityId
+      displayName
+    }
+    ... on DateFieldOption {
+      entityId
+      displayName
+    }
+    ... on CheckboxOption {
+      entityId
+      displayName
+    }
+  }
+`
 export const ProductDoc = gql`
   fragment Product on Product {
     entityId
@@ -111,7 +419,15 @@ export const ProductDoc = gql`
         value
       }
     }
+    productOptions {
+      edges {
+        node {
+          ...ProductOption
+        }
+      }
+    }
   }
+  ${ProductOptionDoc}
 `
 export const GetProducts = gql`
   query GetProducts($pageSize: Int!) {

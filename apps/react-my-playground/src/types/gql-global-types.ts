@@ -2300,9 +2300,9 @@ export type ContentRenderedRegionsByPageTypeAndEntityIdArgs = {
 /** A country representation. */
 export type Country = {
   __typename?: 'Country'
-  /** A country's 2 letters iso code. */
+  /** The 2-letter ISO Alpha-2 code for a country. */
   code: Scalars['String']['output']
-  /** A country's id. */
+  /** A country's ID. */
   entityId: Scalars['Int']['output']
   /** A country's name. */
   name: Scalars['String']['output']
@@ -2310,11 +2310,11 @@ export type Country = {
   statesOrProvinces: Array<StateOrProvince>
 }
 
-/** Country's filter. */
+/** An input parameter to narrow down the countries you receive based on country name and code. */
 export type CountryFiltersInput = {
-  /** 2 letters iso code of a country to filter by. */
+  /** The 2-letter ISO Alpha-2 code for a country that you can use to filter results. */
   code?: InputMaybe<Scalars['String']['input']>
-  /** A name of a country to filter by. */
+  /** The name of a country that you can use to filter results. */
   name?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -2549,7 +2549,7 @@ export type Customer = {
   metafields: MetafieldConnection
   /**
    * The notes of the customer.
-   * @deprecated Notes aren't supported in Storefront GQL API.
+   * @deprecated Notes aren't supported in Storefront GQL API. This will output an empty string.
    */
   notes: Scalars['String']['output']
   /** The phone number of the customer. */
@@ -2587,6 +2587,15 @@ export type CustomerWishlistsArgs = {
   filters?: InputMaybe<WishlistFiltersInput>
   first?: InputMaybe<Scalars['Int']['input']>
   last?: InputMaybe<Scalars['Int']['input']>
+}
+
+/** The customer token. */
+export type CustomerAccessToken = {
+  __typename?: 'CustomerAccessToken'
+  /** The customer token expiration time. */
+  expiresAt: Scalars['DateTime']['output']
+  /** The customer token value. */
+  value: Scalars['String']['output']
 }
 
 /** Address that is associated with a customer account. */
@@ -2690,6 +2699,8 @@ export type CustomerFormFieldsInput = {
   checkboxes?: InputMaybe<Array<CheckboxesFormFieldInput>>
   /** List of date custom form fields input. */
   dates?: InputMaybe<Array<DateFormFieldInput>>
+  /** List of multiline text custom form fields input. */
+  multilineTexts?: InputMaybe<Array<MultilineTextFormFieldInput>>
   /** List of multiple choice custom form fields input. This includes pick lists. */
   multipleChoices?: InputMaybe<Array<MultipleChoiceFormFieldInput>>
   /** List of number custom form fields input. */
@@ -2786,6 +2797,13 @@ export type CustomerRegistrationError = Error & {
   __typename?: 'CustomerRegistrationError'
   /** A description of the error. */
   message: Scalars['String']['output']
+}
+
+/** Customers settings. */
+export type CustomersSettings = {
+  __typename?: 'CustomersSettings'
+  /** Settings that determine the minimum complexity required for a customer's password. */
+  passwordComplexitySettings?: Maybe<PasswordComplexitySettings>
 }
 
 /** A calendar for allowing selection of a date. */
@@ -3127,14 +3145,14 @@ export type FormFieldsShippingAddressArgs = {
   sortBy?: InputMaybe<FormFieldSortInput>
 }
 
-/** A geography information. */
+/** Geography information. */
 export type Geography = {
   __typename?: 'Geography'
   /** A list of available countries. */
   countries?: Maybe<Array<Country>>
 }
 
-/** A geography information. */
+/** Geography information. */
 export type GeographyCountriesArgs = {
   filters?: InputMaybe<CountryFiltersInput>
 }
@@ -3195,7 +3213,18 @@ export type Image = {
 /** Image */
 export type ImageUrlArgs = {
   height?: InputMaybe<Scalars['Int']['input']>
+  lossy?: InputMaybe<Scalars['Boolean']['input']>
   width: Scalars['Int']['input']
+}
+
+/** Image */
+export type ImageUrlOriginalArgs = {
+  lossy?: InputMaybe<Scalars['Boolean']['input']>
+}
+
+/** Image */
+export type ImageUrlTemplateArgs = {
+  lossy?: InputMaybe<Scalars['Boolean']['input']>
 }
 
 /** A connection to a list of items. */
@@ -3445,11 +3474,24 @@ export type LoginResult = {
   __typename?: 'LoginResult'
   /** The currently logged in customer. */
   customer?: Maybe<Customer>
+  /** The customer token. */
+  customerAccessToken?: Maybe<CustomerAccessToken>
   /**
    * The result of a login
    * @deprecated Use customer node instead.
    */
   result: Scalars['String']['output']
+}
+
+/** Result of login using customer login JWT. */
+export type LoginWithCustomerLoginJwtResult = {
+  __typename?: 'LoginWithCustomerLoginJwtResult'
+  /** The currently logged in customer. */
+  customer?: Maybe<Customer>
+  /** The customer token. */
+  customerAccessToken?: Maybe<CustomerAccessToken>
+  /** The URL to redirect to after login. */
+  redirectTo: Scalars['String']['output']
 }
 
 /** Logo field */
@@ -3578,6 +3620,25 @@ export type MultilineTextFormField = FormField & {
   sortOrder: Scalars['Int']['output']
 }
 
+/** The user input for multiline text form fields. */
+export type MultilineTextFormFieldInput = {
+  /** The custom form field ID. */
+  fieldEntityId: Scalars['Int']['input']
+  /** Multiline text value. */
+  multilineText: Scalars['String']['input']
+}
+
+/** Multiline text custom form field value. */
+export type MultilineTextFormFieldValue = CustomerFormFieldValue & {
+  __typename?: 'MultilineTextFormFieldValue'
+  /** Entity ID of a custom form field value on a customer or customer address. */
+  entityId: Scalars['Int']['output']
+  /** The multiline text submitted by a customer. */
+  multilineText: Scalars['String']['output']
+  /** The name of the form field that the value is for. */
+  name: Scalars['String']['output']
+}
+
 /** The user input for multiple choice form fields. */
 export type MultipleChoiceFormFieldInput = {
   /** The custom form field ID. */
@@ -3649,6 +3710,8 @@ export type Mutation = {
   customer: CustomerMutations
   /** Customer login. */
   login: LoginResult
+  /** Login with Customer Login JWT. */
+  loginWithCustomerLoginJwt: LoginWithCustomerLoginJwtResult
   /** Customer logout */
   logout: LogoutResult
   /** Contact us mutation. */
@@ -3660,6 +3723,10 @@ export type Mutation = {
 export type MutationLoginArgs = {
   email: Scalars['String']['input']
   password: Scalars['String']['input']
+}
+
+export type MutationLoginWithCustomerLoginJwtArgs = {
+  jwt: Scalars['String']['input']
 }
 
 export type MutationSubmitContactUsArgs = {
@@ -4683,6 +4750,25 @@ export enum PageType {
   Unsubscribe = 'UNSUBSCRIBE',
 }
 
+/** Settings that determine the minimum complexity required for a customer's password. */
+export type PasswordComplexitySettings = {
+  __typename?: 'PasswordComplexitySettings'
+  /** The minimum number of numbers required in passwords. */
+  minimumNumbers: Scalars['Int']['output']
+  /** Minimum password length. */
+  minimumPasswordLength: Scalars['Int']['output']
+  /** The minimum number of special characters required in passwords. */
+  minimumSpecialCharacters: Scalars['Int']['output']
+  /** Require lowercase characters. */
+  requireLowerCase: Scalars['Boolean']['output']
+  /** Require numbers. */
+  requireNumbers: Scalars['Boolean']['output']
+  /** Require special characters. */
+  requireSpecialCharacters: Scalars['Boolean']['output']
+  /** Require uppercase characters. */
+  requireUpperCase: Scalars['Boolean']['output']
+}
+
 /** Password form field. */
 export type PasswordFormField = FormField & {
   __typename?: 'PasswordFormField'
@@ -5001,6 +5087,8 @@ export type Product = Node & {
   upc?: Maybe<Scalars['String']['output']>
   /** Variants associated with the product. */
   variants: VariantConnection
+  /** A list of the videos for a product. */
+  videos: VideoConnection
   /** Warranty information of the product. */
   warranty: Scalars['String']['output']
   /** Weight of the product. */
@@ -5113,6 +5201,14 @@ export type ProductVariantsArgs = {
   last?: InputMaybe<Scalars['Int']['input']>
   optionValueIds?: InputMaybe<Array<OptionValueId>>
   skus?: InputMaybe<Array<Scalars['String']['input']>>
+}
+
+/** Product */
+export type ProductVideosArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  last?: InputMaybe<Scalars['Int']['input']>
 }
 
 /** Product Attribute Filter */
@@ -5434,7 +5530,7 @@ export type Query = {
   channel: Channel
   /** The currently logged in customer. */
   customer?: Maybe<Customer>
-  /** A geography information. */
+  /** Geography information. */
   geography: Geography
   /** An inventory */
   inventory: Inventory
@@ -5914,6 +6010,8 @@ export type Settings = {
   checkout?: Maybe<CheckoutSettings>
   /** Contact information for the store. */
   contact?: Maybe<ContactField>
+  /** Customers settings. */
+  customers?: Maybe<CustomersSettings>
   /** Store display format information. */
   display: DisplayField
   /** The form fields to display on the storefront during customer registration or address creation. */
@@ -5935,7 +6033,7 @@ export type Settings = {
   socialMediaLinks: Array<SocialMediaLink>
   /** The current store status. */
   status: StorefrontStatusType
-  /** The customer-facing message associated with the current store status. */
+  /** The customer-facing message associated with the current storefront status. */
   statusMessage?: Maybe<Scalars['String']['output']>
   /** The hash of the store. */
   storeHash: Scalars['String']['output']
@@ -6172,14 +6270,14 @@ export type SpecialHour = {
   opening?: Maybe<Scalars['DateTime']['output']>
 }
 
-/** A State or Province representation. */
+/** A state or province representation. */
 export type StateOrProvince = {
   __typename?: 'StateOrProvince'
-  /** An abbreviation of State or Province. */
+  /** An abbreviation of a state or province. */
   abbreviation: Scalars['String']['output']
-  /** An id of State or Province. */
+  /** An ID of a state or province. */
   entityId: Scalars['Int']['output']
-  /** A name of State or Province. */
+  /** A name of a state or province. */
   name: Scalars['String']['output']
 }
 
@@ -6319,6 +6417,7 @@ export type SwatchOptionValue = CatalogProductOptionValue & {
 /** A swatch option value - swatch values can be associated with a list of hexidecimal colors or an image. */
 export type SwatchOptionValueImageUrlArgs = {
   height?: InputMaybe<Scalars['Int']['input']>
+  lossy?: InputMaybe<Scalars['Boolean']['input']>
   width: Scalars['Int']['input']
 }
 
@@ -6384,7 +6483,7 @@ export type TextFormFieldInput = {
   text: Scalars['String']['input']
 }
 
-/** Text (includes basic text field and multi-line text) custom form field value. */
+/** Text custom form field value. */
 export type TextFormFieldValue = CustomerFormFieldValue & {
   __typename?: 'TextFormFieldValue'
   /** Entity ID of a custom form field value on a customer or customer address. */
@@ -6817,6 +6916,33 @@ export type VariantInventoryByLocationArgs = {
   locationEntityIds?: InputMaybe<Array<Scalars['Int']['input']>>
   locationEntityServiceTypeIds?: InputMaybe<Array<Scalars['String']['input']>>
   locationEntityTypeIds?: InputMaybe<Array<Scalars['String']['input']>>
+}
+
+/** Product video. */
+export type Video = {
+  __typename?: 'Video'
+  /** Title of a video. */
+  title: Scalars['String']['output']
+  /** Url of a video. */
+  url: Scalars['String']['output']
+}
+
+/** A connection to a list of items. */
+export type VideoConnection = {
+  __typename?: 'VideoConnection'
+  /** A list of edges. */
+  edges?: Maybe<Array<VideoEdge>>
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo
+}
+
+/** An edge in a connection. */
+export type VideoEdge = {
+  __typename?: 'VideoEdge'
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output']
+  /** The item at the end of the edge. */
+  node: Video
 }
 
 /** WebPage details. */

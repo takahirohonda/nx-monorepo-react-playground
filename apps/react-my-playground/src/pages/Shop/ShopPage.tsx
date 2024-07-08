@@ -6,9 +6,15 @@ import { useGetProducts } from './hooks/useGetProducts'
 import { useNavigate } from 'react-router-dom'
 import { ROOT } from '../routes/routes'
 import { useGetAllCartsQuery } from './graphql/cart-operations/GetAllCarts.generated'
+import { useGetProductsByIdsQuery } from './graphql/experimenting/GetProductsByIds.generated'
 
 export const ShopPage = () => {
   const { products } = useGetProducts()
+
+  const { data: productById } = useGetProductsByIdsQuery({
+    variables: { entityIds: [150] },
+    fetchPolicy: 'no-cache',
+  })
   const { data } = useGetAllCartsQuery()
   const navigate = useNavigate()
 
@@ -21,6 +27,8 @@ export const ShopPage = () => {
       <h1 className="text-xl">ShopPage</h1>
       <div className="flex gap-4"></div>
       <div>{JSON.stringify(products)}</div>
+      <div>Data from ProductsByIds</div>
+      <div>{JSON.stringify(productById)}</div>
       <div className="flex justify-center w-full">
         <button
           onClick={handleCheckout}

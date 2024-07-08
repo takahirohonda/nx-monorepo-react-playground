@@ -45,6 +45,86 @@ export type GetProductsCollectionQueryResponse = {
               price: { __typename?: 'Money'; value: any }
               salePrice: { __typename?: 'Money'; value: any } | null
             } | null
+            productOptions: {
+              __typename?: 'ProductOptionConnection'
+              edges: Array<{
+                __typename?: 'ProductOptionEdge'
+                node:
+                  | {
+                      __typename: 'CheckboxOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+                  | {
+                      __typename: 'DateFieldOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+                  | {
+                      __typename: 'FileUploadFieldOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+                  | {
+                      __typename: 'MultiLineTextFieldOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+                  | {
+                      __typename: 'MultipleChoiceOption'
+                      displayStyle: string
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                      values: {
+                        __typename?: 'ProductOptionValueConnection'
+                        edges: Array<{
+                          __typename?: 'ProductOptionValueEdge'
+                          node:
+                            | {
+                                __typename?: 'MultipleChoiceOptionValue'
+                                entityId: number
+                                label: string
+                                isSelected: boolean | null
+                                isDefault: boolean
+                              }
+                            | {
+                                __typename?: 'ProductPickListOptionValue'
+                                entityId: number
+                                label: string
+                                isSelected: boolean | null
+                                isDefault: boolean
+                              }
+                            | {
+                                __typename?: 'SwatchOptionValue'
+                                hexColors: Array<string>
+                                imageUrl: string | null
+                                label: string
+                                isSelected: boolean | null
+                                entityId: number
+                                isDefault: boolean
+                              }
+                        }> | null
+                      }
+                    }
+                  | {
+                      __typename: 'NumberFieldOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+                  | {
+                      __typename: 'TextFieldOption'
+                      entityId: number
+                      displayName: string
+                      isRequired: boolean
+                    }
+              }> | null
+            }
           }
         }> | null
       }

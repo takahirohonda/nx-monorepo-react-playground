@@ -4,7 +4,7 @@ query GetProductsByIds($entityIds: [Int!]) {
     products(entityIds: $entityIds) {
       edges {
         node {
-          ...Product
+          ...ProductAllFields
         }
       }
     }
