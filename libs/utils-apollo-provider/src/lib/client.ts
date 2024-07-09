@@ -1,11 +1,10 @@
 import {
   ApolloClient,
   ApolloLink,
-  InMemoryCache,
   concat,
   createHttpLink,
 } from '@apollo/client'
-// import { setContext } from '@apollo/client/link/context';
+import { getCache } from './getCache'
 
 export const getClient = ({ uri, token }: { uri: string; token: string }) => {
   const httpLink = createHttpLink({ uri, credentials: 'include' })
@@ -25,7 +24,7 @@ export const getClient = ({ uri, token }: { uri: string; token: string }) => {
 
   return new ApolloClient({
     link: concat(authMiddleware, httpLink),
-    cache: new InMemoryCache(),
+    cache: getCache(),
     connectToDevTools: true,
   })
 }
