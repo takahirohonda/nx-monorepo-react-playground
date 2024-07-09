@@ -1,25 +1,32 @@
 import { defaultDataIdFromObject, InMemoryCache } from '@apollo/client'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const customDataIdFromObject = (object: any) => {
+  // console.log('Cache Object:', object)
+  if (object.entityId) {
+    console.log(
+      `Using entityId as key for ${object.__typename}: ${object.entityId}`
+    )
+    return `${object.__typename}:${object.entityId}`
+  }
+  return defaultDataIdFromObject(object)
+}
+
 export const getCache = () =>
   new InMemoryCache({
-    dataIdFromObject: (object) => {
-      // eslint-disable-next-line no-underscore-dangle
-      const typename = object.__typename
-      if (typename && typeof object.entityId === 'string') {
-        return `${typename}:${object.entityId}`
-      }
-
-      return defaultDataIdFromObject(object)
-    },
+    dataIdFromObject: customDataIdFromObject,
     typePolicies: {
-      Query: {
-        fields: {
-          site: {
-            merge(existing, incoming, { mergeObjects }) {
-              return mergeObjects(existing, incoming)
-            },
-          },
-        },
+      Product: {
+        keyFields: ['entityId'],
+      },
+      MultipleChoiceOption: {
+        keyFields: ['entityId'],
+      },
+      ProductPickListOptionValue: {
+        keyFields: ['entityId'],
+      },
+      Image: {
+        keyFields: false,
       },
     },
   })
