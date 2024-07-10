@@ -189,3 +189,131 @@ export const getCache = () =>
     },
   })
 ```
+
+7. Merging all the nested object
+
+```ts
+import { defaultDataIdFromObject, InMemoryCache } from '@apollo/client'
+
+const checkMultipleChoiceOptionCachedObject = (object: any) => {
+  // eslint-disable-next-line no-underscore-dangle
+  if (object.__typename === 'MultipleChoiceOption') {
+    console.log(`Checking the values in MultipleChoiceOption: ${JSON.stringify(object.values)}`)
+  }
+
+  // eslint-disable-next-line no-underscore-dangle
+  if (object.__typename === 'ProductPickListOptionValue') {
+    console.log(`Checking the values in ProductPickListOptionValue: ${JSON.stringify(object)}`)
+  }
+}
+
+const customDataIdFromObject = (object: any) => {
+  // console.log('Cache Object:', object)
+  checkMultipleChoiceOptionCachedObject(object)
+  if (object.entityId) {
+    // eslint-disable-next-line no-underscore-dangle
+    return `${object.__typename}:${object.entityId}`
+  }
+  return defaultDataIdFromObject(object)
+}
+
+export const getCache = () =>
+  new InMemoryCache({
+    dataIdFromObject: customDataIdFromObject,
+    typePolicies: {
+      Query: {
+        fields: {
+          site: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
+          },
+        },
+      },
+      MultipleChoiceOption: {
+        fields: {
+          values: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
+          },
+        },
+        keyFields: ['entityId'],
+      },
+      ProductOptionValueConnection: {
+        fields: {
+          edges: {
+            merge(existing, incoming) {
+              return incoming
+            },
+          },
+        },
+      },
+      ProductOptionValueEdge: {
+        fields: {
+          node: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
+          },
+        },
+      },
+      ProductPickListOptionValue: {
+        keyFields: ['entityId'],
+      },
+      Product: {
+        keyFields: ['entityId'],
+        fields: {
+          images: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
+          },
+          productOptions: {
+            merge(existing, incoming, { mergeObjects }) {
+              return mergeObjects(existing, incoming)
+            },
+          },
+        },
+      },
+    },
+  })
+```
+
+8. Adding possible types - merge is not needed
+
+```ts
+import { defaultDataIdFromObject, InMemoryCache } from '@apollo/client'
+
+const checkMultipleChoiceOptionCachedObject = (object: any) => {
+  // eslint-disable-next-line no-underscore-dangle
+  if (object.__typename === 'MultipleChoiceOption') {
+    console.log(`Checking the values in MultipleChoiceOption: ${JSON.stringify(object.values)}`)
+  }
+
+  // eslint-disable-next-line no-underscore-dangle
+  if (object.__typename === 'ProductPickListOptionValue') {
+    console.log(`Checking the values in ProductPickListOptionValue: ${JSON.stringify(object)}`)
+  }
+}
+
+const customDataIdFromObject = (object: any) => {
+  // console.log('Cache Object:', object)
+  checkMultipleChoiceOptionCachedObject(object)
+  if (object.entityId) {
+    // eslint-disable-next-line no-underscore-dangle
+    return `${object.__typename}:${object.entityId}`
+  }
+  return defaultDataIdFromObject(object)
+}
+
+const possibleTypes = {
+  CatalogProductOption: ['MultipleChoiceOption', 'NumberFieldOption', 'TextFieldOption', 'MultiLineTextFieldOption', 'FileUploadFieldOption', 'DateFieldOption', 'CheckboxOption'],
+}
+
+export const getCache = () =>
+  new InMemoryCache({
+    possibleTypes,
+    dataIdFromObject: customDataIdFromObject,
+  })
+```
