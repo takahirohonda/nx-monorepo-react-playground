@@ -2506,7 +2506,7 @@ export enum CurrencySymbolPosition {
 /** Custom field */
 export type CustomField = {
   __typename?: 'CustomField';
-  /** Custom field id. */
+  /** Custom field ID. */
   entityId: Scalars['Int']['output'];
   /** Name of the custom field. */
   name: Scalars['String']['output'];
@@ -2514,7 +2514,7 @@ export type CustomField = {
   value: Scalars['String']['output'];
 };
 
-/** A connection to a list of items. */
+/** A connection to a list of items for custom fields. */
 export type CustomFieldConnection = {
   __typename?: 'CustomFieldConnection';
   /** A list of edges. */
