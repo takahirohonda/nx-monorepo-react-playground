@@ -31,6 +31,10 @@ Add this to `tsconfig.json`
 ```json
 "emitDecoratorMetadata": true,
 "experimentalDecorators": true,
+
+// Adding this helped to get rid of
+// `has no initializer and is not definitely assigned in the constructor.` error
+"strictPropertyInitialization": false,
 ```
 
 ```bash

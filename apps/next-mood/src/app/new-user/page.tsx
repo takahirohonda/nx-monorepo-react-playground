@@ -1,27 +1,32 @@
 import { currentUser } from '@clerk/nextjs/server'
 
 import { redirect } from 'next/navigation'
+import dataSource from '../../data-source'
+import { User } from '../../entity'
 
 const createNewUser = async () => {
   const user = await currentUser()
-  console.log(user)
+  const clerkId = user?.id
+  const emailAddress = user?.primaryEmailAddress?.emailAddress
+  const name = user?.fullName
 
-  // if (user) {
-  //   const match = await prisma.user.findUnique({
-  //     where: {
-  //       clerkId: user?.id,
-  //     },
-  //   })
+  console.log(JSON.stringify(user))
 
-  //   if (!match) {
-  //     await prisma.user.create({
-  //       data: {
-  //         clerkId: user.id,
-  //         email: user.emailAddresses[0].emailAddress,
-  //       },
-  //     })
-  //   }
-  // }
+  const { manager } = dataSource
+
+  if (user) {
+    const match = await manager.findOneBy(User, {
+      clerkId,
+    })
+
+    if (!match && clerkId && emailAddress && name) {
+      await manager.insert(User, {
+        clerkId,
+        email: emailAddress,
+        name,
+      })
+    }
+  }
 
   redirect('/journal')
 }

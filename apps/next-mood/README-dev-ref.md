@@ -1,12 +1,14 @@
-## Auth.js
+## TypeORM Reference
 
-https://authjs.dev/getting-started
+1. Using Entity Manager API to manage data
 
-Google Provider: https://authjs.dev/getting-started/providers/google
+https://typeorm.io/entity-manager-api
 
-This is the link to configure OAuth with Google: https://console.developers.google.com/apis/credentials
+The data source have `manager`.
 
-Google OAuth 2.0 doc: https://developers.google.com/identity/protocols/oauth2
+2. Using Query Builder
+
+https://typeorm.io/select-query-builder
 
 ## Troubleshoot
 
