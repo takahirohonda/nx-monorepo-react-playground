@@ -1,27 +1,24 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
-import { User } from './entity/User'
+import { User, Account, EntryAnalysis, JournalEntry } from './entity'
 
-// this will not be found from nx next.js app, but it will be found
-// because we run this script from the project root for migration.
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-expect-error
 import dotenv from 'dotenv'
 
-// Load environment variables from .env file
+// Load environment variables from .env file at the root.
 dotenv.config()
 
-export const AppDataSource = new DataSource({
+export const dataSource = new DataSource({
   type: 'postgres',
   url: process.env.MOOD_DATABASE_URL,
   synchronize: true, // This should create the table automatically
   logging: true, // Enable logging to see SQL statements
-  entities: [User],
+  entities: [User, Account, EntryAnalysis, JournalEntry],
   migrations: ['apps/next-mood/src/migrations/*.ts'], // Ensure this path is correct
   subscribers: [],
 })
 
-AppDataSource.initialize()
+dataSource
+  .initialize()
   .then(() => {
     console.log('Data Source has been initialized!')
   })

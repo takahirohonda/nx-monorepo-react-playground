@@ -4,6 +4,18 @@
   "sourceRoot": "apps/next-mood",
   "projectType": "application",
   "targets": {
+    "generate-migration": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "TS_NODE_PROJECT=./tsconfig.typeorm.json npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:generate apps/next-mood/src/migrations/update-post-table -d apps/next-mood/src/data-source.ts"
+      }
+    },
+    "migrate": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "TS_NODE_PROJECT=./tsconfig.typeorm.json npx ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js migration:run -d apps/next-mood/src/data-source.ts"
+      }
+    },
     "migrate-prisma": {
       "executor": "nx:run-commands",
       "options": {
