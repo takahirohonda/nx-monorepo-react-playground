@@ -1,16 +1,22 @@
+import { auth } from '@clerk/nextjs/server'
 import { Header } from '../components/Header'
 import Link from 'next/link'
 
-import { auth } from '../auth'
-import { SignInButton } from '../components/SignInButton'
-import { SignOutButton } from '../components/SignOutButton'
+import {
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+  SignUpButton,
+  SignOutButton,
+} from '@clerk/nextjs'
 
 const Home = async () => {
-  const session = await auth()
+  const { userId } = await auth()
 
-  const isSignedIn = Boolean(session?.user)
+  console.log(`checking userId: ${userId}`)
 
-  console.log(JSON.stringify(session))
+  const isSignedIn = Boolean(userId)
 
   return (
     <div className="bg-slate-800 h-screen flex">
@@ -26,14 +32,22 @@ const Home = async () => {
               for?
             </h2>
 
-            <Link
-              href="/journal"
-              className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
-            >
-              Go To Journal
-            </Link>
-            {!isSignedIn && <SignInButton />}
-            {isSignedIn && <SignOutButton />}
+            {isSignedIn && (
+              <Link
+                href="/journal"
+                className="w-[150px] p-[16px] bg-rose-400 rounded text-center"
+              >
+                Go To Journal
+              </Link>
+            )}
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+              <SignOutButton />
+            </SignedIn>
           </div>
         </div>
       </div>
