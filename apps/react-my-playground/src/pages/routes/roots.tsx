@@ -11,6 +11,7 @@ import { ROOT } from './routes'
 import { subRouteConfig } from './subRouteConfig'
 import { ShopPage } from '../Shop/ShopPage'
 import { CheckoutPage } from '../Shop/CheckoutPage'
+import { GetProductsJsonData } from '../Shop/test-pages/GetProductsJsonData'
 
 export const routeConfig: RouteObject[] = [
   {
@@ -29,6 +30,10 @@ export const routeConfig: RouteObject[] = [
       {
         path: ROOT.SHOP.CHECKOUT.path,
         element: <CheckoutPage />,
+      },
+      {
+        path: ROOT.SHOP.JSON_DATA.path,
+        element: <GetProductsJsonData />,
       },
     ],
   },

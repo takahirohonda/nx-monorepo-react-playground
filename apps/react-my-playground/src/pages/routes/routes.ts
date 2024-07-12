@@ -7,6 +7,10 @@ export const ROOT = {
       path: 'shop/checkout',
       relative: 'checkout',
     },
+    JSON_DATA: {
+      path: 'shop/json-data',
+      relative: 'json-data',
+    },
   },
   TEST_PAGES: {
     path: '/test-pages',

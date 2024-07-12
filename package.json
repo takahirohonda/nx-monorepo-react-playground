@@ -16,6 +16,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@nx/devkit": "18.0.7",
     "@prisma/client": "^5.13.0",
+    "@tanstack/react-table": "^8.19.2",
     "autoprefixer": "^10.4.19",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",

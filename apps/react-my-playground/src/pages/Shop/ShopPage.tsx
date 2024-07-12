@@ -1,50 +1,94 @@
-import { clsx } from 'clsx'
-
 import { useCallback } from 'react'
 
 import { useGetProducts } from './hooks/useGetProducts'
 import { useNavigate } from 'react-router-dom'
 import { ROOT } from '../routes/routes'
 import { useGetAllCartsQuery } from './graphql/cart-operations/GetAllCarts.generated'
-import { useGetProductsByIdsQuery } from './graphql/experimenting/GetProductsByIds.generated'
+import { ProductDisplay } from './components/ProductDisplay'
+import { ProductDisplayWrapper } from './components/ProductDisplayWrapper'
+import { ButtonPrimary } from './components/ButtonPrimary'
+import { useDeleteExistingCart } from './hooks/useDeleteExistingCart'
+import { useCreateCart } from './hooks/cart-operations/useCreateCart'
 
 export const ShopPage = () => {
   const { products } = useGetProducts()
 
-  const { data: productById } = useGetProductsByIdsQuery({
-    variables: { entityIds: [150] },
-    fetchPolicy: 'no-cache',
-  })
-  const { data } = useGetAllCartsQuery()
+  const { deleteExistingCart, isDeleteCartInProgress, hasDeleteCartError } =
+    useDeleteExistingCart()
+
+  const { createCart } = useCreateCart()
+
+  const { data: cartItemsData, refetch } = useGetAllCartsQuery()
   const navigate = useNavigate()
 
   const handleCheckout = useCallback(() => {
     navigate(ROOT.SHOP.CHECKOUT.relative)
   }, [navigate])
 
+  const handleCreateCart = useCallback(async () => {
+    const cartLineItem = products.map((product) => {
+      return {
+        productEntityId: product.node.entityId,
+        quantity: 2,
+      }
+    })
+    await createCart(cartLineItem)
+    refetch()
+  }, [createCart, products, refetch])
+
+  const handleDeleteCart = useCallback(async () => {
+    await deleteExistingCart()
+    refetch()
+  }, [deleteExistingCart, refetch])
+
   return (
     <div className="flex-col gap-4">
       <h1 className="text-xl">ShopPage</h1>
       <div className="flex gap-4"></div>
-      <div>{JSON.stringify(products)}</div>
-      <div>Data from ProductsByIds</div>
-      <div>{JSON.stringify(productById)}</div>
-      <div className="flex justify-center w-full">
-        <button
-          onClick={handleCheckout}
-          className={clsx(
-            `p-3 w-40 rounded-md border
-              border-blue-600 bg-blue-600
-              text-white text-lg 
-              hover:bg-white hover:text-blue-600`
-          )}
-        >
-          Checkout
-        </button>
+      <ProductDisplayWrapper>
+        {products.map((product) => {
+          return (
+            <ProductDisplay
+              imgUrl={product.node.defaultImage?.url320wide || ''}
+              name={product.node.name}
+              price={product.node.prices?.price.value}
+            />
+          )
+        })}
+      </ProductDisplayWrapper>
+      <div className="flex  w-full gap-[36px] mt-[36px] mb-[32px]">
+        <ButtonPrimary
+          onClickHandler={handleCreateCart}
+          label="Create Cart"
+          variant="green"
+        />
+        <ButtonPrimary
+          onClickHandler={handleDeleteCart}
+          label="Delete Cart"
+          variant="pink"
+        />
+        <ButtonPrimary
+          onClickHandler={handleCheckout}
+          label="Go To Checkout"
+          variant="blue"
+        />
       </div>
-      {/* {JSON.stringify(products)} */}
-      <h1 className="text-xl">Cart Contents</h1>
-      <div>{JSON.stringify(data)}</div>
+      <div>
+        {isDeleteCartInProgress && <span>Delete cart in progress...</span>}
+        {hasDeleteCartError && <span>Delete cart error</span>}
+      </div>
+      <div className="flex flex-col gap-[16px] p-[24px] bg-lime-200 w-[20%]">
+        <h2 className="text-xl">Cart Contents</h2>
+        <ul>
+          {cartItemsData?.site?.cart?.lineItems.physicalItems?.map((item) => {
+            return (
+              <li>
+                {item.name}, {item.quantity}
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }
