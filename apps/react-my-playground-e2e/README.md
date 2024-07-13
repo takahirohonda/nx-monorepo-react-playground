@@ -1,16 +1,3 @@
-# Adding testing-library support
-
-https://testing-library.com/docs/cypress-testing-library/intro
-
-```bash
-yarn add -D @testing-library/cypress
-
-```
-
-# Nx cypress apis
-
-https://nx.dev/nx-api/cypress
-
 # command
 
 ```bash
@@ -41,3 +28,20 @@ Then add the target in `project.json`
   }
 }
 ```
+
+## 2. Adding testing-library support
+
+https://testing-library.com/docs/cypress-testing-library/intro
+
+```bash
+yarn add -D @testing-library/cypress
+```
+
+# REFERENCE
+
+[Laika](https://zendesk.github.io/laika/docs/api/)
+
+[Nx cypress apis](https://nx.dev/nx-api/cypress)
+
+[Intercept GraphQL request](https://enlear.academy/intercept-graphql-requests-in-cypress-c1085eafb517)
+[Another one](https://betterprogramming.pub/intercepting-graphql-requests-with-cypress-99984d6d500c)
