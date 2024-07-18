@@ -52,6 +52,7 @@ export const ShopPage = () => {
               imgUrl={product.node.defaultImage?.url320wide || ''}
               name={product.node.name}
               price={product.node.prices?.price.value}
+              key={product.node.entityId}
             />
           )
         })}
