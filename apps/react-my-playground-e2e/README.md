@@ -6,11 +6,21 @@ yarn nx e2e react-my-playground-e2e
 yarn nx cy-panel react-my-playground-e2e
 ```
 
+## Issues
+
+To run `yarn nx e2e react-my-playground-e2e`, I have to comment out. To run `cy-panel`, I have to comment them back in... Why????
+
+```ts
+baseUrl: 'http://localhost:4200',
+// specPattern: 'apps/react-my-playground-e2e/src/**/*.{js,ts,jsx,tsx}',
+// supportFile: 'apps/react-my-playground-e2e/src/support/e2e.ts',
+```
+
 ## Setting up
 
 ### 1. using cypress panel
 
-We need to add `specPattern` and `supoortFile` in `cypress.config.ts`.
+We need to add `specPattern` and `supportFile` in `cypress.config.ts`.
 
 ```ts
 specPattern: 'apps/react-my-playground-e2e/src/**/*.{js,ts,jsx,tsx}',

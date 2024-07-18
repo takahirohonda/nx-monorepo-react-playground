@@ -2,6 +2,8 @@ import { ApolloClient, ApolloLink, createHttpLink, from } from '@apollo/client'
 import { getCache } from './getCache'
 import { createLazyLoadableLaikaLink } from '@zendesk/laika'
 
+export const LAIKA_CLIENT_NAME = 'ecommerce'
+
 export const getClient = ({ uri, token }: { uri: string; token: string }) => {
   const httpLink = createHttpLink({ uri, credentials: 'include' })
 
@@ -16,26 +18,43 @@ export const getClient = ({ uri, token }: { uri: string; token: string }) => {
     return forward(operation)
   })
 
-  // const optionalLinks = () =>
-  //   window.Cypress
-  //     ? [
-  //         createLazyLoadableLaikaLink({
-  //           clientName: 'dashboard',
-  //           startLoggingImmediately: true,
-  //         }),
-  //       ]
-  //     : []
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const optionalLinks = () =>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    window.Cypress
+      ? [
+          createLazyLoadableLaikaLink({
+            clientName: 'dashboard',
+            startLoggingImmediately: true,
+          }),
+        ]
+      : []
 
   // https://zendesk.github.io/laika/docs/how-to-install
   // Loading laika for whatever environment for now...
   // can be updated as optionalLink above
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const laikaLink = createLazyLoadableLaikaLink({
-    clientName: 'dashboard',
+    clientName: LAIKA_CLIENT_NAME,
     startLoggingImmediately: true,
   })
 
   return new ApolloClient({
-    link: from([authMiddleware, laikaLink, httpLink]),
+    link: from([
+      authMiddleware,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      ...(window.Cypress
+        ? [
+            createLazyLoadableLaikaLink({
+              clientName: LAIKA_CLIENT_NAME,
+              startLoggingImmediately: true,
+            }),
+          ]
+        : []),
+      httpLink,
+    ]),
     cache: getCache(),
     connectToDevTools: true,
   })
