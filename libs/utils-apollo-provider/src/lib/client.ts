@@ -1,10 +1,6 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  concat,
-  createHttpLink,
-} from '@apollo/client'
+import { ApolloClient, ApolloLink, createHttpLink, from } from '@apollo/client'
 import { getCache } from './getCache'
+import { createLazyLoadableLaikaLink } from '@zendesk/laika'
 
 export const getClient = ({ uri, token }: { uri: string; token: string }) => {
   const httpLink = createHttpLink({ uri, credentials: 'include' })
@@ -20,10 +16,26 @@ export const getClient = ({ uri, token }: { uri: string; token: string }) => {
     return forward(operation)
   })
 
-  console.log(`checking token: ${token}`)
+  // const optionalLinks = () =>
+  //   window.Cypress
+  //     ? [
+  //         createLazyLoadableLaikaLink({
+  //           clientName: 'dashboard',
+  //           startLoggingImmediately: true,
+  //         }),
+  //       ]
+  //     : []
+
+  // https://zendesk.github.io/laika/docs/how-to-install
+  // Loading laika for whatever environment for now...
+  // can be updated as optionalLink above
+  const laikaLink = createLazyLoadableLaikaLink({
+    clientName: 'dashboard',
+    startLoggingImmediately: true,
+  })
 
   return new ApolloClient({
-    link: concat(authMiddleware, httpLink),
+    link: from([authMiddleware, laikaLink, httpLink]),
     cache: getCache(),
     connectToDevTools: true,
   })

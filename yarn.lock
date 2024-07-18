@@ -7120,6 +7120,13 @@
     js-yaml "^3.10.0"
     tslib "^2.4.0"
 
+"@zendesk/laika@^1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@zendesk/laika/-/laika-1.4.1.tgz#5c538628724f036f626ce94a524c5fd1a6c1db43"
+  integrity sha512-NJfwKokFf8V46Ddkk1iexJQ+GpSFJKs9RGVnxA7rQkC7DPOBzTiK/Sb9lEnnMTqOjc9n8gQtvBU8a/noNakUOA==
+  dependencies:
+    lodash "^4.17.21"
+
 "@zkochan/js-yaml@0.0.6":
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/@zkochan/js-yaml/-/js-yaml-0.0.6.tgz#975f0b306e705e28b8068a07737fa46d3fc04826"
