@@ -15,18 +15,28 @@ describe('Shop Page', () => {
 
   it('should display the shop items', () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    let getProductsInterceptor
+    let getProductsInterceptor: InterceptApi
 
     cy.then(() => {
-      getProductsInterceptor = laika
-        .intercept({
-          clientName: 'ecommerce',
-          operationName: 'GetProducts',
-        })
-        .mockResultOnce({
-          result: productsMock,
-        })
-        .disableNetworkFallback()
+      getProductsInterceptor = laika.intercept({
+        clientName: 'ecommerce',
+        operationName: 'GetProducts',
+      })
+    })
+
+    // cy.then(() => {
+    //   getProductsInterceptor
+    //     .mockResultOnce({
+    //       result: productsMock,
+    //     })
+    //     .disableNetworkFallback()
+    // })
+
+    cy.then({ timeout: 5000 }, async () => {
+      await getProductsInterceptor.waitForActiveSubscription()
+      getProductsInterceptor.fireSubscriptionUpdate({
+        result: productsMock,
+      })
     })
 
     cy.findByText('AU$99').should('be.visible')

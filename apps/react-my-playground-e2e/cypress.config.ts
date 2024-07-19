@@ -14,7 +14,7 @@ export default defineConfig({
       ciWebServerCommand: 'nx run react-my-playground:serve-static',
     }),
     baseUrl: 'http://localhost:4200',
-    specPattern: 'apps/react-my-playground-e2e/src/**/*.{js,ts,jsx,tsx}',
-    supportFile: 'apps/react-my-playground-e2e/src/support/e2e.ts',
+    // specPattern: 'apps/react-my-playground-e2e/src/**/*.{js,ts,jsx,tsx}',
+    // supportFile: 'apps/react-my-playground-e2e/src/support/e2e.ts',
   },
 })

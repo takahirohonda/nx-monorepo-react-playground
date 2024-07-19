@@ -25,7 +25,7 @@ export const getClient = ({ uri, token }: { uri: string; token: string }) => {
     window.Cypress
       ? [
           createLazyLoadableLaikaLink({
-            clientName: 'dashboard',
+            clientName: LAIKA_CLIENT_NAME,
             startLoggingImmediately: true,
           }),
         ]
