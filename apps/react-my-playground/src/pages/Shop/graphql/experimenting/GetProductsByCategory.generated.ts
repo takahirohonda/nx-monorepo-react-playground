@@ -125,6 +125,17 @@ export type GetProductsCollectionQueryResponse = {
                     }
               }> | null
             }
+            categories: {
+              __typename?: 'CategoryConnection'
+              edges: Array<{
+                __typename?: 'CategoryEdge'
+                node: {
+                  __typename?: 'Category'
+                  entityId: number
+                  name: string
+                }
+              }> | null
+            }
           }
         }> | null
       }

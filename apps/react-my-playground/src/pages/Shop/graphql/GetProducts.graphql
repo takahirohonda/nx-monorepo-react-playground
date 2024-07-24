@@ -93,6 +93,14 @@ fragment Product on Product {
       }
     }
   }
+  categories {
+    edges {
+      node {
+        entityId
+        name
+      }
+    }
+  }
 }
 
 query GetProducts($pageSize: Int!) {

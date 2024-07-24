@@ -1651,7 +1651,7 @@ export type CheckboxesFormField = FormField & {
 export type CheckboxesFormFieldInput = {
   /** The custom form field ID. */
   fieldEntityId: Scalars['Int']['input']
-  /** List of custom form field value IDs. */
+  /** The choice indexes of the form field values. */
   fieldValueEntityIds: Array<Scalars['Int']['input']>
 }
 
@@ -1755,7 +1755,7 @@ export type CheckoutAddressCheckboxesCustomField =
 export type CheckoutAddressCheckboxesCustomFieldInput = {
   /** The custom field ID. */
   fieldEntityId: Scalars['Int']['input']
-  /** List of custom field value IDs. */
+  /** The choice indexes of the form field values. */
   fieldValueEntityIds: Array<Scalars['Int']['input']>
 }
 
@@ -1846,7 +1846,7 @@ export type CheckoutAddressMultipleChoiceCustomField =
 export type CheckoutAddressMultipleChoiceCustomFieldInput = {
   /** The custom field ID. */
   fieldEntityId: Scalars['Int']['input']
-  /** The custom field value ID. */
+  /** The choice index of the form field value. */
   fieldValueEntityId: Scalars['Int']['input']
 }
 
@@ -3643,7 +3643,7 @@ export type MultilineTextFormFieldValue = CustomerFormFieldValue & {
 export type MultipleChoiceFormFieldInput = {
   /** The custom form field ID. */
   fieldEntityId: Scalars['Int']['input']
-  /** The custom form field value ID. */
+  /** The choice index of the form field value. */
   fieldValueEntityId: Scalars['Int']['input']
 }
 
@@ -5538,6 +5538,8 @@ export type Query = {
   node?: Maybe<Node>
   /** A site */
   site: Site
+  /** The current store. */
+  store: Store
 }
 
 export type QueryNodeArgs = {
@@ -6288,6 +6290,25 @@ export enum StockLevelDisplay {
   ShowWhenLow = 'SHOW_WHEN_LOW',
 }
 
+/** The Store */
+export type Store = {
+  __typename?: 'Store'
+  /** The ID of the store. */
+  entityId: Scalars['Long']['output']
+  /** Metafield data related to a store. */
+  metafields: MetafieldConnection
+}
+
+/** The Store */
+export type StoreMetafieldsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>
+  before?: InputMaybe<Scalars['String']['input']>
+  first?: InputMaybe<Scalars['Int']['input']>
+  keys?: InputMaybe<Array<Scalars['String']['input']>>
+  last?: InputMaybe<Scalars['Int']['input']>
+  namespace: Scalars['String']['input']
+}
+
 /** Store logo as image. */
 export type StoreImageLogo = {
   __typename?: 'StoreImageLogo'
@@ -6535,6 +6556,13 @@ export type UnexpectedAddReviewError = Error & {
   message: Scalars['String']['output']
 }
 
+/** An unexpected error when updating a customer. */
+export type UnexpectedUpdateCustomerError = Error & {
+  __typename?: 'UnexpectedUpdateCustomerError'
+  /** The error message. */
+  message: Scalars['String']['output']
+}
+
 /** Update cart currency data object */
 export type UpdateCartCurrencyDataInput = {
   /** ISO-4217 currency code */
@@ -6737,6 +6765,7 @@ export type UpdateCustomerError =
   | CustomerDoesNotExistError
   | CustomerNotLoggedInError
   | EmailAlreadyInUseError
+  | UnexpectedUpdateCustomerError
   | ValidationError
 
 /** The values to use for customer update operation. */

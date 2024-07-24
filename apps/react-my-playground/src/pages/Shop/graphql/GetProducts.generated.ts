@@ -201,6 +201,13 @@ export type ProductFragment = {
           }
     }> | null
   }
+  categories: {
+    __typename?: 'CategoryConnection'
+    edges: Array<{
+      __typename?: 'CategoryEdge'
+      node: { __typename?: 'Category'; entityId: number; name: string }
+    }> | null
+  }
 }
 
 export type GetProductsQueryVariables = Types.Exact<{
@@ -322,6 +329,13 @@ export type GetProductsQueryResponse = {
                   }
             }> | null
           }
+          categories: {
+            __typename?: 'CategoryConnection'
+            edges: Array<{
+              __typename?: 'CategoryEdge'
+              node: { __typename?: 'Category'; entityId: number; name: string }
+            }> | null
+          }
         }
       }> | null
     }
@@ -423,6 +437,14 @@ export const ProductDoc = gql`
       edges {
         node {
           ...ProductOption
+        }
+      }
+    }
+    categories {
+      edges {
+        node {
+          entityId
+          name
         }
       }
     }
