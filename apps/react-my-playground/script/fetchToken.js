@@ -1,7 +1,5 @@
 const axios = require('axios')
-const { v4 } = require('uuid')
 const { X_AUTH_TOKEN, STORE_HASH } = require('../tmp/fetch-token-const')
-// const fetch = require('node-fetch');
 
 const now = Date.now()
 // Calculate the timestamp for 24 hours x 30 days from now (in milliseconds)
@@ -24,9 +22,6 @@ const options = {
     expires_at: unixTimestamp,
   },
 }
-
-// axios.get('https://fake-json-api.mock.beeceptor.com/users')
-//   .then((data) => console.log(data))
 
 console.log(
   `checking the option for store token API call: ${JSON.stringify(options)}`
