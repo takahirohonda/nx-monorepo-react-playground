@@ -1,0 +1,27 @@
+{
+  "name": "intermediate-next",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/intermediate-next",
+  "projectType": "application",
+  "targets": {
+    "db:push": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn drizzle-kit push --config ./apps/intermediate-next/drizzle.config.ts"
+      }
+    },
+    "db:studio": {
+      "studio": "nx:run-commands",
+      "options": {
+        "command": "yarn drizzle-kit studio"
+      }
+    },
+    "db:seed": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx apps/intermediate-next/seed.ts"
+      }
+    }
+  },
+  "tags": []
+}
