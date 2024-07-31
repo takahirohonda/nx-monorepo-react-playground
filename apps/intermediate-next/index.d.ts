@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-declare module '*.svg' {
-  const content: any
-  export const ReactComponent: any
-  export default content
-}
+// not required for this project...
+// declare module '*.svg' {
+//   const content: any
+//   export const ReactComponent: any
+//   export default content
+// }
