@@ -208,6 +208,18 @@ export type ProductFragment = {
       node: { __typename?: 'Category'; entityId: number; name: string }
     }> | null
   }
+  customFields: {
+    __typename?: 'CustomFieldConnection'
+    edges: Array<{
+      __typename?: 'CustomFieldEdge'
+      node: {
+        __typename?: 'CustomField'
+        entityId: number
+        name: string
+        value: string
+      }
+    }> | null
+  }
 }
 
 export type GetProductsQueryVariables = Types.Exact<{
@@ -336,6 +348,18 @@ export type GetProductsQueryResponse = {
               node: { __typename?: 'Category'; entityId: number; name: string }
             }> | null
           }
+          customFields: {
+            __typename?: 'CustomFieldConnection'
+            edges: Array<{
+              __typename?: 'CustomFieldEdge'
+              node: {
+                __typename?: 'CustomField'
+                entityId: number
+                name: string
+                value: string
+              }
+            }> | null
+          }
         }
       }> | null
     }
@@ -445,6 +469,15 @@ export const ProductDoc = gql`
         node {
           entityId
           name
+        }
+      }
+    }
+    customFields {
+      edges {
+        node {
+          entityId
+          name
+          value
         }
       }
     }

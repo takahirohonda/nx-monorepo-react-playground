@@ -849,7 +849,12 @@ export type CartDigitalItem = {
   extendedListPrice: Money
   /** Item's sale price multiplied by the quantity. */
   extendedSalePrice: Money
-  /** URL of an image of this item, accessible on the internet. */
+  /** Image for the item. */
+  image?: Maybe<Image>
+  /**
+   * URL of an image of this item, accessible on the internet.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** Whether the item is taxable. */
   isTaxable: Scalars['Boolean']['output']
@@ -1116,7 +1121,12 @@ export type CartPhysicalItem = {
   extendedSalePrice: Money
   /** Gift wrapping for this item. */
   giftWrapping?: Maybe<CartGiftWrapping>
-  /** URL of an image of this item, accessible on the internet. */
+  /** Image for the item. */
+  image?: Maybe<Image>
+  /**
+   * URL of an image of this item, accessible on the internet.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** Whether this item requires shipping to a physical address. */
   isShippingRequired: Scalars['Boolean']['output']
@@ -1910,7 +1920,12 @@ export type CheckoutAvailableShippingOption = {
   description: Scalars['String']['output']
   /** Shipping option ID. */
   entityId: Scalars['String']['output']
-  /** Shipping option image URL. */
+  /** Shipping option image. */
+  image?: Maybe<Image>
+  /**
+   * Shipping option image URL.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** Is this shipping method the recommended shipping option or not. */
   isRecommended: Scalars['Boolean']['output']
@@ -2132,7 +2147,12 @@ export type CheckoutSelectedShippingOption = {
   description: Scalars['String']['output']
   /** Shipping option ID. */
   entityId: Scalars['String']['output']
-  /** Shipping option image URL. */
+  /** Shipping option image. */
+  image?: Maybe<Image>
+  /**
+   * Shipping option image URL.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** An estimate of the arrival time. */
   transitTime?: Maybe<Scalars['String']['output']>
@@ -4096,7 +4116,12 @@ export type OrderDigitalLineItem = OrderLineItemInterface & {
   downloadPageUrl?: Maybe<Scalars['String']['output']>
   /** Digital line item ID. */
   entityId: Scalars['Int']['output']
-  /** Optional image url. */
+  /** Image for the item. */
+  image?: Maybe<Image>
+  /**
+   * Optional image url.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** Digital line item display name. */
   name: Scalars['String']['output']
@@ -4280,7 +4305,12 @@ export type OrderPhysicalLineItem = OrderLineItemInterface & {
   brand?: Maybe<Scalars['String']['output']>
   /** Line item ID. */
   entityId: Scalars['Int']['output']
-  /** Image URL. */
+  /** Image for the item. */
+  image?: Maybe<Image>
+  /**
+   * Image URL.
+   * @deprecated Use `image` field instead.
+   */
   imageUrl?: Maybe<Scalars['String']['output']>
   /** Display name. */
   name: Scalars['String']['output']

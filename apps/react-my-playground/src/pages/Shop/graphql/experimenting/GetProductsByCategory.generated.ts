@@ -136,6 +136,18 @@ export type GetProductsCollectionQueryResponse = {
                 }
               }> | null
             }
+            customFields: {
+              __typename?: 'CustomFieldConnection'
+              edges: Array<{
+                __typename?: 'CustomFieldEdge'
+                node: {
+                  __typename?: 'CustomField'
+                  entityId: number
+                  name: string
+                  value: string
+                }
+              }> | null
+            }
           }
         }> | null
       }

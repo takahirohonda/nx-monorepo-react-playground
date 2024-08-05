@@ -101,6 +101,15 @@ fragment Product on Product {
       }
     }
   }
+  customFields {
+    edges {
+      node {
+        entityId
+        name
+        value
+      }
+    }
+  }
 }
 
 query GetProducts($pageSize: Int!) {
