@@ -1,6 +1,6 @@
 {
-  "name": "My to do app",
-  "short_name": "Mtd",
+  "name": "Learn German App",
+  "short_name": "LGA",
   "icons": [
     {
       "src": "img/icons/icon-72x72.png",
@@ -43,13 +43,13 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/mtd/index.html",
+  "start_url": "/learn-german-test1/index.html",
   "scope": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
   "theme_color": "#131313",
-  "description": "Organise your life with to do list",
+  "description": "Learn German!",
   "dir": "ltr",
   "lang": "en-US"
 }
