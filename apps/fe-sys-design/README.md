@@ -17,13 +17,58 @@ utterance.rate = 1
 utterance.volume = 1
 utterance.pitch = 1
 
-// then use the speechSynthesis object
+// then use the speechSynthesis object.
 speechSynthesis.speak(utterance)
+```
+
+```ts
+// function example.
+function speakGerman() {
+  const sentence = document.getElementById('sentence')?.textContent
+  if (sentence) {
+    const utterance = new SpeechSynthesisUtterance()
+    utterance.lang = 'de'
+    utterance.text = sentence
+    speechSynthesis.speak(utterance)
+  }
+}
 ```
 
 2. Speech Recognition
 
 ```ts
+// Function that I made to check
+const matchSpeech = (targetSentence = 'Wir Suchen Dich') => {
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition
+  const recognition = new SpeechRecognition()
+  recognition.continuous = false
+  recognition.lang = 'de'
+  recognition.start()
+
+  recognition.onresult = (event) => {
+    const recongnisedOutcome = event.results[0][0].transcript
+    // nothing is getting logged when I try to console.log event.
+    console.log(`checking event object: ${JSON.stringify(event.results)}`)
+    console.log(
+      `checking event object, results[0]: ${JSON.stringify(event.results[0])}`
+    )
+    console.log(
+      `checking event object, results[0][0]: ${JSON.stringify(event.results[0][0])}`
+    )
+    console.log(`checking the recognised outcome: ${recongnisedOutcome}`)
+
+    if (
+      recongnisedOutcome.toLowerCase() === targetSentence.toLowerCase().trim()
+    ) {
+      sayGenau()
+    } else {
+      sayNein()
+    }
+    recognition.stop()
+  }
+
+// from the web capability course slide
 const recognition = new SpeechRecognition()
 recognition.continuous = false
 recognition.lang = 'fr-CA'

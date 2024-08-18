@@ -1,4 +1,9 @@
 import '../index.css'
+import { sentences } from './sentences'
+
+// instantiate utterance once
+const utterance = new SpeechSynthesisUtterance()
+utterance.lang = 'de'
 ;(function () {
   const mainElem = document.getElementById('main')
   const div = document.createElement('div')
@@ -6,33 +11,63 @@ import '../index.css'
   div.appendChild(divContent)
 
   mainElem?.appendChild(div)
+  createSentenceList(sentences)
 })()
 
-function speakGerman() {
-  const sentence = document.getElementById('sentence')?.textContent
-  if (sentence) {
-    utterance = new SpeechSynthesisUtterance()
-    utterance.lang = 'de'
-    utterance.text = sentence
-    speechSynthesis.speak(utterance)
+function createSentenceList(sentences: string[]) {
+  const fragment = new DocumentFragment()
+  sentences.map((sentence) => {
+    fragment.appendChild(createSentenceRow(sentence))
+  })
+  const liContainer = document.getElementById('list-container')
+  liContainer?.appendChild(fragment)
+}
+
+function createSentenceRow(sentence: string) {
+  const liElem = document.createElement('li')
+  const sentenceSpan = document.createElement('span')
+  const sentenceSpanContent = document.createTextNode(sentence)
+  sentenceSpan.appendChild(sentenceSpanContent)
+  liElem.appendChild(sentenceSpan)
+  liElem.appendChild(createSpeakButton(sentence))
+  liElem.appendChild(createSpeechTestButton(sentence))
+  return liElem
+}
+
+function createSpeakButton(sentence: string) {
+  const btn = document.createElement('button')
+  const btnContent = document.createTextNode('Speak')
+  btn.appendChild(btnContent)
+  btn.onclick = () => {
+    speakGerman(sentence)
   }
+  return btn
 }
 
-const sayGenau = () => {
-  utterance = new SpeechSynthesisUtterance()
-  utterance.lang = 'de'
-  utterance.text = 'Genau'
+function createSpeechTestButton(sentence: string) {
+  const btn = document.createElement('button')
+  const btnContent = document.createTextNode('Test Speech')
+  btn.appendChild(btnContent)
+  btn.onclick = () => {
+    matchSpeech(sentence)
+  }
+  return btn
+}
+
+function speakGerman(sentence: string) {
+  utterance.text = sentence
   speechSynthesis.speak(utterance)
 }
 
-const sayNein = () => {
-  utterance = new SpeechSynthesisUtterance()
-  utterance.lang = 'de'
-  utterance.text = 'Nein'
-  speechSynthesis.speak(utterance)
+function sayGenau() {
+  speakGerman('Genau')
 }
 
-const matchSpeech = (targetSentence = 'Wir Suchen Dich') => {
+function sayNein() {
+  speakGerman('Nein')
+}
+
+function matchSpeech(targetSentence: string) {
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition
   const recognition = new SpeechRecognition()
@@ -50,9 +85,13 @@ const matchSpeech = (targetSentence = 'Wir Suchen Dich') => {
       `checking event object, results[0][0]: ${JSON.stringify(event.results[0][0])}`
     )
     console.log(`checking the recognised outcome: ${recongnisedOutcome}`)
+    console.log(
+      `checking target sentence: ${targetSentence.toLowerCase().replace(/[^a-z0-9\säöüß]/g, '')}`
+    )
 
     if (
-      recongnisedOutcome.toLowerCase() === targetSentence.toLowerCase().trim()
+      recongnisedOutcome.toLowerCase() ===
+      targetSentence.toLowerCase().replace(/[^a-z0-9\säöüß]/g, '')
     ) {
       sayGenau()
     } else {
@@ -60,20 +99,6 @@ const matchSpeech = (targetSentence = 'Wir Suchen Dich') => {
     }
     recognition.stop()
   }
-  // recognition.addEventListener('result', (event) => {
-  //   if ((event.type = 'result')) {
-  //     event.results.forEach((result) => {
-  //       const confidence = result.confidence * 100
-  //       const text = result.transcript
-  //       console.log(`checking text: ${text}`)
-  //       console.log(`checking target text: ${targetSentence}`)
-  //       if (text.lower() === tagetSentence.lower().trim()) {
-  //         recognition.stop()
-  //         sayGenau()
-  //       }
-  //     })
-  //   }
-  // })
 }
 
 window.speakGerman = speakGerman
