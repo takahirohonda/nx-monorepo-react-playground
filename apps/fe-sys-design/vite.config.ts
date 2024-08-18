@@ -3,7 +3,9 @@ import { defineConfig } from 'vite'
 
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
 
+const isGitPageDeploy = Boolean(process.env.GIT_PAGE_DEPLOY)
 export default defineConfig({
+  base: isGitPageDeploy ? '/learn-german-test1' : '',
   root: __dirname,
   cacheDir: '../../node_modules/.vite/apps/fe-sys-design',
 
