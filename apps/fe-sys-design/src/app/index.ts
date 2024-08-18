@@ -77,13 +77,7 @@ function matchSpeech(targetSentence: string) {
 
   recognition.onresult = (event) => {
     const recongnisedOutcome = event.results[0][0].transcript
-    console.log(`checking event object: ${JSON.stringify(event.results)}`)
-    console.log(
-      `checking event object, results[0]: ${JSON.stringify(event.results[0])}`
-    )
-    console.log(
-      `checking event object, results[0][0]: ${JSON.stringify(event.results[0][0])}`
-    )
+
     console.log(`checking the recognised outcome: ${recongnisedOutcome}`)
     console.log(
       `checking target sentence: ${targetSentence.toLowerCase().replace(/[^a-z0-9\säöüß]/g, '')}`
@@ -100,7 +94,3 @@ function matchSpeech(targetSentence: string) {
     recognition.stop()
   }
 }
-
-window.speakGerman = speakGerman
-window.sayGenau = sayGenau
-window.matchSpeech = matchSpeech
