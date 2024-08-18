@@ -21818,6 +21818,13 @@ swap-case@^2.0.2:
   dependencies:
     tslib "^2.0.3"
 
+swc-loader@0.1.15:
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/swc-loader/-/swc-loader-0.1.15.tgz#cb9c630ccfbb46dabc5aebc5560cced658e32992"
+  integrity sha512-cn1WPIeQJvXM4bbo3OwdEIapsQ4uUGOfyFj0h2+2+brT0k76DCGnZXDE2KmcqTd2JSQ+b61z2NPMib7eEwMYYw==
+  dependencies:
+    loader-utils "^2.0.0"
+
 swr@^2.2.0:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/swr/-/swr-2.2.5.tgz#063eea0e9939f947227d5ca760cc53696f46446b"
