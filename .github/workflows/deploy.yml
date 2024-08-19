@@ -24,14 +24,14 @@ jobs:
           yarn install
       - name: Build
         run: |
-          yarn nx build-ci fe-sys-design
+          yarn nx build-ci learn-german
           pwd
       - name: Deploy to Github page
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           ACCESS_TOKEN: ${{ secrets.LERAN_GERMAN_DEPLOY_TEST  }}
           BRANCH: master # The branch the action should deploy to.
-          FOLDER: dist/apps/fe-sys-design # The folder the action should deploy.
+          FOLDER: dist/apps/learn-german # The folder the action should deploy.
           REPOSITORY_NAME: takahirohonda/takahirohonda.github.io
-          TARGET_FOLDER: learn-german-test1
+          TARGET_FOLDER: learn-german
           CLEAN: true # Automatically remove deleted files from the deploy branch

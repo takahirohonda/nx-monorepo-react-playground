@@ -1,0 +1,21 @@
+{
+  "name": "learn-german",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/learn-german/src",
+  "tags": [],
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "yarn nx serve learn-german"
+      }
+    },
+    "build-ci": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "export GIT_PAGE_DEPLOY=true && yarn nx build learn-german"
+      }
+    }
+  }
+}
