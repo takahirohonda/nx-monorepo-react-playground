@@ -22,8 +22,13 @@ function createSentenceRow(sentence: string) {
   const sentenceSpanContent = document.createTextNode(sentence)
   sentenceSpan.appendChild(sentenceSpanContent)
   liElem.appendChild(sentenceSpan)
-  liElem.appendChild(createSpeakButton(sentence))
-  liElem.appendChild(createSpeechTestButton(sentence))
+
+  const btnGroup = createButtonGroup([
+    createSpeakButton(sentence),
+    createSpeechTestButton(sentence),
+  ])
+  liElem.appendChild(btnGroup)
+  liElem.classList.add('flex', 'justify-between')
   return liElem
 }
 
@@ -48,6 +53,16 @@ function createSpeechTestButton(sentence: string) {
   return btn
 }
 
+function createButtonGroup(buttons: HTMLButtonElement[]) {
+  const btnGroupWrapper = document.createElement('div')
+  btnGroupWrapper.classList.add('flex', 'gap-[8px]')
+  const btnFragment = new DocumentFragment()
+  buttons.map((button) => {
+    btnFragment.appendChild(button)
+  })
+  btnGroupWrapper.appendChild(btnFragment)
+  return btnGroupWrapper
+}
 function speakGerman(sentence: string) {
   utterance.text = sentence
   speechSynthesis.speak(utterance)
