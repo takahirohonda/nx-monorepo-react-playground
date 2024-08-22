@@ -9,8 +9,8 @@ utterance.lang = 'de'
 
 function createSentenceList(sentences: string[]) {
   const fragment = new DocumentFragment()
-  sentences.map((sentence) => {
-    fragment.appendChild(createSentenceRow(sentence))
+  sentences.map((sentence, index) => {
+    fragment.appendChild(createSentenceRow(`(${index + 1}) ${sentence}`))
   })
   const liContainer = document.getElementById('list-container')
   liContainer?.appendChild(fragment)
@@ -28,7 +28,7 @@ function createSentenceRow(sentence: string) {
     createSpeechTestButton(sentence),
   ])
   liElem.appendChild(btnGroup)
-  liElem.classList.add('flex', 'justify-between')
+  liElem.classList.add('flex', 'justify-between', 'gap-[4px]')
   return liElem
 }
 
@@ -39,13 +39,30 @@ function createSpeakButton(sentence: string) {
   btn.onclick = () => {
     speakGerman(sentence)
   }
-  btn.classList.add('text-indigo-800')
+  btn.classList.add(
+    'min-w-[100px]',
+    'p-[4px]',
+    'bg-red-600',
+    'border-1',
+    'rounded',
+    'border-red-800',
+    'hover:bg-red-900'
+  )
   return btn
 }
 
 function createSpeechTestButton(sentence: string) {
   const btn = document.createElement('button')
   const btnContent = document.createTextNode('Test Speech')
+  btn.classList.add(
+    'min-w-[100px]',
+    'p-[4px]',
+    'bg-emerald-600',
+    'border-1',
+    'rounded',
+    'border-emerald-700',
+    'hover:bg-cyan-800'
+  )
   btn.appendChild(btnContent)
   btn.onclick = () => {
     matchSpeech(sentence)
@@ -55,7 +72,7 @@ function createSpeechTestButton(sentence: string) {
 
 function createButtonGroup(buttons: HTMLButtonElement[]) {
   const btnGroupWrapper = document.createElement('div')
-  btnGroupWrapper.classList.add('flex', 'gap-[8px]')
+  btnGroupWrapper.classList.add('flex', 'flex-col', 'gap-[8px]', 'md:flex-row')
   const btnFragment = new DocumentFragment()
   buttons.map((button) => {
     btnFragment.appendChild(button)
@@ -85,20 +102,21 @@ function matchSpeech(targetSentence: string) {
   recognition.start()
 
   recognition.onresult = (event) => {
-    const recongnisedOutcome = event.results[0][0].transcript
+    const recognisedOutcome = event.results[0][0].transcript
+    const formattedTargetSentence = targetSentence
+      .toLowerCase()
+      .replace(/^\(\d+\)/, '')
+      .replace(/[^a-z0-9\säöüß]/g, '')
+      .trim()
 
-    console.log(`checking the recognised outcome: ${recongnisedOutcome}`)
-    console.log(
-      `checking target sentence: ${targetSentence.toLowerCase().replace(/[^a-z0-9\säöüß]/g, '')}`
-    )
+    console.log(`checking the recognised outcome: ${recognisedOutcome}`)
+    console.log(`checking target sentence: ${formattedTargetSentence}`)
 
-    if (
-      recongnisedOutcome.toLowerCase() ===
-      targetSentence.toLowerCase().replace(/[^a-z0-9\säöüß]/g, '')
-    ) {
+    if (recognisedOutcome.toLowerCase() === formattedTargetSentence) {
       sayGenau()
     } else {
       sayNein()
+      alert(`That sounded like ${recognisedOutcome}. Target sentense is `)
     }
     recognition.stop()
   }

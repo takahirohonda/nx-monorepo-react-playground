@@ -7,7 +7,7 @@ console.log(`Checking the glob pattern... ${JSON.stringify(patterns)}`)
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   corePlugins: {
-    preflight: false,
+    preflight: true,
   },
   content: [
     join(__dirname, 'src/**/*.{ts,css,html}'),
