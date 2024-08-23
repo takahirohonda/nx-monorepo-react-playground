@@ -33,6 +33,13 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        about: './verbs.html',
+        contact: './simple-expressions.html',
+      },
+    },
   },
 
   test: {
