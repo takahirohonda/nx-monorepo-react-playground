@@ -1,11 +1,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Learn German App</title>
-    <base href="/" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Expressions</title>
     <link
       rel="apple-touch-icon"
       sizes="57x57"
@@ -88,16 +86,30 @@
       <article
         class="flex flex-col items-center md:items-start w-auto md:w-[60%] lg:w-[50%] m-[8px]"
       >
-        <script type="module" src="/src/app/home.ts"></script>
+        <script type="module" src="/src/app/simple-expressions.ts"></script>
 
-        <h1 class="text-3xl md:text-4xl text-yellow-300 pt-[16px] pb-[24px]">
-          Learn German App
+        <h1 class="text-3xl md:text-4xl text-yellow-400 pt-[16px] pb-[24px]">
+          Simple Expressions
         </h1>
         <h2 class="text-2xl md:text:3xl text-yellow-300 pt-[16px] pb-[24px]">
-          My Favourite Phrases
+          Responses
         </h2>
         <ol
-          id="my-favourite-phrases"
+          id="responses"
+          class="flex flex-col gap-[8px] w-auto list-inside list-decimal"
+        ></ol>
+        <h2 class="text-2xl md:text:3xl text-yellow-300 pt-[16px] pb-[24px]">
+          Feelings
+        </h2>
+        <ol
+          id="feelings"
+          class="flex flex-col gap-[8px] w-auto list-inside list-decimal"
+        ></ol>
+        <h2 class="text-2xl md:text:3xl text-yellow-300 pt-[16px] pb-[24px]">
+          Questions
+        </h2>
+        <ol
+          id="questions"
           class="flex flex-col gap-[8px] w-auto list-inside list-decimal"
         ></ol>
       </article>
@@ -107,16 +119,9 @@
         <ul>
           <li>
             <a
-              href="/simple-expressions"
+              href="/"
               class="text-green-300 hover:underline hover:text-blue-300 active:text-red-300"
-              >Simple Expressions</a
-            >
-          </li>
-          <li>
-            <a
-              href="/verbs"
-              class="text-green-300 hover:underline hover:text-blue-300 active:text-red-300"
-              >verbs</a
+              >Home</a
             >
           </li>
         </ul>

@@ -1,18 +1,13 @@
-import { sentences } from './sentences'
-
 // instantiate utterance once
 const utterance = new SpeechSynthesisUtterance()
 utterance.lang = 'de'
-;(function () {
-  createSentenceList(sentences)
-})()
 
-function createSentenceList(sentences: string[]) {
+export function createSentenceList(sentences: string[], targetId: string) {
   const fragment = new DocumentFragment()
   sentences.map((sentence, index) => {
     fragment.appendChild(createSentenceRow(`(${index + 1}) ${sentence}`))
   })
-  const liContainer = document.getElementById('list-container')
+  const liContainer = document.getElementById(targetId)
   liContainer?.appendChild(fragment)
 }
 
@@ -23,9 +18,11 @@ function createSentenceRow(sentence: string) {
   sentenceSpan.appendChild(sentenceSpanContent)
   liElem.appendChild(sentenceSpan)
 
+  const formattedSentence = sentence.replace(/^\(\d+\)/, '')
+
   const btnGroup = createButtonGroup([
-    createSpeakButton(sentence),
-    createSpeechTestButton(sentence),
+    createSpeakButton(formattedSentence),
+    createSpeechTestButton(formattedSentence),
   ])
   liElem.appendChild(btnGroup)
   liElem.classList.add('flex', 'justify-between', 'gap-[4px]')
@@ -41,6 +38,7 @@ function createSpeakButton(sentence: string) {
   }
   btn.classList.add(
     'min-w-[100px]',
+    'max-h-[32px]',
     'p-[4px]',
     'bg-red-600',
     'border-1',
@@ -56,6 +54,7 @@ function createSpeechTestButton(sentence: string) {
   const btnContent = document.createTextNode('Test Speech')
   btn.classList.add(
     'min-w-[100px]',
+    'max-h-[32px]',
     'p-[4px]',
     'bg-emerald-600',
     'border-1',
@@ -80,6 +79,7 @@ function createButtonGroup(buttons: HTMLButtonElement[]) {
   btnGroupWrapper.appendChild(btnFragment)
   return btnGroupWrapper
 }
+
 function speakGerman(sentence: string) {
   utterance.text = sentence
   speechSynthesis.speak(utterance)
@@ -105,7 +105,6 @@ function matchSpeech(targetSentence: string) {
     const recognisedOutcome = event.results[0][0].transcript
     const formattedTargetSentence = targetSentence
       .toLowerCase()
-      .replace(/^\(\d+\)/, '')
       .replace(/[^a-z0-9\säöüß]/g, '')
       .trim()
 
