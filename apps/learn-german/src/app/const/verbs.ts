@@ -12,3 +12,10 @@ export const GEBEN = [
   'Für welchen Tag haben Sie noch Karten?',
   'Für morgen gibt es noch Karten.',
 ] as const
+
+export const SEIN = [
+  'Er ist Lehrer.',
+  'Sie ist Lehrerin.',
+  'Sind Sie Deutche?',
+  'Nein, ich bin ',
+]

@@ -105,7 +105,7 @@ function matchSpeech(targetSentence: string) {
     const recognisedOutcome = event.results[0][0].transcript
     const formattedTargetSentence = targetSentence
       .toLowerCase()
-      .replace(/[^a-z0-9\säöüß]/g, '')
+      .replace(/[^a-z0-9\säöüÄÖÜß]/g, '')
       .trim()
 
     console.log(`checking the recognised outcome: ${recognisedOutcome}`)
