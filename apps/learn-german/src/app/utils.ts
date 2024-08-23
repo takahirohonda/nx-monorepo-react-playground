@@ -102,7 +102,7 @@ function matchSpeech(targetSentence: string) {
   recognition.start()
 
   recognition.onresult = (event) => {
-    const recognisedOutcome = event.results[0][0].transcript
+    const recognisedOutcome = event.results[0][0].transcript.toLowerCase()
     const formattedTargetSentence = targetSentence
       .toLowerCase()
       .replace(/[^a-z0-9\säöüÄÖÜß]/g, '')
@@ -111,11 +111,13 @@ function matchSpeech(targetSentence: string) {
     console.log(`checking the recognised outcome: ${recognisedOutcome}`)
     console.log(`checking target sentence: ${formattedTargetSentence}`)
 
-    if (recognisedOutcome.toLowerCase() === formattedTargetSentence) {
+    if (recognisedOutcome === formattedTargetSentence) {
       sayGenau()
     } else {
       sayNein()
-      alert(`That sounded like ${recognisedOutcome}. Target sentense is `)
+      alert(
+        `That sounded like '${recognisedOutcome}' Target sentence is '${formattedTargetSentence}'`
+      )
     }
     recognition.stop()
   }

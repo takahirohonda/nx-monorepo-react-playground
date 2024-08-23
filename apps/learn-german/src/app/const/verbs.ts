@@ -1,7 +1,7 @@
 export const GEBEN = [
   'Geben Sie mir bitte einen Kaffee.',
   'Was darf es sein?',
-  'Geben Sie mir bitte eine Flashe Weißwein.',
+  'Geben Sie mir bitte eine Flasche Weißwein.',
   'Es gibt hier ein gutes Restaurant',
   'Gibt es hier eine Toilette?',
   'Gibt es hier in der Nähe eine Bushaltestelle?',
