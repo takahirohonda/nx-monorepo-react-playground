@@ -17,5 +17,30 @@ export const SEIN = [
   'Er ist Lehrer.',
   'Sie ist Lehrerin.',
   'Sind Sie Deutche?',
-  'Nein, ich bin ',
+  'Nein, ich bin Österreicherin.',
+  'Das sind meine Eltern.',
+  'Das ist mein Reisekoffer.',
+  'Das ist eine Brezel.',
+  'Ist das ein Buch von Michael Ende?',
+  'Ja, das ist es.',
+  'Das Buch ist sehr populär',
+  'Ist das ein deutsches Produkt?',
+  'Nein, das ist aus der Schweiz.',
+  'Das ist sehr preiswert.',
+  'Gut, das nehme ich.',
+]
+
+export const HABEN = [
+  'Ich habe zwei Geschwister.',
+  'Ich habe Zeit.',
+  'Er hat Hunger.',
+  'Haben Sie einen Stadtplan?',
+  'Haben Sie noch ein Zimmer frei?',
+]
+
+export const WERDEN = [
+  'Ich werde Ärztin.',
+  'Der Kaffee wird kalt.',
+  'Es wird Nacht.',
+  'Die Tage werden immer länger.',
 ]

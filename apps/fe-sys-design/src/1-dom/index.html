@@ -34,11 +34,13 @@
       const bodyElem = clonedCardTemplateNode.querySelector(
         '.card__body__content'
       )
-      console.log(`checkint titleElem: ${titleElem}`)
-      console.log(`checkint card template ${clonedCardTemplateNode}`)
-      // getting error because querySelector not returning any......
       titleElem.appendChild(document.createTextNode(title))
       bodyElem.appendChild(document.createTextNode(body))
+
+      // this works, too - from the actual solution
+      // const [cardTitle] = element.getElementsByTagName("h3");
+      //   const [cardBody] = element.getElementsByTagName("section");
+      //   [cardTitle.textContent, cardBody.textContent] = [title, body];
       return clonedCardTemplateNode
     }
 
