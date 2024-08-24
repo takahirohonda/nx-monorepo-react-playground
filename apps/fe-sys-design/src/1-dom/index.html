@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Frontend System Design Fundamentals</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <template id="card-template">
+      <article class="card">
+        <h3 class="card__title"></h3>
+        <div class="card__body">
+          <div class="card__body__image"></div>
+          <section class="card__body__content"></section>
+        </div>
+      </article>
+    </template>
+    <main id="container"></main>
+  </body>
+  <script>
+    const container = document.getElementById('container')
+
+    /**
+     * @param {string} title
+     * @param {string} body
+     *
+     * @return {HTMLElement
+     */
+    function createCardComponent(title, body) {
+      // @todo - Exercise 1: Implement function
+      const cardTemplate = document.getElementById('card-template')
+      const clonedCardTemplateNode = cardTemplate.content.cloneNode(true)
+      const titleElem = clonedCardTemplateNode.querySelector('.card__title')
+      const bodyElem = clonedCardTemplateNode.querySelector(
+        '.card__body__content'
+      )
+      console.log(`checkint titleElem: ${titleElem}`)
+      console.log(`checkint card template ${clonedCardTemplateNode}`)
+      // getting error because querySelector not returning any......
+      titleElem.appendChild(document.createTextNode(title))
+      bodyElem.appendChild(document.createTextNode(body))
+      return clonedCardTemplateNode
+    }
+
+    const component = createCardComponent(
+      'Frontend System Design: Fundamentals',
+      'This is a random body text'
+    )
+
+    container.appendChild(component)
+  </script>
+</html>
