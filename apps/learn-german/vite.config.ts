@@ -22,11 +22,6 @@ export default defineConfig({
     host: 'localhost',
   },
 
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [ nxViteTsPaths() ],
-  // },
-
   build: {
     outDir: '../../dist/apps/learn-german',
     reportCompressedSize: true,
@@ -50,30 +45,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
       },
     }),
-    // {
-    //   name: 'collect-build-files',
-    //   generateBundle(options, bundle) {
-    //     // Array to store the file names
-    //     const files = []
-
-    //     // Iterate through the bundle object to collect file names
-    //     for (const fileName in bundle) {
-    //       if (Object.prototype.hasOwnProperty.call(bundle, fileName)) {
-    //         files.push(fileName)
-    //       }
-    //     }
-
-    //     const outDir = options.dir || 'dist'
-    //     const outputPath = path.resolve(outDir, 'build-files.js')
-    //     const fileContent = `export const buildFiles = ${JSON.stringify(files, null, 2)};`
-
-    //     fs.writeFileSync(outputPath, fileContent, 'utf-8')
-
-    //     console.log(`Build files array written to: ${outputPath}`)
-    //   },
-    // },
   ],
-
   test: {
     globals: true,
     cache: {
