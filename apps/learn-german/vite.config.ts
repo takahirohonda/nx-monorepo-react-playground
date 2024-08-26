@@ -2,6 +2,8 @@
 import { defineConfig } from 'vite'
 
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin'
+import { VitePWA } from 'vite-plugin-pwa'
+import manifestObj from './manifest.json'
 
 const isGitPageDeploy = Boolean(process.env.GIT_PAGE_DEPLOY)
 
@@ -19,8 +21,6 @@ export default defineConfig({
     port: 4300,
     host: 'localhost',
   },
-
-  plugins: [nxViteTsPaths()],
 
   // Uncomment this if you are using workers.
   // worker: {
@@ -41,6 +41,38 @@ export default defineConfig({
       },
     },
   },
+  plugins: [
+    nxViteTsPaths(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: manifestObj as any,
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+      },
+    }),
+    // {
+    //   name: 'collect-build-files',
+    //   generateBundle(options, bundle) {
+    //     // Array to store the file names
+    //     const files = []
+
+    //     // Iterate through the bundle object to collect file names
+    //     for (const fileName in bundle) {
+    //       if (Object.prototype.hasOwnProperty.call(bundle, fileName)) {
+    //         files.push(fileName)
+    //       }
+    //     }
+
+    //     const outDir = options.dir || 'dist'
+    //     const outputPath = path.resolve(outDir, 'build-files.js')
+    //     const fileContent = `export const buildFiles = ${JSON.stringify(files, null, 2)};`
+
+    //     fs.writeFileSync(outputPath, fileContent, 'utf-8')
+
+    //     console.log(`Build files array written to: ${outputPath}`)
+    //   },
+    // },
+  ],
 
   test: {
     globals: true,
