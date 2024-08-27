@@ -31,8 +31,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: './index.html',
-        about: './verbs.html',
-        contact: './simple-expressions.html',
+        verbs: './verbs.html',
+        simpleExpressions: './simple-expressions.html',
+        auxiliaryVerbs: './auxiliary-verbs.html',
+        questions: './questions.html',
+        conversations: './conversations.html',
       },
     },
   },
