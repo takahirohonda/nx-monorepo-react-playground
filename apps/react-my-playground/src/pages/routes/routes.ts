@@ -11,6 +11,10 @@ export const ROOT = {
       path: 'shop/json-data',
       relative: 'json-data',
     },
+    TEST_PERSIST_CACHE: {
+      path: 'shop/test-persist-cache',
+      relative: 'test-persist-cache',
+    },
   },
   TEST_PAGES: {
     path: '/test-pages',

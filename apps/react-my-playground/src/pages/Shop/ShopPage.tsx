@@ -73,6 +73,11 @@ export const ShopPage = () => {
           label="Go To Checkout"
           variant="blue"
         />
+        <ButtonPrimary
+          onClickHandler={() => navigate(ROOT.SHOP.TEST_PERSIST_CACHE.relative)}
+          label="Test Persist Cache"
+          variant="blue"
+        />
       </div>
       <div>
         {isDeleteCartInProgress && <span>Delete cart in progress...</span>}

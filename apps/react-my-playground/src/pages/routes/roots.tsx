@@ -12,6 +12,7 @@ import { subRouteConfig } from './subRouteConfig'
 import { ShopPage } from '../Shop/ShopPage'
 import { CheckoutPage } from '../Shop/CheckoutPage'
 import { GetProductsJsonData } from '../Shop/test-pages/GetProductsJsonData'
+import { TestPersistCachePage } from '../Shop/TestPersistCachePage'
 
 export const routeConfig: RouteObject[] = [
   {
@@ -34,6 +35,10 @@ export const routeConfig: RouteObject[] = [
       {
         path: ROOT.SHOP.JSON_DATA.path,
         element: <GetProductsJsonData />,
+      },
+      {
+        path: ROOT.SHOP.TEST_PERSIST_CACHE.path,
+        element: <TestPersistCachePage />,
       },
     ],
   },

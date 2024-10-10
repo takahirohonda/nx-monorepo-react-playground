@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 // import { worker } from './mock/browser'
 import { routeConfig } from './pages/routes/roots'
 import { ApolloProviderReact } from '@libs/utils-apollo-provider'
+import { TestPersistCacheApolloProvider } from './pages/Shop/TestPersistCacheApolloProvider'
 
 // For mock service worker
 // if (process.env.NODE_ENV === 'development') {
@@ -27,5 +28,13 @@ root.render(
     <ApolloProviderReact uri={GRAPHQL_URI} token={API_TOKEN}>
       <RouterProvider router={router} />
     </ApolloProviderReact>
+  </React.StrictMode>
+)
+
+root.render(
+  <React.StrictMode>
+    <TestPersistCacheApolloProvider>
+      <RouterProvider router={router} />
+    </TestPersistCacheApolloProvider>
   </React.StrictMode>
 )

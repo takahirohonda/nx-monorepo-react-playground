@@ -15,6 +15,12 @@
       "options": {
         "command": "export NODE_TLS_REJECT_UNAUTHORIZED=0 && ./apps/react-my-playground/script/run-codegen.sh"
       }
+    },
+    "generate-token": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "export NODE_TLS_REJECT_UNAUTHORIZED=0 && node ./apps/react-my-playground/script/fetchToken.js"
+      }
     }
   },
   "tags": []

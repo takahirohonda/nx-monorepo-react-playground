@@ -1,6 +1,6 @@
 import { defaultDataIdFromObject, InMemoryCache } from '@apollo/client'
 
-const possibleTypes = {
+export const possibleTypes = {
   CatalogProductOption: [
     'MultipleChoiceOption',
     'NumberFieldOption',
