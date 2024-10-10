@@ -41,7 +41,6 @@ await persistCache({
 })
 
 // Continue setting up Apollo as usual.
-
 const client = new ApolloClient({
   link: from([authMiddleware, httpLink]),
   cache,
