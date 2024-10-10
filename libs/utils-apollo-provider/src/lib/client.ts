@@ -1,5 +1,5 @@
 import { ApolloClient, ApolloLink, createHttpLink, from } from '@apollo/client'
-import { getCache } from './getCache'
+import { cache } from './getCache'
 import { createLazyLoadableLaikaLink } from '@zendesk/laika'
 
 export const LAIKA_CLIENT_NAME = 'ecommerce'
@@ -55,7 +55,7 @@ export const getClient = ({ uri, token }: { uri: string; token: string }) => {
         : []),
       httpLink,
     ]),
-    cache: getCache(),
+    cache,
     connectToDevTools: true,
   })
 }

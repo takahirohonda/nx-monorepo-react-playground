@@ -1,4 +1,4 @@
-import { defaultDataIdFromObject, InMemoryCache } from '@apollo/client'
+import { defaultDataIdFromObject, gql, InMemoryCache } from '@apollo/client'
 
 export const possibleTypes = {
   CatalogProductOption: [
@@ -20,8 +20,31 @@ export const customDataIdFromObject = (object: any) => {
   return defaultDataIdFromObject(object)
 }
 
-export const getCache = () =>
-  new InMemoryCache({
-    possibleTypes,
-    dataIdFromObject: customDataIdFromObject,
-  })
+export const cache = new InMemoryCache({
+  possibleTypes,
+  dataIdFromObject: customDataIdFromObject,
+})
+
+// this doesn't work... we need to it per query...
+
+// cache.watch({
+//   callback: (diff) => {
+//     console.log(`checking data in cahce.watch: ${JSON.stringify(data)}`)
+//   },
+// })
+
+cache.watch({
+  query: gql`
+    query RetrieveEntityOnboardingDetails($id: ID!) {
+      retrieveEntityOnboardingDetails(id: $id) {
+        entityUuid
+        __typename
+      }
+    }
+  `,
+  variables: { id: 'some-id' }, // Adjust the variables as per your needs
+  optimistic: false, // Optional: Depends on whether you want optimistic results or not
+  callback: (diff) => {
+    console.log(`checking data in cache.watch: ${JSON.stringify(diff)}`)
+  },
+})

@@ -25,18 +25,19 @@ const API_TOKEN = import.meta.env.VITE_API_TOKEN
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
 // This seems to create 2 apollo clients...
-// root.render(
-//   <React.StrictMode>
-//     <ApolloProviderReact uri={GRAPHQL_URI} token={API_TOKEN}>
-//       <RouterProvider router={router} />
-//     </ApolloProviderReact>
-//   </React.StrictMode>
-// )
-
 root.render(
   <React.StrictMode>
-    <TestPersistCacheApolloProvider>
+    <ApolloProviderReact uri={GRAPHQL_URI} token={API_TOKEN}>
       <RouterProvider router={router} />
-    </TestPersistCacheApolloProvider>
+    </ApolloProviderReact>
   </React.StrictMode>
 )
+
+// This works with local storage sync because there is only one client instance
+// root.render(
+//   <React.StrictMode>
+//     <TestPersistCacheApolloProvider>
+//       <RouterProvider router={router} />
+//     </TestPersistCacheApolloProvider>
+//   </React.StrictMode>
+// )
