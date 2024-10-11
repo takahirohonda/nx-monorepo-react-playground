@@ -9,7 +9,6 @@ import { ProductDisplayWrapper } from './components/ProductDisplayWrapper'
 import { ButtonPrimary } from './components/ButtonPrimary'
 import { useDeleteExistingCart } from './hooks/useDeleteExistingCart'
 import { useCreateCart } from './hooks/cart-operations/useCreateCart'
-import { cache } from '@libs/utils-apollo-provider'
 
 export const ShopPage = () => {
   const { products } = useGetProducts()
@@ -41,10 +40,6 @@ export const ShopPage = () => {
     await deleteExistingCart()
     refetch()
   }, [deleteExistingCart, refetch])
-
-  cache.watch((data) => {
-    console.log(`checking data in cahce.watch: ${JSON.stringify(data)}`)
-  })
 
   return (
     <div className="flex-col gap-4">
