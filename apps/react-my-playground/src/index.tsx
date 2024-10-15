@@ -24,7 +24,7 @@ const API_TOKEN = import.meta.env.VITE_API_TOKEN
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
-// This seems to create 2 apollo clients...
+// This seems to create 2 apollo clients, but seems to work...
 root.render(
   <React.StrictMode>
     <ApolloProviderReact uri={GRAPHQL_URI} token={API_TOKEN}>

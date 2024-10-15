@@ -1,13 +1,8 @@
-import { InMemoryCache, Cache, QueryOptions, Reference } from '@apollo/client'
-import type { DocumentNode } from 'graphql'
+import { InMemoryCache, Cache, Reference } from '@apollo/client'
 
 export class LoggingCache extends InMemoryCache {
-  constructor(config?: Cache.InMemoryCacheConfig) {
-    super(config)
-  }
-
-  writeQuery<TData = any, TVariables = any>(
-    options: QueryOptions<TData, TVariables>
+  writeQuery<TData, TVariables>(
+    options: Cache.WriteQueryOptions<TData, TVariables>
   ): Reference | undefined {
     console.log('Cache updated (writeQuery):', options)
     const result = super.writeQuery(options)
@@ -15,14 +10,16 @@ export class LoggingCache extends InMemoryCache {
     return result
   }
 
-  writeFragment(options: Cache.WriteFragmentOptions) {
+  writeFragment<TData, TVariables>(
+    options: Cache.WriteFragmentOptions<TData, TVariables>
+  ) {
     console.log('Cache updated (writeFragment):', options)
     const result = super.writeFragment(options)
     console.log('writeFragment result:', result)
     return result
   }
 
-  modify<Entity extends Record<string, any> = Record<string, any>>(
+  modify<Entity extends Record<string, unknown> = Record<string, unknown>>(
     options: Cache.ModifyOptions<Entity>
   ) {
     console.log('Cache modified (modify):', options)
@@ -39,7 +36,7 @@ export class LoggingCache extends InMemoryCache {
   }
 
   // Optionally, you can add logging for other methods like diff, watch, etc.
-  watch<TData = any, TVariables = any>(
+  watch<TData, TVariables>(
     watch: Cache.WatchOptions<TData, TVariables>
   ): () => void {
     console.log('Cache watch called:', watch)

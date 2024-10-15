@@ -25,26 +25,19 @@ export const cache = new InMemoryCache({
   dataIdFromObject: customDataIdFromObject,
 })
 
-// this doesn't work... we need to it per query...
-
+// watching cache only works per query
 // cache.watch({
+//   query: gql`
+//     query RetrieveEntityOnboardingDetails($id: ID!) {
+//       retrieveEntityOnboardingDetails(id: $id) {
+//         entityUuid
+//         __typename
+//       }
+//     }
+//   `,
+//   variables: { id: 'some-id' }, // Adjust the variables as per your needs
+//   optimistic: false, // Optional: Depends on whether you want optimistic results or not
 //   callback: (diff) => {
-//     console.log(`checking data in cahce.watch: ${JSON.stringify(data)}`)
+//     console.log(`checking data in cache.watch: ${JSON.stringify(diff)}`)
 //   },
 // })
-
-cache.watch({
-  query: gql`
-    query RetrieveEntityOnboardingDetails($id: ID!) {
-      retrieveEntityOnboardingDetails(id: $id) {
-        entityUuid
-        __typename
-      }
-    }
-  `,
-  variables: { id: 'some-id' }, // Adjust the variables as per your needs
-  optimistic: false, // Optional: Depends on whether you want optimistic results or not
-  callback: (diff) => {
-    console.log(`checking data in cache.watch: ${JSON.stringify(diff)}`)
-  },
-})
