@@ -10,14 +10,16 @@ const TodoPage = async () => {
       <h1>To Do</h1>
       <div>This is a todo page</div>
       <ul>
-        {todo?.map((list) => (
-          <TodoWithButton
-            key={list.id}
-            id={list.id}
-            content={list.content}
-            completed={list.completed}
-          />
-        ))}
+        {todo?.map(
+          (list: { id: string; content: string; completed: boolean }) => (
+            <TodoWithButton
+              key={list.id}
+              id={list.id}
+              content={list.content}
+              completed={list.completed}
+            />
+          )
+        )}
       </ul>
       <form action={addNewTodo} className="flex flex-col gap-4 w-3/12">
         <input
